@@ -216,7 +216,6 @@ def init_db():
             default_visibility = json.dumps({
                 "hero": True,
                 "invitation": True,
-                "rituals": True,
                 "venue": True,
                 "gifts": True,
                 "salami": True,
@@ -229,12 +228,12 @@ def init_db():
                 INSERT INTO events VALUES (
                     'utsab-default',
                     'Arindam & Arpita Auspicious Hindu Wedding Celebration',
-                    'শ্রীমান অরিন্দম ও আয়ুষ্মতী অর্পিতার শুভ বিবাহ ও প্রীতিভোজ',
+                    'অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ',
                     'hindu_wedding',
                     'Arindam Chakraborty',
                     'Arpita Ganguly',
-                    'শ্রীমান অরিন্দম চক্রবর্ত্তী',
-                    'আয়ুষ্মতী অর্পিতা গাঙ্গুলি',
+                    'অরিন্দম চক্রবর্ত্তী',
+                    'অর্পিতা গাঙ্গুলি',
                     '/uploads/groom_arindam.jpg',
                     '/uploads/bride_arpita.jpg',
                     '/uploads/arindam_arpita_sitting.jpg',
@@ -245,7 +244,7 @@ def init_db():
                     'এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ',
                     'https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram',
                     '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১ জানুয়ারি ২০২৭ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
-                    '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ পরিণয়ে আপনার সানন্দ উপস্থিতি ও পবিত্র আশীর্বাদ আমাদের পরম সম্পদ।',
+                    '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।',
                     'sindoor-gold',
                     ?,
                     ?,
@@ -471,44 +470,30 @@ def init_db():
             demo_gallery = [
                 (
                     'gal-1',
-                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
-                    'মাঙ্গলিক আশীর্বাদ ও আংটি বদল (Ashirbad & Ring Ceremony)',
+                    'uploads/arindam_arpita_sitting.jpg',
+                    'অরিন্দম ও অর্পিতা — মধুর যুগল মুহূর্ত',
                     1,
                     datetime.datetime.now().isoformat()
                 ),
                 (
                     'gal-2',
-                    'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
-                    'প্রাক-পরিণয় সুবর্ণ মুহূর্ত (Pre-Wedding Memories)',
+                    'uploads/arindam_arpita_standing.jpg',
+                    'শুভ পরিণয় ও বৌভাত প্রীতিভোজ — অরিন্দম ও অর্পিতা',
                     2,
                     datetime.datetime.now().isoformat()
                 ),
                 (
                     'gal-3',
-                    'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80',
-                    'নান্দীমুখ ও মঙ্গলঘট স্থাপনা (Nandi Mukh & Sacred Kalash)',
+                    'uploads/groom_arindam.jpg',
+                    'অরিন্দম চক্রবর্ত্তী (বর)',
                     3,
                     datetime.datetime.now().isoformat()
                 ),
                 (
                     'gal-4',
-                    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80',
-                    'গায়ে হলুদ ও সুগন্ধি চন্দন পর্ব (Gaye Holud Ritual)',
+                    'uploads/bride_arpita.jpg',
+                    'অর্পিতা গাঙ্গুলি (কনে)',
                     4,
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gal-5',
-                    'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
-                    'শুভদৃষ্টি ও মালাবদল লগ্ন (Shubho Drishti & Garland Exchange)',
-                    5,
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gal-6',
-                    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
-                    'সাতপাকে বাঁধা ও সিঁদুরদান (Saat Paake Bandha & Sindoor Daan)',
-                    6,
                     datetime.datetime.now().isoformat()
                 )
             ]
@@ -957,7 +942,6 @@ class RegistryHandler(BaseHTTPRequestHandler):
             default_visibility = json.dumps({
                 "hero": True,
                 "invitation": True,
-                "rituals": True,
                 "venue": True,
                 "gifts": True,
                 "salami": True,
@@ -970,12 +954,12 @@ class RegistryHandler(BaseHTTPRequestHandler):
                 INSERT INTO events VALUES (
                     'utsab-default',
                     'Arindam & Arpita Auspicious Hindu Wedding Celebration',
-                    'শ্রীমান অরিন্দম ও আয়ুষ্মতী অর্পিতার শুভ বিবাহ ও প্রীতিভোজ',
+                    'অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ',
                     'hindu_wedding',
                     'Arindam Chakraborty',
                     'Arpita Ganguly',
-                    'শ্রীমান অরিন্দম চক্রবর্ত্তী',
-                    'আয়ুষ্মতী অর্পিতা গাঙ্গুলি',
+                    'অরিন্দম চক্রবর্ত্তী',
+                    'অর্পিতা গাঙ্গুলি',
                     '/uploads/groom_arindam.jpg',
                     '/uploads/bride_arpita.jpg',
                     '/uploads/arindam_arpita_sitting.jpg',
@@ -986,7 +970,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                     'এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ',
                     'https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram',
                     '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১ জানুয়ারি ২০২৭ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
-                    '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ পরিণয়ে আপনার সানন্দ উপস্থিতি ও পবিত্র আশীর্বাদ আমাদের পরম সম্পদ।',
+                    '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।',
                     'sindoor-gold',
                     ?,
                     ?,

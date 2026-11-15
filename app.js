@@ -146,12 +146,12 @@ const defaultStaticState = {
   "event": {
     "id": "utsab-default",
     "title_en": "Arindam & Arpita Auspicious Hindu Wedding Celebration",
-    "title_bn": "শ্রীমান অরিন্দম ও আয়ুষ্মতী অর্পিতার শুভ বিবাহ ও প্রীতিভোজ",
+    "title_bn": "অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ",
     "event_type": "hindu_wedding",
     "groom_name": "Arindam Chakraborty",
     "bride_name": "Arpita Ganguly",
-    "groom_bn": "শ্রীমান অরিন্দম চক্রবর্ত্তী",
-    "bride_bn": "আয়ুষ্মতী অর্পিতা গাঙ্গুলি",
+    "groom_bn": "অরিন্দম চক্রবর্ত্তী",
+    "bride_bn": "অর্পিতা গাঙ্গুলি",
     "groom_photo": "uploads/groom_arindam.jpg",
     "bride_photo": "uploads/bride_arpita.jpg",
     "couple_photo": "uploads/arindam_arpita_sitting.jpg",
@@ -161,13 +161,12 @@ const defaultStaticState = {
     "venue_name": "Engineers Institute Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম)",
     "venue_address": "এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ",
     "venue_map_url": "https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram",
-    "story": "|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১ জানুয়ারি ২০২৭ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।",
-    "welcome_msg": "|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ পরিণয়ে আপনার সানন্দ উপস্থিতি ও পবিত্র আশীর্বাদ আমাদের পরম সম্পদ।",
+    "story": "|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরম করুণাময় পরমেশ্বরের অশেষ কৃপা এবং পরম পূজনীয় পিতৃপুরুষ ও গুরুজনদের আশিস মাথায় রেখে আমাদের শুভ পরিণয় উপলক্ষে আগামী ২১ জানুয়ারি ২০২৭ শুভ বৌভাত ও প্রীতিভোজ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভ বৌভাত ও প্রীতিভোজে আপনার সপরিবার সানন্দ উপস্থিতি ও মাঙ্গলিক আশীর্বাদ আমাদের নবদম্পতির আগামী দিনের শ্রেষ্ঠ পাথেয়।",
+    "welcome_msg": "|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।",
     "theme_color": "sindoor-gold",
     "section_order": [
       "hero",
       "invitation",
-      "rituals",
       "venue",
       "gifts",
       "salami",
@@ -178,7 +177,6 @@ const defaultStaticState = {
     "section_visibility": {
       "hero": true,
       "invitation": true,
-      "rituals": true,
       "venue": true,
       "gifts": true,
       "salami": true,
@@ -561,78 +559,64 @@ const defaultStaticState = {
     {
       "id": "gal-1",
       "image_url": "uploads/arindam_arpita_sitting.jpg",
-      "caption": "শুভ পরিণয় ও আশীর্বাদ — অরিন্দম ও অর্পিতা",
+      "caption": "অরিন্দম ও অর্পিতা — মধুর যুগল মুহূর্ত",
       "order_idx": 1,
-      "created_at": "2026-11-15T00:40:56.034268"
+      "created_at": "2026-11-15T00:40:56"
     },
     {
       "id": "gal-2",
       "image_url": "uploads/arindam_arpita_standing.jpg",
-      "caption": "আমাদের মধুর যুগল মুহূর্ত (Arindam & Arpita)",
+      "caption": "শুভ পরিণয় ও বৌভাত প্রীতিভোজ — অরিন্দম ও অর্পিতা",
       "order_idx": 2,
-      "created_at": "2026-11-15T00:40:56.034271"
+      "created_at": "2026-11-15T00:40:56"
     },
     {
       "id": "gal-3",
-      "image_url": "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80",
-      "caption": "মাঙ্গলিক আশীর্বাদ ও নান্দীমুখ পর্ব",
+      "image_url": "uploads/groom_arindam.jpg",
+      "caption": "অরিন্দম চক্রবর্ত্তী (বর)",
       "order_idx": 3,
-      "created_at": "2026-11-15T00:40:56.034272"
+      "created_at": "2026-11-15T00:40:56"
     },
     {
       "id": "gal-4",
-      "image_url": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
-      "caption": "গায়ে হলুদ ও সুগন্ধি চন্দন অনুষ্ঠান",
+      "image_url": "uploads/bride_arpita.jpg",
+      "caption": "অর্পিতা গাঙ্গুলি (কনে)",
       "order_idx": 4,
-      "created_at": "2026-11-15T00:40:56.034274"
-    },
-    {
-      "id": "gal-5",
-      "image_url": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80",
-      "caption": "শুভদৃষ্টি ও মালাবদল লগ্ন",
-      "order_idx": 5,
-      "created_at": "2026-11-15T00:40:56.034275"
-    },
-    {
-      "id": "gal-6",
-      "image_url": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-      "caption": "সাতপাকে বাঁধা ও পবিত্র সিঁদুরদান",
-      "order_idx": 6,
-      "created_at": "2026-11-15T00:40:56.034276"
+      "created_at": "2026-11-15T00:40:56"
     }
   ],
   "guestbook": [
     {
-      "id": "b-16e75128",
-      "name": "চৌধুরী পরিবার (চট্টগ্রাম)",
-      "relation": "Gifted via BRAC Bank Transfer (Demo Gateway)",
-      "message": "অরিন্দম ও অর্পিতার সুন্দর ও আনন্দময় দাম্পত্য জীবনের জন্য সপরিবারে আন্তরিক শুভকামনা ও আশীর্বাদ!",
-      "reaction": "🎁",
-      "created_at": "2026-11-15T00:54:25.453614"
-    },
-    {
       "id": "gb-1",
-      "name": "প্রণব ও চিত্রা চক্রবর্ত্তী",
-      "relation": "জেঠু ও জেঠিমা (চট্টগ্রাম)",
-      "message": "পরমেশ্বর ভগবান শ্রীকৃষ্ণের কৃপায় অরিন্দম ও অর্পিতার আগামী দাম্পত্য জীবন সুখ, শান্তি ও অনাবিল ভালোবাসায় ভরে উঠুক। আমাদের সপরিবার আন্তরিক আশীর্বাদ রইল।",
+      "name": "চৌধুরী পরিবার (চট্টগ্রাম)",
+      "relation": "পারিবারিক শুভাকাঙ্ক্ষী",
+      "message": "অরিন্দম ও অর্পিতার সুন্দর ও আনন্দময় দাম্পত্য জীবনের জন্য সপরিবারে আন্তরিক শুভকামনা ও মাঙ্গলিক আশীর্বাদ!",
       "reaction": "🌸",
-      "created_at": "2026-11-15T00:49:22.570100"
+      "created_at": "2026-11-15T00:54:25"
     },
     {
       "id": "gb-2",
-      "name": "সুব্রত গাঙ্গুলি ও বন্ধু পরিবার",
-      "relation": "ইঞ্জিনিয়ার্স ফোরাম, চট্টগ্রাম",
-      "message": "শুভ পরিণয় অরিন্দম ও অর্পিতা! ইঞ্জিনিয়ার্স ইনস্টিটিউটের পবিত্র মণ্ডপে তোদের মালাবদল ও সিঁদুরদান দেখার শুভ লগ্নের অপেক্ষায় রইলাম।",
-      "reaction": "💖",
-      "created_at": "2026-11-15T00:49:22.570107"
+      "name": "প্রণব ও চিত্রা চক্রবর্ত্তী",
+      "relation": "জেঠু ও জেঠিমা (চট্টগ্রাম)",
+      "message": "পরমেশ্বর ভগবান শ্রীকৃষ্ণের কৃপায় অরিন্দম ও অর্পিতার আগামী দাম্পত্য জীবন সুখ, শান্তি ও অনাবিল ভালোবাসায় ভরে উঠুক। আমাদের সপরিবার আন্তরিক আশীর্বাদ রইল।",
+      "reaction": "🪔",
+      "created_at": "2026-11-15T00:49:22"
     },
     {
       "id": "gb-3",
+      "name": "সুব্রত গাঙ্গুলি ও পরিবার",
+      "relation": "ইঞ্জিনিয়ার্স ফোরাম, চট্টগ্রাম",
+      "message": "শুভ বিবাহ ও বৌভাত প্রীতিভোজের আন্তরিক শুভকামনা অরিন্দম ও অর্পিতা! ইঞ্জিনিয়ার্স ইনস্টিটিউটের প্রীতিভোজে তোদের উজ্জ্বল উপস্থিতি দেখার অপেক্ষায় রইলাম।",
+      "reaction": "💖",
+      "created_at": "2026-11-15T00:49:22"
+    },
+    {
+      "id": "gb-4",
       "name": "কাকলি গাঙ্গুলি",
       "relation": "ছোট মাসিমণি",
       "message": "অর্পিতা মা আমার, খুব সুখী হোস। অরিন্দম ও তোদের পবিত্র যুগল মিলন সদা প্রস্ফুটিত থাকুক। অনেক স্নেহ ও আশীর্বাদ রইল।",
       "reaction": "🌸",
-      "created_at": "2026-11-15T00:49:22.570109"
+      "created_at": "2026-11-15T00:49:22"
     }
   ]
 };
@@ -679,11 +663,22 @@ async function loadData() {
     console.log('GitHub Pages / Static Hosting Mode Active');
     state.apiAvailable = false;
     const cachedEvent = localStorage.getItem('utsab_event');
-    state.event = cachedEvent ? JSON.parse(cachedEvent) : defaultStaticState.event;
+    if (cachedEvent && (cachedEvent.includes('শ্রীমান') || cachedEvent.includes('আয়ুষ্মতী') || cachedEvent.includes('rituals'))) {
+      localStorage.removeItem('utsab_event');
+      localStorage.removeItem('utsab_gallery');
+      state.event = defaultStaticState.event;
+    } else {
+      state.event = cachedEvent ? JSON.parse(cachedEvent) : defaultStaticState.event;
+    }
     const cachedGifts = localStorage.getItem('utsab_gifts');
     state.gifts = cachedGifts ? JSON.parse(cachedGifts) : defaultStaticState.gifts;
     const cachedGallery = localStorage.getItem('utsab_gallery');
-    state.gallery = cachedGallery ? JSON.parse(cachedGallery) : defaultStaticState.gallery;
+    if (cachedGallery && cachedGallery.includes('unsplash.com')) {
+      localStorage.removeItem('utsab_gallery');
+      state.gallery = defaultStaticState.gallery;
+    } else {
+      state.gallery = cachedGallery ? JSON.parse(cachedGallery) : defaultStaticState.gallery;
+    }
     const cachedGuestbook = localStorage.getItem('utsab_guestbook');
     state.guestbook = cachedGuestbook ? JSON.parse(cachedGuestbook) : defaultStaticState.guestbook;
     state.stats = {
@@ -740,12 +735,11 @@ function renderAll() {
     renderGallery,
     renderGifts,
     renderSalamiPresets,
-    renderGuestbook,
-    renderAdminPanel,
-    renderVendorOrdersLedger,
-    renderEscrowDashboard,
-    renderDatabaseStats
+    renderGuestbook
   ];
+  if (document.getElementById('section-admin')) {
+    steps.push(renderAdminPanel, renderVendorOrdersLedger, renderEscrowDashboard, renderDatabaseStats);
+  }
   for (const step of steps) {
     try {
       step();
@@ -1088,7 +1082,7 @@ function renderSectionOrganizerDisplay() {
   const main = document.getElementById('sections-container');
   if (!main) return;
 
-  const defaultOrder = ["hero", "invitation", "rituals", "venue", "gifts", "salami", "gallery", "story", "guestbook"];
+  const defaultOrder = ["hero", "invitation", "venue", "gifts", "salami", "gallery", "story", "guestbook"];
   const order = state.event?.section_order && state.event.section_order.length > 0 ? state.event.section_order : defaultOrder;
   const visibility = state.event?.section_visibility || {};
 
@@ -1108,7 +1102,7 @@ function renderAdminOrganizerControls() {
   const tbody = document.getElementById('admin-organizer-tbody');
   if (!tbody) return;
 
-  const defaultOrder = ["hero", "invitation", "rituals", "venue", "gifts", "salami", "gallery", "story", "guestbook"];
+  const defaultOrder = ["hero", "invitation", "venue", "gifts", "salami", "gallery", "story", "guestbook"];
   const order = state.event?.section_order && state.event.section_order.length > 0 ? state.event.section_order : defaultOrder;
   const visibility = state.event?.section_visibility || {};
 
@@ -2087,7 +2081,7 @@ function showBlessingCardReceipt(record) {
     <div class="salami-envelope p-7 text-white relative">
       <div class="text-center mb-5">
         <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold gold-gradient text-amber-950 uppercase mb-1">
-          উপহার ও অর্ডার স্বীকৃতি (Official Escrow Receipt)
+          মাঙ্গলিক আশীর্বাদী ও উপহার স্বীকৃতি
         </span>
         <h2 class="text-xl font-bold font-serif-wedding text-amber-200">${ev.title_bn || ev.title_en}</h2>
         <p class="text-[11px] text-amber-100/70">${ev.venue_name}</p>
@@ -2110,13 +2104,13 @@ function showBlessingCardReceipt(record) {
           <span class="text-2xl font-bold text-amber-300 font-serif-wedding">${formatCurrency(record.amount)}</span>
         </div>
         <div class="text-[10px] text-emerald-300 flex items-center gap-1">
-          <i class="fa-solid fa-lock"></i> তহবিল সুরক্ষিত ও এসক্রোতে সংরক্ষিত
+          <i class="fa-solid fa-lock"></i> ✨ অরিন্দম ও অর্পিতার পক্ষ থেকে অনেক অনেক ভালোবাসা ও সশ্রদ্ধ কৃতজ্ঞতা
         </div>
         ${record.blessing_msg ? `<p class="italic text-amber-100 pt-2 border-t border-amber-300/20">"${record.blessing_msg}"</p>` : ''}
       </div>
       <div class="mt-4 pt-3 border-t border-amber-300/30 text-[10px] text-amber-200/70 flex justify-between">
         <span>Receipt ID: <strong>${record.id}</strong></span>
-        <span>বর-কনের পক্ষ থেকে ধন্যবাদ ❤️</span>
+        <span>অরিন্দম ও অর্পিতার পক্ষ থেকে সশ্রদ্ধ ধন্যবাদ ❤️</span>
       </div>
     </div>
   `;
@@ -2135,7 +2129,7 @@ function printReceipt() {
 
 function switchTab(tabId) {
   state.activeTab = tabId;
-  const allTabs = ['gifts', 'invitation', 'rituals', 'venue', 'gallery', 'salami', 'story', 'guestbook', 'admin'];
+  const allTabs = ['gifts', 'invitation', 'venue', 'gallery', 'salami', 'story', 'guestbook'];
 
   if (tabId === 'admin') {
     document.getElementById('sections-container')?.classList.add('hidden');
@@ -2164,7 +2158,8 @@ function switchTab(tabId) {
 }
 
 // ==========================================
-// HINDU WEDDING AUDIO & THEME CONTROLS
+// HINDU WEDDING AUDIO: CLASSICAL BANSURI & SITAR AMBIENCE
+// Serene Indian Classical Acoustic Wedding Raga
 // ==========================================
 let hinduAudioCtx = null;
 let hinduAudioPlaying = false;
@@ -2181,7 +2176,7 @@ function toggleHinduWeddingAudio() {
     hinduAudioNodes = [];
     hinduAudioPlaying = false;
     if (btn) btn.classList.remove('audio-playing-pulse', 'border-amber-400', 'bg-amber-600/40');
-    if (txt) txt.innerText = 'মঙ্গল সানাই ও শঙ্খধ্বনি';
+    if (txt) txt.innerText = 'মাঙ্গলিক বাঁশি ও সেতারের সুর';
     return;
   }
 
@@ -2194,71 +2189,152 @@ function toggleHinduWeddingAudio() {
     const now = hinduAudioCtx.currentTime;
     const masterGain = hinduAudioCtx.createGain();
     masterGain.gain.setValueAtTime(0.001, now);
-    masterGain.gain.exponentialRampToValueAtTime(0.18, now + 1.2);
+    masterGain.gain.exponentialRampToValueAtTime(0.22, now + 1.5);
     masterGain.connect(hinduAudioCtx.destination);
 
-    // 1. Tanpura Root Drone (C#3: 138.59Hz, G#3: 207.65Hz, C#4: 277.18Hz)
+    // 1. Serene Tanpura Acoustic Drone (Sa - Pa - Sa fundamental resonance: 138.59Hz, 207.65Hz, 277.18Hz)
     [138.59, 207.65, 277.18].forEach((freq, idx) => {
       const osc = hinduAudioCtx.createOscillator();
       const gain = hinduAudioCtx.createGain();
       osc.type = idx === 1 ? 'triangle' : 'sine';
       osc.frequency.setValueAtTime(freq, now);
-      osc.detune.setValueAtTime((idx - 1) * 3, now);
-      gain.gain.setValueAtTime(0.08 / (idx + 1), now);
+      osc.detune.setValueAtTime((idx - 1) * 4, now);
+      
+      const lfo = hinduAudioCtx.createOscillator();
+      const lfoGain = hinduAudioCtx.createGain();
+      lfo.frequency.setValueAtTime(0.2 + idx * 0.1, now);
+      lfoGain.gain.setValueAtTime(0.015, now);
+      lfo.connect(gain.gain);
+      lfo.start(now);
+      hinduAudioNodes.push(lfo);
+
+      gain.gain.setValueAtTime(0.06 / (idx + 1), now);
       osc.connect(gain);
       gain.connect(masterGain);
       osc.start(now);
       hinduAudioNodes.push(osc);
     });
 
-    // 2. Shehnai Melodic Raga Arpeggio (Raag Bhairavi sacred wedding motif)
-    const ragaNotes = [277.18, 311.13, 349.23, 415.30, 554.37, 466.16, 415.30, 349.23];
-    const shehnaiOsc = hinduAudioCtx.createOscillator();
-    const shehnaiGain = hinduAudioCtx.createGain();
-    const shehnaiFilter = hinduAudioCtx.createBiquadFilter();
+    // 2. Bansuri (Acoustic Bamboo Flute) - Raag Yaman / Bhairavi Kalyan Motif
+    const ragaScale = [
+      { f: 277.18, dur: 1.4 },  // Sa
+      { f: 311.13, dur: 1.0 },  // Re
+      { f: 349.23, dur: 1.6 },  // Ga
+      { f: 415.30, dur: 1.2 },  // Pa
+      { f: 466.16, dur: 1.0 },  // Dha
+      { f: 554.37, dur: 2.2 },  // High Sa'
+      { f: 466.16, dur: 1.0 },  // Dha
+      { f: 415.30, dur: 1.4 },  // Pa
+      { f: 349.23, dur: 1.8 },  // Ga
+      { f: 311.13, dur: 1.2 },  // Re
+      { f: 277.18, dur: 2.8 }   // Restful Sa
+    ];
 
-    shehnaiOsc.type = 'sawtooth';
-    shehnaiFilter.type = 'lowpass';
-    shehnaiFilter.frequency.setValueAtTime(1400, now);
-    shehnaiFilter.Q.setValueAtTime(4, now);
-    shehnaiGain.gain.setValueAtTime(0.04, now);
+    function playFluteNote(freq, startTime, duration) {
+      if (!hinduAudioPlaying && hinduAudioNodes.length === 0) return;
+      const osc = hinduAudioCtx.createOscillator();
+      const oscHarmonic = hinduAudioCtx.createOscillator();
+      const noteGain = hinduAudioCtx.createGain();
+      const filter = hinduAudioCtx.createBiquadFilter();
 
-    let stepTime = now + 0.3;
-    for (let loop = 0; loop < 15; loop++) {
-      ragaNotes.forEach(noteFreq => {
-        shehnaiOsc.frequency.setValueAtTime(noteFreq, stepTime);
-        shehnaiOsc.frequency.exponentialRampToValueAtTime(noteFreq * 1.01, stepTime + 0.4);
-        stepTime += 0.7;
-      });
+      osc.type = 'sine';
+      oscHarmonic.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, startTime);
+      oscHarmonic.frequency.setValueAtTime(freq * 2, startTime);
+
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.008, startTime + duration * 0.5);
+      oscHarmonic.frequency.exponentialRampToValueAtTime(freq * 2.008, startTime + duration * 0.5);
+
+      const vibrato = hinduAudioCtx.createOscillator();
+      const vibratoGain = hinduAudioCtx.createGain();
+      vibrato.frequency.setValueAtTime(5.2, startTime);
+      vibratoGain.gain.setValueAtTime(2.5, startTime);
+      vibrato.connect(osc.frequency);
+      vibrato.start(startTime + 0.3);
+      vibrato.stop(startTime + duration);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1600, startTime);
+
+      noteGain.gain.setValueAtTime(0.001, startTime);
+      noteGain.gain.linearRampToValueAtTime(0.14, startTime + 0.18);
+      noteGain.gain.setValueAtTime(0.12, startTime + duration - 0.2);
+      noteGain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.connect(filter);
+      oscHarmonic.connect(filter);
+      filter.connect(noteGain);
+      noteGain.connect(masterGain);
+
+      osc.start(startTime);
+      oscHarmonic.start(startTime);
+      osc.stop(startTime + duration + 0.05);
+      oscHarmonic.stop(startTime + duration + 0.05);
+      hinduAudioNodes.push(osc, oscHarmonic, vibrato);
     }
 
-    shehnaiOsc.connect(shehnaiFilter);
-    shehnaiFilter.connect(shehnaiGain);
-    shehnaiGain.connect(masterGain);
-    shehnaiOsc.start(now);
-    hinduAudioNodes.push(shehnaiOsc);
+    function playSitarPluck(freq, startTime) {
+      if (!hinduAudioPlaying && hinduAudioNodes.length === 0) return;
+      const sitarOsc = hinduAudioCtx.createOscillator();
+      const sitarGain = hinduAudioCtx.createGain();
+      sitarOsc.type = 'sawtooth';
+      sitarOsc.frequency.setValueAtTime(freq, startTime);
+      sitarOsc.frequency.exponentialRampToValueAtTime(freq * 1.02, startTime + 0.1);
 
-    // 3. Auspicious Conch (শঙ্খ) Resonant Swell
-    const conchOsc = hinduAudioCtx.createOscillator();
-    const conchGain = hinduAudioCtx.createGain();
-    conchOsc.type = 'triangle';
-    conchOsc.frequency.setValueAtTime(174.61, now);
-    conchOsc.frequency.exponentialRampToValueAtTime(261.63, now + 1.8);
-    conchOsc.frequency.exponentialRampToValueAtTime(220.00, now + 3.5);
+      const sitarFilter = hinduAudioCtx.createBiquadFilter();
+      sitarFilter.type = 'bandpass';
+      sitarFilter.frequency.setValueAtTime(2200, startTime);
+      sitarFilter.Q.setValueAtTime(6, startTime);
 
-    conchGain.gain.setValueAtTime(0.001, now);
-    conchGain.gain.linearRampToValueAtTime(0.12, now + 1.2);
-    conchGain.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
+      sitarGain.gain.setValueAtTime(0.001, startTime);
+      sitarGain.gain.linearRampToValueAtTime(0.08, startTime + 0.02);
+      sitarGain.gain.exponentialRampToValueAtTime(0.001, startTime + 1.4);
 
-    conchOsc.connect(conchGain);
-    conchGain.connect(masterGain);
-    conchOsc.start(now);
-    conchOsc.stop(now + 4.2);
-    hinduAudioNodes.push(conchOsc);
+      sitarOsc.connect(sitarFilter);
+      sitarFilter.connect(sitarGain);
+      sitarGain.connect(masterGain);
+
+      sitarOsc.start(startTime);
+      sitarOsc.stop(startTime + 1.5);
+      hinduAudioNodes.push(sitarOsc);
+    }
+
+    function playTempleChime(startTime) {
+      if (!hinduAudioPlaying && hinduAudioNodes.length === 0) return;
+      const chimeOsc = hinduAudioCtx.createOscillator();
+      const chimeGain = hinduAudioCtx.createGain();
+      chimeOsc.type = 'sine';
+      chimeOsc.frequency.setValueAtTime(2093.00, startTime);
+
+      chimeGain.gain.setValueAtTime(0.001, startTime);
+      chimeGain.gain.linearRampToValueAtTime(0.04, startTime + 0.01);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.0);
+
+      chimeOsc.connect(chimeGain);
+      chimeGain.connect(masterGain);
+      chimeOsc.start(startTime);
+      chimeOsc.stop(startTime + 2.1);
+      hinduAudioNodes.push(chimeOsc);
+    }
+
+    let currentT = now + 0.8;
+    for (let loop = 0; loop < 12; loop++) {
+      playTempleChime(currentT);
+      playSitarPluck(277.18, currentT);
+      
+      ragaScale.forEach((note, idx) => {
+        playFluteNote(note.f, currentT, note.dur);
+        if (idx === 2 || idx === 5 || idx === 8) {
+          playSitarPluck(note.f, currentT + 0.1);
+        }
+        currentT += note.dur + 0.15;
+      });
+      currentT += 1.0;
+    }
 
     hinduAudioPlaying = true;
     if (btn) btn.classList.add('audio-playing-pulse', 'border-amber-400', 'bg-amber-600/40');
-    if (txt) txt.innerText = '🎶 সানাই বাজছে (থামাতে ক্লিক করুন)';
+    if (txt) txt.innerText = '🎶 সুমধুর সুর বাজছে (থামাতে ক্লিক করুন)';
   } catch (err) {
     console.warn("Audio synthesizer notice:", err);
   }

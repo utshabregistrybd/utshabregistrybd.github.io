@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>উৎসব রেজিস্ট্রি BD | UtsabRegistry - Marriage, Vendor Registry &amp; Escrow Bangladesh</title>
+  <title>অরিন্দম ও অর্পিতা • শুভ বিবাহ ও বৌভাত প্রীতিভোজ • মাঙ্গলিক উপহার রেজিস্ট্রি</title>
   
   <!-- Preconnect for Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,40 +35,17 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 font-bangla">
         <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span class="font-bold">🪔 সনাতন শুভ বিবাহ রেজিস্ট্রি • Aarong, Walton, Daraz সরাসরি কানেক্টেড • এসক্রো তহবিল সুরক্ষা</span>
+        <span class="font-bold">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • ২১ জানুয়ারি ২০২৭ • ইঞ্জিনিয়ার্স ইনস্টিটিউট, চট্টগ্রাম</span>
       </div>
       <div class="flex items-center gap-2 sm:gap-3 text-xs">
         
-        <!-- Shehnai & Shankhadhvani Audio Player -->
-        <button id="audio-toggle-btn" onclick="toggleHinduWeddingAudio()" class="px-2.5 py-1 rounded-lg bg-black/30 hover:bg-black/50 text-amber-200 border border-amber-300/40 text-[11px] font-bold flex items-center gap-1.5 transition">
+        <!-- Bansuri & Sitar Audio Player -->
+        <button id="audio-toggle-btn" onclick="toggleHinduWeddingAudio()" class="px-3 py-1 rounded-lg bg-black/30 hover:bg-black/50 text-amber-200 border border-amber-300/40 text-[11px] font-bold flex items-center gap-1.5 transition">
           <i class="fa-solid fa-music text-amber-300"></i>
-          <span id="audio-toggle-text">মঙ্গল সানাই ও শঙ্খধ্বনি</span>
+          <span id="audio-toggle-text">মাঙ্গলিক বাঁশি ও সেতারের সুর</span>
         </button>
 
-        <!-- Wedding Theme Selector -->
-        <div class="hidden lg:flex items-center gap-1 bg-black/25 px-2.5 py-1 rounded-lg border border-amber-300/30">
-          <i class="fa-solid fa-palette text-amber-300 text-[10px]"></i>
-          <span class="text-[11px] text-amber-200">থিম:</span>
-          <select id="wedding-theme-select" onchange="setWeddingTheme(this.value)" class="bg-transparent text-amber-100 font-medium text-[11px] focus:outline-none cursor-pointer">
-            <option value="sindoor-gold" class="text-gray-900 bg-white">🔴 সিঁদুর লাল ও স্বর্ণালী (Sindoor &amp; Gold)</option>
-            <option value="marigold-haldi" class="text-gray-900 bg-white">🟡 বাসন্তী হলুদ ও গাঁদা ফুল (Marigold Haldi)</option>
-            <option value="royal-vedic" class="text-gray-900 bg-white">🍷 রাজকীয় বৈদিক মেরুন (Royal Vedic)</option>
-            <option value="lotus-rose" class="text-gray-900 bg-white">🌸 পদ্ম গোলাপি ও চন্দন (Lotus &amp; Chandan)</option>
-          </select>
-        </div>
-
-        <!-- Font Pairing Switcher -->
-        <div class="hidden sm:flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-lg border border-amber-300/30">
-          <i class="fa-solid fa-font text-amber-300 text-[10px]"></i>
-          <span class="text-[11px] text-amber-200">ফন্ট:</span>
-          <select id="font-theme-select" onchange="setFontTheme(this.value)" class="bg-transparent text-amber-100 font-medium text-[11px] focus:outline-none cursor-pointer">
-            <option value="regal-tiro" class="text-gray-900 bg-white">Cinzel + Tiro Bangla (ঐতিহ্যবাহী বিবাহ - প্রস্তাবিত)</option>
-            <option value="poppins-hind" class="text-gray-900 bg-white">Poppins + Hind Siliguri (জনপ্রিয়)</option>
-            <option value="modern" class="text-gray-900 bg-white">Inter + Noto Sans Bengali (আধুনিক UI)</option>
-            <option value="serif-classic" class="text-gray-900 bg-white">Playfair + Noto Serif (ক্লাসিক)</option>
-          </select>
-        </div>
-
+        <!-- Language Switcher -->
         <div class="flex items-center bg-black/20 rounded-lg p-0.5 border border-amber-300/30">
           <button id="lang-btn-bn" onclick="setLanguage('bn')" class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-900 transition">বাং</button>
           <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2.5 py-0.5 rounded text-xs font-bold text-amber-200 hover:text-white transition">EN</button>
@@ -89,7 +66,7 @@
             উৎসব<span class="text-amber-700">রেজিস্ট্রি</span>
           </span>
           <span class="text-[10px] tracking-widest uppercase font-semibold text-gray-500 font-sans block">
-            সনাতন শুভ বিবাহ • Vendor &amp; Escrow BD
+            শুভ বিবাহ ও বৌভাত প্রীতিভোজ • চট্টগ্রাম
           </span>
         </div>
       </a>
@@ -101,26 +78,20 @@
         <button id="nav-invitation" onclick="switchTab('invitation')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
           <i class="fa-solid fa-scroll mr-1 text-rose-800"></i> মাঙ্গলিক নিমন্ত্রণ
         </button>
-        <button id="nav-rituals" onclick="switchTab('rituals')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
-          <i class="fa-solid fa-om mr-1 text-amber-600"></i> লগ্ন ও আচার
+        <button id="nav-venue" onclick="switchTab('venue')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
+          <i class="fa-solid fa-map-location-dot mr-1 text-rose-700"></i> ভেন্যু ও ম্যাপ
         </button>
         <button id="nav-gallery" onclick="switchTab('gallery')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
           <i class="fa-solid fa-camera-retro mr-1 text-amber-800"></i> স্মৃতি মালা
         </button>
         <button id="nav-salami" onclick="switchTab('salami')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
-          <i class="fa-solid fa-envelope-open-text mr-1 text-rose-700"></i> শুভ আশীর্বাদী খাম
+          <i class="fa-solid fa-envelope-open-text mr-1 text-rose-700"></i> শুভাশিস ও উপহার
         </button>
         <button id="nav-story" onclick="switchTab('story')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
           <i class="fa-solid fa-heart mr-1 text-pink-600"></i> শুভ পরিণয় গাথা
         </button>
-        <button id="nav-venue" onclick="switchTab('venue')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
-          <i class="fa-solid fa-map-location-dot mr-1 text-rose-700"></i> ভেন্যু ও ম্যাপ
-        </button>
         <button id="nav-guestbook" onclick="switchTab('guestbook')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
           <i class="fa-solid fa-book-open mr-1 text-emerald-700"></i> শুভাশিষ খাতা
-        </button>
-        <button id="nav-admin" onclick="switchTab('admin')" class="px-3 py-2 rounded-lg text-gray-700 hover:text-amber-900 transition">
-          <i class="fa-solid fa-shield-halved mr-1 text-amber-800"></i> এসক্রো ও প্ল্যাটফর্ম
         </button>
       </nav>
 
@@ -128,9 +99,6 @@
         <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
           <i class="fa-solid fa-hand-holding-heart text-amber-300"></i>
           <span>শুভ আশীর্বাদ পাঠান</span>
-        </button>
-        <button onclick="switchTab('admin')" class="p-2.5 rounded-xl border border-gray-200 text-gray-600 hover:text-amber-900 transition" title="অ্যাডমিন">
-          <i class="fa-solid fa-gear"></i>
         </button>
       </div>
     </div>
@@ -165,10 +133,6 @@
       <i class="fa-solid fa-envelope-open-text text-sm text-rose-600"></i>
       <span>আশীর্বাদী</span>
     </button>
-    <button onclick="switchTab('admin')" class="flex flex-col items-center gap-0.5">
-      <i class="fa-solid fa-shield-halved text-sm text-amber-800"></i>
-      <span>এসক্রো</span>
-    </button>
   </div>
 
   <!-- DYNAMIC SECTIONS CONTAINER -->
@@ -184,29 +148,29 @@
           <div class="lg:col-span-7 text-center lg:text-left">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-4 bg-amber-100 text-amber-900 border border-amber-300">
               <span class="text-rose-700 font-bold">🪔</span>
-              <span id="hero-title">শ্রীমান অরিন্দম ও আয়ুষ্মতী অর্পিতার শুভ বিবাহ • মাঙ্গলিক উপহার ও আশীর্বাদ</span>
+              <span id="hero-title">অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • মাঙ্গলিক উপহার ও আশীর্বাদ</span>
             </div>
 
             <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-4">
               <div class="relative group">
                 <img id="hero-groom-img" src="uploads/groom_arindam.jpg" alt="Groom" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-400 shadow-md">
-                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-900 text-white shadow whitespace-nowrap">শ্রীমান অরিন্দম (বর)</span>
+                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-900 text-white shadow whitespace-nowrap">অরিন্দম (বর)</span>
               </div>
               <div class="text-2xl text-amber-500 font-light">&amp;</div>
               <div class="relative group">
                 <img id="hero-bride-img" src="uploads/bride_arpita.jpg" alt="Bride" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-rose-400 shadow-md">
-                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-900 text-white shadow whitespace-nowrap">আয়ুষ্মতী অর্পিতা (কনে)</span>
+                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full bg-rose-900 text-white shadow whitespace-nowrap">অর্পিতা (কনে)</span>
               </div>
             </div>
 
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-serif-wedding text-gray-900 tracking-tight leading-tight">
-              <span id="hero-groom" class="text-amber-900">শ্রীমান অরিন্দম চক্রবর্ত্তী</span>
+              <span id="hero-groom" class="text-amber-900">অরিন্দম চক্রবর্ত্তী</span>
               <span class="text-amber-500 font-light mx-2">&amp;</span>
-              <span id="hero-bride" class="text-rose-900">আয়ুষ্মতী অর্পিতা গাঙ্গুলি</span>
+              <span id="hero-bride" class="text-rose-900">অর্পিতা গাঙ্গুলি</span>
             </h1>
 
             <p id="hero-welcome-msg" class="mt-4 text-base sm:text-lg text-gray-700 font-bangla max-w-2xl leading-relaxed">
-              || ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বিবাহ ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের নবজীবনের সেরা উপহার।
+              || ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।
             </p>
 
             <div class="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm text-gray-700 font-medium">
@@ -241,17 +205,11 @@
             <div class="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 border-2 border-amber-200 shadow-xl relative overflow-hidden">
               <div class="h-56 rounded-2xl overflow-hidden mb-5 border border-amber-200 relative group">
                 <img id="hero-couple-img" src="uploads/arindam_arpita_sitting.jpg" alt="Couple" class="w-full h-full object-cover">
-                <div class="absolute bottom-2 right-2">
-                  <label class="cursor-pointer bg-black/60 hover:bg-black/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg backdrop-blur flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-camera"></i> ফটো পরিবর্তন
-                    <input type="file" accept="image/*" class="hidden" onchange="handlePhotoUpload(this, 'couple')">
-                  </label>
-                </div>
               </div>
 
               <div class="text-center mb-3">
                 <span class="text-xs font-bold uppercase tracking-widest text-amber-800 flex items-center justify-center gap-1.5">
-                  <span class="text-rose-600 text-sm">🪔</span> শুভ বিবাহের পবিত্র লগ্নের বাকি আর মাত্র
+                  <span class="text-rose-600 text-sm">🪔</span> শুভ বৌভাত ও প্রীতিভোজের বাকি আর মাত্র
                 </span>
               </div>
 
@@ -274,34 +232,9 @@
                 </div>
               </div>
 
-              <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-center gap-1.5 text-[9px] font-bold text-gray-600">
-                <i class="fa-solid fa-shield-halved text-emerald-600"></i>
-                <span>এসক্রো ফান্ড রিজার্ভেশন সিস্টেম দ্বারা উপহার সুরক্ষিত</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-                </div>
-                <div class="bg-amber-50 rounded-2xl p-2 border border-amber-100">
-                  <span id="countdown-hours" class="block text-xl font-bold font-serif-wedding text-amber-950">০০</span>
-                  <span class="text-[9px] font-semibold text-gray-500 uppercase block">ঘণ্টা</span>
-                </div>
-                <div class="bg-amber-50 rounded-2xl p-2 border border-amber-100">
-                  <span id="countdown-mins" class="block text-xl font-bold font-serif-wedding text-amber-950">০০</span>
-                  <span class="text-[9px] font-semibold text-gray-500 uppercase block">মিনিট</span>
-                </div>
-                <div class="bg-amber-50 rounded-2xl p-2 border border-amber-100">
-                  <span id="countdown-secs" class="block text-xl font-bold font-serif-wedding text-rose-700">০০</span>
-                  <span class="text-[9px] font-semibold text-gray-500 uppercase block">সেকেন্ড</span>
-                </div>
-              </div>
-
-              <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-center gap-1.5 text-[9px] font-bold text-gray-600">
-                <i class="fa-solid fa-shield-halved text-emerald-600"></i>
-                <span>এসক্রো ফান্ড রিজার্ভেশন সিস্টেম দ্বারা সুরক্ষিত</span>
+              <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-center gap-1.5 text-[11px] font-bold text-gray-700">
+                <i class="fa-solid fa-heart text-rose-600"></i>
+                <span>শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি কাম্য</span>
               </div>
             </div>
           </div>
@@ -314,20 +247,20 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 mb-10 relative z-20">
       <div class="bg-white rounded-2xl p-5 border border-amber-200 shadow-md grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-amber-100">
         <div>
-          <span class="text-xs text-gray-500 font-medium block">উপহার প্রদান সম্পন্ন</span>
-          <span id="stat-claimed-gifts" class="text-xl sm:text-2xl font-bold font-serif-wedding text-gray-900 mt-1 block">২ / ৮</span>
+          <span class="text-xs text-gray-500 font-medium block">উপহার বুকিং সম্পন্ন</span>
+          <span id="stat-claimed-gifts" class="text-xl sm:text-2xl font-bold font-serif-wedding text-gray-900 mt-1 block">৭ / ২১</span>
         </div>
         <div>
-          <span class="text-xs text-gray-500 font-medium block">মোট অর্ডার ও ফান্ড</span>
-          <span id="stat-total-raised" class="text-xl sm:text-2xl font-bold font-serif-wedding text-amber-900 mt-1 block">৳ ৬৮,০০০</span>
+          <span class="text-xs text-gray-500 font-medium block">মোট সংগৃহীত উপহার ও ফান্ড</span>
+          <span id="stat-total-raised" class="text-xl sm:text-2xl font-bold font-serif-wedding text-amber-900 mt-1 block">৳ ৮৩,০০০</span>
         </div>
         <div>
-          <span class="text-xs text-gray-500 font-medium block">ডিজিটাল আশীর্বাদী ও প্রণামী</span>
-          <span id="stat-total-salami" class="text-xl sm:text-2xl font-bold font-serif-wedding text-rose-700 mt-1 block">৳ ৫,০০১</span>
+          <span class="text-xs text-gray-500 font-medium block">ডিজিটাল শুভ আশীর্বাদী</span>
+          <span id="stat-total-salami" class="text-xl sm:text-2xl font-bold font-serif-wedding text-rose-700 mt-1 block">৳ ১৫,০০১</span>
         </div>
         <div>
-          <span class="text-xs text-gray-500 font-medium block">প্ল্যাটফর্ম কমিশন আয় (৫% Cut)</span>
-          <span id="stat-platform-commission" class="text-xl sm:text-2xl font-bold font-serif-wedding text-emerald-800 mt-1 block">৳ ৩,৭২৫</span>
+          <span class="text-xs text-gray-500 font-medium block">অতিথিদের শুভাশিষ বার্তা</span>
+          <span id="stat-blessings-count" class="text-xl sm:text-2xl font-bold font-serif-wedding text-emerald-800 mt-1 block">১২+ বার্তা</span>
         </div>
       </div>
     </section>
@@ -335,7 +268,6 @@
     <!-- SACRED INVITATION SECTION (মাঙ্গলিক নিমন্ত্রণ পত্র) -->
     <section id="section-invitation" class="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
       <div class="bg-gradient-to-b from-[#fffaf0] via-white to-[#fffaf0] rounded-3xl p-6 sm:p-10 border-2 border-amber-300 shadow-xl relative overflow-hidden text-center">
-        <!-- Alpana Border Corner Ornaments -->
         <div class="alpona-divider">
           <span class="text-xl sm:text-2xl text-amber-600 font-bold font-serif-wedding">|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ ||</span>
         </div>
@@ -343,7 +275,7 @@
         <div class="my-4">
           <span class="text-xs font-bold uppercase tracking-widest text-amber-800 font-bangla block">মাঙ্গলিক শুভ পরিণয় আমন্ত্রণ পত্র</span>
           <h2 class="text-2xl sm:text-3xl font-bold font-serif-wedding text-gray-900 mt-1">
-            শ্রীমান অরিন্দম ও আয়ুষ্মতী অর্পিতার শুভ বিবাহ
+            অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ
           </h2>
           <p class="text-xs font-serif-wedding text-amber-900 italic mt-1 font-bold">
             "যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম" (ঋগ্বেদীয় বিবাহ স্তোত্র)
@@ -353,7 +285,7 @@
         <div class="max-w-2xl mx-auto text-xs sm:text-sm text-gray-700 font-bangla leading-relaxed space-y-4 my-6 py-4 border-y border-amber-200/80">
           <p class="font-bold text-amber-900 text-sm">নমস্কার ও সশ্রদ্ধ প্রণতি,</p>
           <p>
-            পরম করুণাময় পরমেশ্বরের কৃপায় এবং পরম পূজনীয় পিতৃপুরুষ ও গুরুজনদের আশিস মাথায় রেখে আমাদের স্নেহের <strong class="text-amber-900">শ্রীমান অরিন্দম চক্রবর্ত্তী</strong> এবং স্নেহধন্যা <strong class="text-rose-900">আয়ুষ্মতী অর্পিতা গাঙ্গুলি</strong>-র বৈদিক শুভ পরিণয় আগামী ২১ জানুয়ারি, ২০২৭ সম্পন্ন হতে চলেছে।
+            পরম করুণাময় পরমেশ্বরের কৃপায় এবং পরম পূজনীয় পিতৃপুরুষ ও গুরুজনদের আশিস মাথায় রেখে আমাদের স্নেহের <strong class="text-amber-900">অরিন্দম চক্রবর্ত্তী</strong> এবং স্নেহধন্যা <strong class="text-rose-900">অর্পিতা গাঙ্গুলি</strong>-র শুভ বিবাহ উপলক্ষে আগামী ২১ জানুয়ারি, ২০২৭ (সন্ধ্যা ৭:০০ ঘটিকা onwards) শুভ বৌভাত ও মাঙ্গলিক প্রীতিভোজের আয়োজন করা হয়েছে।
           </p>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-3 bg-amber-50/60 rounded-2xl border border-amber-200/60 text-left px-5">
@@ -458,116 +390,7 @@
       </div>
     </section>
 
-    <!-- SACRED RITUALS & LAGNA ITINERARY SECTION (মাঙ্গলিক লগ্ন ও অনুষ্ঠানসূচী) -->
-    <section id="section-rituals" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="text-center mb-8">
-        <span class="text-xs font-bold uppercase tracking-widest text-amber-800">Auspicious Vedic Lagna &amp; Timetable</span>
-        <h2 class="text-2xl sm:text-3xl font-bold font-serif-wedding text-gray-900 mt-1">মাঙ্গলিক আচার ও লগ্নানুষ্ঠান</h2>
-        <p class="text-xs text-gray-600 font-bangla mt-1 max-w-xl mx-auto">
-          সনাতন শাস্ত্রীয় নিয়ম মেনে পূর্বপুরুষদের আশীর্বাদ থেকে শুরু করে সাতপাকে বাঁধা ও সিঁদুরদান পর্যন্ত প্রতিটি পবিত্র মুহূর্তের সময়সূচী।
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        
-        <!-- 1. Aiburobhat -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            🍚
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 block">২০ জানুয়ারি ২০২৭ • দুপুর ১২:৩০ PM</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">আইবুড়োভাত ও স্নেহভোজন</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            মা, মাসি ও পিসিদের হাতের পরম ভালোবাসায় শেষ স্নেহভোজ। কাঁসার থালিতে সাজানো পঞ্চব্যঞ্জন ও আশীর্বাদের মিষ্টিমুখ।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-amber-50 text-amber-900 px-2.5 py-0.5 rounded-full font-bold">পারিবারিক বাসভবন, চট্টগ্রাম</span>
-        </div>
-
-        <!-- 2. Nandi Mukh -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-          <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            🪔
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-rose-700 block">২১ জানুয়ারি ২০২৭ • সকাল ৯:০০ AM</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">নান্দীমুখ ও মাতৃপূজা</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            পিতৃপুরুষদের আত্মার শান্তি কামনা, পিণ্ডদান ও তাঁদের অমর আশীর্বাদ প্রার্থনা। মঙ্গলঘট স্থাপন ও পুণ্য ঘটের পূজা।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-rose-50 text-rose-900 px-2.5 py-0.5 rounded-full font-bold">পবিত্র ঠাকুরঘর</span>
-        </div>
-
-        <!-- 3. Gaye Holud -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-          <div class="w-10 h-10 rounded-xl bg-yellow-100 text-amber-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            🌼
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 block">২১ জানুয়ারি ২০২৭ • বিকাল ৪:০০ PM</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">গায়ে হলুদ ও সুগন্ধি চন্দন</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            কাঁচা হলুদ, সুগন্ধি চন্দন ও আলতা লেপন পর্ব। আনন্দের উলুধ্বনি ও শঙ্খধ্বনির মাঝে বর-কনের গায়ে হলুদ ও মিষ্টিমুখ।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-yellow-50 text-amber-900 px-2.5 py-0.5 rounded-full font-bold">উৎসব প্রাঙ্গণ</span>
-        </div>
-
-        <!-- 4. Shubho Bibaho Lagna -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden border-2 border-rose-300 bg-rose-50/20">
-          <div class="w-10 h-10 rounded-xl bg-red-100 text-red-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            💍
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-red-700 block">২১ জানুয়ারি ২০২৭ • সন্ধ্যা ৭:০০ PM onwards</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">শুভ বিবাহ লগ্ন ও সিঁদুরদান</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা, কন্যাদান, বৈদিক যজ্ঞের অগ্নি সাক্ষী করে পবিত্র সিঁদুরদান ও চিরন্তন বন্ধন।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-red-100 text-red-950 px-2.5 py-0.5 rounded-full font-bold">Engineers Institute Chattogram</span>
-        </div>
-
-        <!-- 5. Basi Biye & Kaalratri -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            🌙
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700 block">২২ জানুয়ারি ২০২৭</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">বাসি বিয়ে ও কালরাত্রি</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            বিবাহের পরবর্তী মাঙ্গলিক কড়ি খেলা, সিঁদুর মোছা ও কালরাত্রির শাস্ত্রীয় আচার। শ্বশুরবাড়িতে নতুন বধূবরণ।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-purple-50 text-purple-900 px-2.5 py-0.5 rounded-full font-bold">বরপক্ষ বাসভবন</span>
-        </div>
-
-        <!-- 6. Boubhat & Preetibhoj -->
-        <div class="ritual-card bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl mb-3 font-bold shadow-sm">
-            宴
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 block">২৪ জানুয়ারি ২০২৭ • সন্ধ্যা ৭:৩০ PM</span>
-          <h4 class="text-base font-bold text-gray-900 font-bangla mt-0.5">ভাত-কাপড় ও প্রীতিভোজ</h4>
-          <p class="text-xs text-gray-600 font-bangla mt-2 leading-relaxed">
-            বধূর হাতে ভাত-কাপড় অর্পণ এবং আত্মীয়-স্বজন, সুধীজন ও বন্ধুদের সানন্দ আপ্যায়ন সহ রাজকীয় প্রীতিভোজ।
-          </p>
-          <span class="mt-3 inline-block text-[10px] bg-emerald-50 text-emerald-900 px-2.5 py-0.5 rounded-full font-bold">চট্টগ্রাম</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PHOTO GALLERY -->
-    <section id="section-gallery" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 border-b border-amber-100 pb-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Our Pre-Wedding &amp; Moments</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-wedding mt-0.5">মধুর স্মৃতি ও অনুষ্ঠান মালা</h2>
-        </div>
-        <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-amber-900 text-white hover:bg-amber-950 shadow transition">
-          <i class="fa-solid fa-cloud-arrow-up"></i>
-          <span>নতুন ফটো আপলোড করুন</span>
-          <input type="file" accept="image/*" class="hidden" onchange="handlePhotoUpload(this, 'gallery')">
-        </label>
-      </div>
-      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
-    </section>
-
-    <!-- GIFTS & LIFE FUNDS -->
+    <!-- GIFTS & WISH LIST -->
     <section id="section-gifts" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 space-y-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-amber-100 pb-5">
         <div>
@@ -581,7 +404,7 @@
             মাঙ্গলিক উপহার তালিকা ও নবদম্পতির শুভাশিস তহবিল
           </h2>
           <p class="text-xs sm:text-sm text-gray-600 font-bangla mt-1">
-            মেহমান ও শুভাকাঙ্ক্ষীরা bKash, Rocket, Nagad বা সরাসরি ব্যাংক ট্রান্সফারের মাধ্যমে উপহারে অবদান ও আশীর্বাদ প্রদান করতে পারবেন।
+            অতিথি ও শুভাকাঙ্ক্ষীরা bKash, Rocket, Nagad বা সরাসরি ব্যাংক ট্রান্সফারের মাধ্যমে উপহারে অবদান ও আশীর্বাদ প্রদান করতে পারবেন।
           </p>
         </div>
 
@@ -611,9 +434,6 @@
         </button>
         <button onclick="setCategory('kitchen')" data-cat="kitchen" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
           🍳 কিচেন ও ডিনারওয়্যার
-        </button>
-        <button onclick="setCategory('group')" data-cat="group" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          🤝 গ্রুপ গিফট (Crowdfund)
         </button>
         <button onclick="setCategory('experience')" data-cat="experience" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
           🌴 হানিমুন ও সংসার তহবিল
@@ -666,6 +486,17 @@
       </div>
     </section>
 
+    <!-- PHOTO GALLERY (AUTHENTIC COUPLE PHOTOS) -->
+    <section id="section-gallery" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 border-b border-amber-100 pb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Our Auspicious Moments</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-wedding mt-0.5">মধুর স্মৃতি ও শুভ মুহূর্তমালা</h2>
+        </div>
+      </div>
+      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+    </section>
+
     <!-- STORY & SACRED JOURNEY -->
     <section id="section-story" class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 space-y-8">
       <div class="text-center">
@@ -710,454 +541,7 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- TAB: ESCROW, DATABASE & ADMIN SUITE -->
-  <!-- ======================================================== -->
-  <div id="section-admin" class="hidden max-w-6xl mx-auto px-4 sm:px-6 pb-20 w-full space-y-8">
-    
-    <div class="border-b border-gray-200 pb-4">
-      <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Platform Escrow &amp; Database Suite</span>
-      <h2 class="text-2xl font-bold font-serif-wedding text-gray-900 mt-0.5">
-        তহবিল সংরক্ষণ (Escrow), ডেটাবেস স্টোরেজ ও প্ল্যাটফর্ম নিয়ন্ত্রণ
-      </h2>
-    </div>
-
-    <!-- 1. ESCROW & FUND RESERVATION DASHBOARD -->
-    <div class="bg-gradient-to-r from-slate-900 via-amber-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-400/30">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-amber-400/20">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-1.5">
-            <i class="fa-solid fa-shield-halved"></i> তহবিলের নিরাপত্তা ও এসক্রো রিজার্ভেশন সিস্টেম
-          </span>
-          <h3 class="text-xl sm:text-2xl font-bold font-serif-wedding text-white mt-0.5">
-            সংরক্ষিত তহবিল ব্যালেন্স ও দম্পতির ক্যাশআউট
-          </h3>
-        </div>
-        <button onclick="openWithdrawModal()" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:brightness-105 transition flex items-center gap-2">
-          <i class="fa-solid fa-money-bill-transfer"></i>
-          <span>টাকা উত্তোলন করুন (Withdraw Funds)</span>
-        </button>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="bg-white/10 rounded-2xl p-4 border border-amber-300/20">
-          <span class="text-[11px] text-amber-200">মোট সংরক্ষিত তহবিল (In Escrow):</span>
-          <h4 id="escrow-total-reserved" class="text-xl sm:text-2xl font-bold font-serif-wedding text-amber-300 mt-1">৳ ০</h4>
-        </div>
-        <div class="bg-white/10 rounded-2xl p-4 border border-emerald-400/30">
-          <span class="text-[11px] text-emerald-300">উত্তোলনযোগ্য ব্যালেন্স (Available):</span>
-          <h4 id="escrow-available-withdrawal" class="text-xl sm:text-2xl font-bold font-serif-wedding text-emerald-400 mt-1">৳ ০</h4>
-        </div>
-        <div class="bg-white/10 rounded-2xl p-4 border border-amber-300/20">
-          <span class="text-[11px] text-amber-200">ভেন্ডর ডেলিভারির জন্য রিজার্ভড:</span>
-          <h4 id="escrow-vendor-held" class="text-xl sm:text-2xl font-bold font-serif-wedding text-amber-100 mt-1">৳ ০</h4>
-        </div>
-        <div class="bg-white/10 rounded-2xl p-4 border border-amber-300/20">
-          <span class="text-[11px] text-amber-200">প্ল্যাটফর্ম কমিশন রিজার্ভ:</span>
-          <h4 id="escrow-commission-held" class="text-xl sm:text-2xl font-bold font-serif-wedding text-white mt-1">৳ ০</h4>
-        </div>
-      </div>
-    </div>
-
-    <!-- ESCROW LEDGER TABLE -->
-    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm">
-      <h3 class="text-lg font-bold text-gray-900 font-serif-wedding mb-4 flex items-center justify-between">
-        <span class="flex items-center gap-2">
-          <i class="fa-solid fa-lock text-emerald-700"></i> সংরক্ষিত তহবিল লেজার (Escrow Reserve Ledger)
-        </span>
-        <span class="text-xs text-gray-500">শর্ত পূরণ হলে বা ভেন্ডর ডেলিভারি শেষে তহবিল রিলিজ হয়</span>
-      </h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse text-xs">
-          <thead>
-            <tr class="bg-amber-50 text-amber-950 border-b border-amber-200 font-bold uppercase">
-              <th class="py-3 px-3">এসক্রো আইডি</th>
-              <th class="py-3 px-3">উপহার ও কন্ট্রিবিউটর</th>
-              <th class="py-3 px-3">টাকার পরিমাণ</th>
-              <th class="py-3 px-3">নেট সংরক্ষিত</th>
-              <th class="py-3 px-3">রিলিজের শর্ত</th>
-              <th class="py-3 px-3">স্ট্যাটাস</th>
-              <th class="py-3 px-3 text-right">রিলিজ অ্যাকশন</th>
-            </tr>
-          </thead>
-          <tbody id="admin-escrow-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 2. DATABASE STORAGE OPTIONS & BACKUP CONTROLS -->
-    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">Storage Architecture</span>
-          <h3 class="text-lg font-bold text-gray-900 font-serif-wedding mt-0.5 flex items-center gap-2">
-            <i class="fa-solid fa-database text-amber-700"></i> ডেটাবেস স্টোরেজ, ব্যাকআপ ও ক্লাউড কানেক্টর
-          </h3>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="downloadDatabaseSnapshot()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-900 text-white hover:bg-amber-950 shadow-sm transition flex items-center gap-1.5">
-            <i class="fa-solid fa-download"></i> ডেটাবেস ব্যাকআপ (JSON Dump)
-          </button>
-          <button onclick="triggerDbRestoreInput()" class="px-4 py-2 rounded-xl text-xs font-bold border border-amber-300 text-amber-900 hover:bg-amber-50 shadow-sm transition flex items-center gap-1.5">
-            <i class="fa-solid fa-upload"></i> ডেটাবেস রিস্টোর
-          </button>
-          <input type="file" id="db-restore-file-input" accept=".json" class="hidden" onchange="handleDatabaseRestoreFile(this)">
-        </div>
-      </div>
-
-      <!-- Current Database Status Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
-        <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200">
-          <span class="text-gray-500 block mb-0.5">সক্রিয় ডেটাবেস ইঞ্জিন:</span>
-          <strong id="db-engine-display" class="text-sm text-gray-900 font-bold block">SQLite3 (Embedded ACID)</strong>
-          <span class="text-[10px] text-amber-800 mt-1 block">জিরো-কনফিগ, সর্বোচ্চ নির্ভরযোগ্য</span>
-        </div>
-        <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
-          <span class="text-gray-500 block mb-0.5">ডেটাবেস ফাইল সাইজ:</span>
-          <strong id="db-size-display" class="text-sm text-gray-900 font-mono font-bold block">৪৮ KB</strong>
-          <span class="text-[10px] text-emerald-700 mt-1 block">কম্প্যাক্ট ও দ্রুত</span>
-        </div>
-        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200">
-          <span class="text-gray-500 block mb-0.5">স্বাস্থ্য ও সিনক্রোনাইজেশন:</span>
-          <strong id="db-status-display" class="text-xs text-emerald-800 font-bold block">Active &amp; Synchronized</strong>
-          <span class="text-[10px] text-gray-500 mt-1 block">টাস্ক সেফ ট্রানজ্যাকশন</span>
-        </div>
-        <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
-          <span class="text-gray-500 block mb-0.5">লোকাল ফাইল পাথ:</span>
-          <strong id="db-filepath-display" class="text-[11px] text-gray-700 font-mono block truncate">utsab.db</strong>
-          <span class="text-[10px] text-gray-400 mt-1 block">নিরাপদ ডিরেক্টরি</span>
-        </div>
-      </div>
-
-      <!-- Table row badges -->
-      <div>
-        <span class="text-xs font-bold text-gray-700 block mb-2">ডেটাবেস টেবিল ও রেকর্ড কাউন্ট:</span>
-        <div id="db-tables-badges" class="flex flex-wrap gap-2"></div>
-      </div>
-
-      <!-- Cloud DB connector options -->
-      <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200 text-xs">
-        <h4 class="font-bold text-gray-900 mb-2 flex items-center gap-1.5">
-          <i class="fa-solid fa-cloud text-amber-700"></i> প্রোডাকশন ক্লাউড ডেটাবেস কানেক্টর (PostgreSQL / Supabase / AWS RDS):
-        </h4>
-        <form id="cloud-db-form" class="space-y-3">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div class="sm:col-span-2">
-              <label class="block text-[11px] font-bold text-gray-600 mb-1">কানেকশন স্ট্রিং (Database URI):</label>
-              <input type="text" id="db-cloud-uri-input" placeholder="postgresql://user:pass@db.supabase.co:5432/utsab" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-xs bg-white">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-gray-600 mb-1">ক্লাউড প্রোভাইডার:</label>
-              <select id="db-cloud-provider-select" class="w-full px-3 py-2 rounded-xl border border-gray-300 text-xs bg-white">
-                <option value="Local SQLite3">Local SQLite3 (সুপার ফাস্ট)</option>
-                <option value="Supabase PostgreSQL">Supabase PostgreSQL</option>
-                <option value="AWS RDS PostgreSQL">AWS RDS PostgreSQL</option>
-                <option value="Heroku / Neon DB">Neon Serverless Postgres</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-bold bg-gray-800 text-white hover:bg-black transition">
-            ক্লাউড ডেটাবেস কনফিগারেশন সংরক্ষণ করুন
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <!-- 3. VENDOR ORDERS & COMMISSION ENGINE -->
-    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm">
-      <h3 class="text-lg font-bold text-gray-900 font-serif-wedding mb-4 flex items-center justify-between">
-        <span class="flex items-center gap-2">
-          <i class="fa-solid fa-truck-fast text-amber-700"></i> অটোমেটেড ভেন্ডর অর্ডার ট্র্যাকিং
-        </span>
-        <div class="text-xs space-x-2">
-          <span class="text-gray-500">আপনার প্ল্যাটফর্ম শেয়ার:</span>
-          <strong id="admin-comm-total" class="text-emerald-700">৳ ০</strong>
-        </div>
-      </h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse text-xs">
-          <thead>
-            <tr class="bg-amber-50 text-amber-950 border-b border-amber-200 font-bold uppercase">
-              <th class="py-3 px-3">অর্ডার আইডি</th>
-              <th class="py-3 px-3">প্রোডাক্ট ও ভেন্ডর</th>
-              <th class="py-3 px-3">ক্রেতা</th>
-              <th class="py-3 px-3">মূল্য (৳)</th>
-              <th class="py-3 px-3">আপনার কমিশন</th>
-              <th class="py-3 px-3">ভেন্ডর পেআউট</th>
-              <th class="py-3 px-3">স্ট্যাটাস</th>
-              <th class="py-3 px-3 text-right">অ্যাকশন</th>
-            </tr>
-          </thead>
-          <tbody id="admin-vendor-orders-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 4. SECTION ORGANIZER & PHOTO UPLOAD -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm">
-        <h3 class="text-lg font-bold text-gray-900 font-serif-wedding mb-3 flex items-center gap-2">
-          <i class="fa-solid fa-arrows-up-down text-amber-700"></i> সেকশন অর্গানাইজার (Layout Organizer)
-        </h3>
-        <table class="w-full text-left text-xs border-collapse">
-          <thead>
-            <tr class="bg-amber-50 text-amber-900 border-b font-bold">
-              <th class="py-2 px-3">ক্রম</th>
-              <th class="py-2 px-3">সেকশন</th>
-              <th class="py-2 px-3 text-center">দেখান</th>
-              <th class="py-2 px-3 text-right">পজিশন</th>
-            </tr>
-          </thead>
-          <tbody id="admin-organizer-tbody"></tbody>
-        </table>
-      </div>
-
-      <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm space-y-3">
-        <h3 class="text-lg font-bold text-gray-900 font-serif-wedding mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-camera text-amber-700"></i> বর ও কনের ফটো আপলোড
-        </h3>
-        <div class="flex items-center gap-3 p-2.5 rounded-xl border bg-gray-50">
-          <img id="admin-groom-img-preview" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-amber-400">
-          <div class="flex-1">
-            <span class="text-xs font-bold text-gray-800 block">বরের ছবি</span>
-            <label class="cursor-pointer text-[10px] font-bold text-amber-800 hover:underline">
-              আপলোড করুন
-              <input type="file" accept="image/*" class="hidden" onchange="handlePhotoUpload(this, 'groom')">
-            </label>
-          </div>
-        </div>
-        <div class="flex items-center gap-3 p-2.5 rounded-xl border bg-gray-50">
-          <img id="admin-bride-img-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="w-10 h-10 rounded-full object-cover border-2 border-rose-400">
-          <div class="flex-1">
-            <span class="text-xs font-bold text-gray-800 block">কনের ছবি</span>
-            <label class="cursor-pointer text-[10px] font-bold text-rose-800 hover:underline">
-              আপলোড করুন
-              <input type="file" accept="image/*" class="hidden" onchange="handlePhotoUpload(this, 'bride')">
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. EVENT DETAILS, THEME & FONT COMBINATIONS -->
-    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <h3 class="text-lg font-bold text-gray-900 font-serif-wedding flex items-center gap-2">
-          <i class="fa-solid fa-palette text-amber-700"></i> অনুষ্ঠান, থিম ও ফন্ট সেটিংস (Customization)
-        </h3>
-        <button type="button" onclick="resetToHinduThemePreset()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition flex items-center gap-1.5 self-start sm:self-auto">
-          <span>🪔</span>
-          <span>সনাতন শুভ বিবাহ ডিফল্ট সেট করুন</span>
-        </button>
-      </div>
-      <form id="admin-event-form" class="space-y-4 text-xs">
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">বিবাহের কালার থিম</label>
-            <select id="admin-theme" onchange="setWeddingTheme(this.value)" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white">
-              <option value="sindoor-gold">🔴 সিঁদুর লাল ও স্বর্ণালী (Sindoor &amp; Gold)</option>
-              <option value="marigold-haldi">🟡 বাসন্তী হলুদ ও গাঁদা ফুল (Marigold Haldi)</option>
-              <option value="royal-vedic">🍷 রাজকীয় বৈদিক মেরুন (Royal Vedic)</option>
-              <option value="lotus-rose">🌸 পদ্ম গোলাপি ও চন্দন (Lotus &amp; Chandan)</option>
-              <option value="crimson-gold">🔴 রয়্যাল ক্রিমসন ও গোল্ড (Classic)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">ফন্ট স্টাইল কম্বিনেশন (Font Pairing)</label>
-            <select id="admin-font-theme" onchange="setFontTheme(this.value)" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white font-medium">
-              <option value="poppins-hind">Poppins + Hind Siliguri (জনপ্রিয় স্ট্যান্ডার্ড)</option>
-              <option value="modern">Inter + Noto Sans Bengali (ক্লিন ও মডার্ন)</option>
-              <option value="regal-tiro">Cinzel + Tiro Bangla (রাজকীয় বিয়ের ফন্ট)</option>
-              <option value="serif-classic">Playfair + Noto Serif (ক্লাসিক সেরিক)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">প্ল্যাটফর্ম কমিশন রেট (%)</label>
-            <input type="number" id="admin-commission-rate" step="0.5" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-bold text-emerald-800">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">ভেন্ডর ডেলিভারি ফোন</label>
-            <input type="text" id="admin-delivery-phone" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono">
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-bold text-gray-700 mb-1">বরের ও কনের হোম ডেলিভারি ঠিকানা (ভেন্ডর পণ্য সরাসরি এখানে পাঠাবে) *</label>
-          <input type="text" id="admin-delivery-addr" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-medium">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">বরের নাম (বাংলা)</label>
-            <input type="text" id="admin-groom-bn" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">Groom Name (EN)</label>
-            <input type="text" id="admin-groom-en" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">কনের নাম (বাংলা)</label>
-            <input type="text" id="admin-bride-bn" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">Bride Name (EN)</label>
-            <input type="text" id="admin-bride-en" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">তারিখ</label>
-            <input type="date" id="admin-date" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">ভেন্যুর নাম</label>
-            <input type="text" id="admin-venue-name" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 mb-1">ভেন্যুর ঠিকানা</label>
-            <input type="text" id="admin-venue-addr" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-          <div>
-            <label class="block font-bold text-pink-700 mb-1">bKash নম্বর</label>
-            <input type="text" id="admin-bkash" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono">
-          </div>
-          <div>
-            <label class="block font-bold text-orange-600 mb-1">Nagad নম্বর</label>
-            <input type="text" id="admin-nagad" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono">
-          </div>
-          <div>
-            <label class="block font-bold text-purple-700 mb-1">Rocket নম্বর</label>
-            <input type="text" id="admin-rocket" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono">
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-bold text-gray-700 mb-1">স্বাগত বার্তা</label>
-          <textarea id="admin-welcome-msg" rows="2" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-bangla"></textarea>
-        </div>
-
-        <button type="submit" class="px-6 py-2.5 rounded-xl font-bold text-xs text-white" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
-          পরিবর্তন সংরক্ষণ করুন
-        </button>
-      </form>
-    </div>
-
-  </div>
-
-  <!-- ======================================================== -->
-  <!-- COUPLE FUND WITHDRAWAL MODAL -->
-  <!-- ======================================================== -->
-  <div id="withdraw-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-md w-full border border-amber-200 shadow-2xl overflow-hidden my-8">
-      <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 p-5 text-white flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-emerald-300 text-lg border border-emerald-300/30">
-            <i class="fa-solid fa-money-bill-transfer"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-base font-serif-wedding text-white">তহবিল উত্তোলন (Withdraw Funds)</h3>
-            <span class="text-xs text-emerald-200/90 font-bangla block">সংরক্ষিত তহবিল থেকে সরাসরি আপনার একাউন্টে নিন</span>
-          </div>
-        </div>
-        <button onclick="closeWithdrawModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <form id="withdraw-form" class="p-6 space-y-4 text-xs">
-        <div class="bg-emerald-50 p-3.5 rounded-2xl border border-emerald-200 flex justify-between items-center">
-          <span class="text-emerald-900 font-medium">বর্তমান উত্তোলনযোগ্য ব্যালেন্স:</span>
-          <strong id="withdraw-avail-display" class="text-lg font-bold text-emerald-800 font-serif-wedding">৳ ০</strong>
-        </div>
-
-        <div>
-          <label class="block font-bold text-gray-700 uppercase mb-1">উত্তোলনের পরিমাণ (৳ BDT) *</label>
-          <input type="number" id="withdraw-amount-input" required min="100" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-base font-bold text-gray-900 focus:ring-2 focus:ring-emerald-500">
-        </div>
-
-        <div>
-          <label class="block font-bold text-gray-700 uppercase mb-1">পেমেন্ট মাধ্যম বেছে নিন *</label>
-          <select id="withdraw-method-select" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs bg-white font-medium">
-            <option value="bKash">bKash (বিকাশ পার্সোনাল ওয়ালেট)</option>
-            <option value="Nagad">Nagad (নগদ একাউন্ট)</option>
-            <option value="Rocket">DBBL Rocket</option>
-            <option value="BRAC Bank">BRAC Bank PLC (সরাসরি ব্যাংক একাউন্ট)</option>
-            <option value="City Bank">City Bank PLC</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block font-bold text-gray-700 uppercase mb-1">প্রাপক একাউন্ট নম্বর ও নাম *</label>
-          <input type="text" id="withdraw-account-input" required placeholder="যেমন: 01712-890123 অথবা ব্যাংক একাউন্ট নম্বর" value="01712-890123" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs font-mono">
-        </div>
-
-        <button type="submit" class="w-full py-3 rounded-xl font-bold text-xs bg-emerald-700 hover:bg-emerald-800 text-white shadow-lg transition">
-          উত্তোলন নিশ্চিত করুন
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- VENDOR CONNECT MODAL -->
-  <div id="vendor-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-2xl w-full border border-amber-200 shadow-2xl overflow-hidden my-8">
-      <div class="crimson-gradient p-5 text-white flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 text-lg border border-amber-300/30">
-            <i class="fa-solid fa-link"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-base font-serif-wedding text-white">ভেন্ডর কানেক্ট ও ১-ক্লিক প্রোডাক্ট ইমপোর্টার</h3>
-            <span class="text-xs text-amber-200/90 font-bangla block">Aarong, Walton, Daraz ও Transcom থেকে সরাসরি যুক্ত করুন</span>
-          </div>
-        </div>
-        <button onclick="closeVendorConnectModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-        <div class="bg-amber-50/80 p-5 rounded-2xl border border-amber-200">
-          <form id="vendor-url-form" class="space-y-3">
-            <div class="flex gap-2">
-              <input type="url" id="vendor-url-input" required placeholder="https://www.aarong.com/... অথবা daraz.com.bd/... লিঙ্ক পেস্ট করুন" class="flex-1 px-3.5 py-2.5 rounded-xl border border-amber-300 text-xs bg-white">
-              <button type="submit" id="vendor-import-btn" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-amber-900 text-white hover:bg-amber-950 transition whitespace-nowrap">
-                ইমপোর্ট করুন
-              </button>
-            </div>
-          </form>
-
-          <div id="import-preview-box" class="hidden mt-4 pt-4 border-t border-amber-200/60 flex items-center gap-4 bg-white p-3.5 rounded-xl border border-amber-300">
-            <img id="import-preview-img" src="" class="w-16 h-16 rounded-lg object-cover border border-gray-200">
-            <div class="flex-1">
-              <span id="import-preview-vendor" class="text-[10px] font-bold px-2 py-0.5 rounded vendor-badge-aarong uppercase">Aarong</span>
-              <h5 id="import-preview-title" class="text-xs font-bold text-gray-900 mt-1 line-clamp-1"></h5>
-              <span id="import-preview-price" class="text-sm font-bold text-amber-900"></span>
-            </div>
-            <div class="text-right">
-              <label class="block text-[10px] text-gray-600 mb-1">
-                <input type="checkbox" id="import-allow-group" class="rounded text-amber-700"> গ্রুপ গিফট
-              </label>
-              <button onclick="addImportedProductToRegistry()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-800">
-                + যুক্ত করুন
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-3">🌟 জনপ্রিয় পণ্য ক্যাটালগ (১-ক্লিক যোগ):</h4>
-          <div id="vendor-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================================================== -->
-  <!-- INTERACTIVE PAYMENT GATEWAY SIMULATOR & ESCROW MODAL -->
+  <!-- PAYMENT GATEWAY & BLESSING CONTRIBUTION MODAL -->
   <!-- ======================================================== -->
   <div id="payment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-xl w-full border border-amber-200 shadow-2xl overflow-hidden my-8">
@@ -1166,11 +550,11 @@
       <div class="crimson-gradient p-5 text-white flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 text-lg border border-amber-300/30">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-solid fa-hand-holding-heart"></i>
           </div>
           <div>
-            <h3 class="font-bold text-base font-serif-wedding text-white leading-tight" id="pay-gift-title">পেমেন্ট গেটওয়ে ডেমো</h3>
-            <span id="pay-target-info" class="text-xs text-amber-200/90 font-bangla block">তহবিল সুরক্ষিত ও এসক্রোতে সংরক্ষিত থাকবে</span>
+            <h3 class="font-bold text-base font-serif-wedding text-white leading-tight" id="pay-gift-title">উপহার ও আশীর্বাদ প্রদান</h3>
+            <span id="pay-target-info" class="text-xs text-amber-200/90 font-bangla block">অরিন্দম ও অর্পিতার শুভ বিবাহ উপলক্ষে শুভেচ্ছা ও উপহার</span>
           </div>
         </div>
         <button onclick="closePaymentModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
@@ -1178,50 +562,39 @@
         </button>
       </div>
 
-      <!-- Demo Sandbox Mode Notice & 1-Click Auto Fill -->
-      <div class="bg-amber-50 px-5 py-2.5 border-b border-amber-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-        <span class="font-bold text-amber-900 flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          🧪 গেটওয়ে ডেমো / স্যান্ডবক্স মোড সক্রিয় (Demo Mode)
-        </span>
-        <button type="button" onclick="quickFillAndPayDemo()" class="px-3 py-1 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-[11px] shadow-sm flex items-center gap-1">
-          <i class="fa-solid fa-bolt text-amber-300"></i> ১-ক্লিকে টেস্ট পেমেন্ট
-        </button>
-      </div>
-
-      <!-- Mode Selector: Interactive PGW Demo vs Manual -->
+      <!-- Mode Selector: Gateway vs Manual -->
       <div class="px-5 pt-3 pb-2 border-b border-gray-100 flex gap-2 text-xs font-bold">
         <button type="button" id="tab-pgw-mode" onclick="switchPaymentMode('pgw')" class="flex-1 py-2 rounded-xl bg-amber-900 text-white shadow transition flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-laptop-code"></i> অনলাইন গেটওয়ে সিমুলেটর
+          <i class="fa-solid fa-credit-card"></i> অনলাইন পেমেন্ট চেকআউট
         </button>
         <button type="button" id="tab-manual-mode" onclick="switchPaymentMode('manual')" class="flex-1 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-qrcode"></i> ম্যানুয়াল সেন্ড মানি / QR
+          <i class="fa-solid fa-qrcode"></i> সরাসরি সেন্ড মানি / QR
         </button>
       </div>
 
       <!-- Payment Method Icons -->
       <div class="p-5 border-b border-gray-100 bg-gray-50/50">
-        <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">গেটওয়ে সিলেক্ট করুন:</label>
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">পেমেন্ট মাধ্যম বেছে নিন:</label>
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
           <button type="button" onclick="selectPaymentMethod('bkash')" data-method="bkash" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bkash-bg transition font-bold text-xs">
             <span>bKash</span>
-            <span class="text-[9px] opacity-80">বিকাশ চেকআউট</span>
+            <span class="text-[9px] opacity-80">বিকাশ</span>
           </button>
           <button type="button" onclick="selectPaymentMethod('rocket')" data-method="rocket" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl rocket-bg transition font-bold text-xs opacity-60">
             <span class="flex items-center gap-1"><i class="fa-solid fa-rocket text-[10px]"></i> Rocket</span>
-            <span class="text-[9px] opacity-80">ডিবিবিএল রকেট</span>
+            <span class="text-[9px] opacity-80">রকেট</span>
           </button>
           <button type="button" onclick="selectPaymentMethod('nagad')" data-method="nagad" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl nagad-bg transition font-bold text-xs opacity-60">
             <span>Nagad</span>
-            <span class="text-[9px] opacity-80">নগদ চেকআউট</span>
+            <span class="text-[9px] opacity-80">নগদ</span>
           </button>
           <button type="button" onclick="selectPaymentMethod('bank')" data-method="bank" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-sky-900 text-white transition font-bold text-xs opacity-60">
             <span class="flex items-center gap-1"><i class="fa-solid fa-building-columns text-[10px]"></i> Bank</span>
-            <span class="text-[9px] opacity-80">ব্যাংক ট্রান্সফার</span>
+            <span class="text-[9px] opacity-80">ব্যাংক ডিপোজিট</span>
           </button>
           <button type="button" onclick="selectPaymentMethod('card')" data-method="card" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-emerald-700 text-white transition font-bold text-xs opacity-60">
             <i class="fa-solid fa-credit-card text-xs mb-0.5"></i>
-            <span class="text-[9px]">কার্ড (SSL)</span>
+            <span class="text-[9px]">কার্ড</span>
           </button>
         </div>
       </div>
@@ -1250,66 +623,65 @@
           </div>
           <div>
             <label class="block font-bold text-gray-700 uppercase mb-1">শুভেচ্ছা বা আশীর্বাদ বার্তা</label>
-            <textarea id="pay-blessing" rows="2" placeholder="মাঙ্গলিক আশীর্বাদ লিখুন..." class="w-full px-3 py-2 rounded-xl border border-gray-200 font-bangla">অরিন্দম ও অর্পিতার যুগল জীবনের জন্য আন্তরিক শুভকামনা ও মাঙ্গলিক আশীর্বাদ রইলো!</textarea>
+            <textarea id="pay-blessing" rows="2" placeholder="মাঙ্গলিক আশীর্বাদ লিখুন..." class="w-full px-3 py-2 rounded-xl border border-gray-200 font-bangla">অরিন্দম ও অর্পিতার শুভ বৌভাত ও দাম্পত্য জীবনের জন্য আন্তরিক শুভকামনা ও মাঙ্গলিক আশীর্বাদ রইলো!</textarea>
           </div>
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW 1: AUTHENTIC bKASH PGW DEMO SIMULATOR -->
+        <!-- VIEW 1: bKASH CHECKOUT -->
         <!-- ============================================== -->
         <div id="pgw-simulator-bkash" class="pgw-sim-container hidden space-y-4">
           <div class="bkash-pgw-frame p-5">
             <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-pink-200 block">Merchant: UtsabRegistry BD</span>
-                <span class="text-xs font-bold text-white">Invoice: #UTSAB-<span id="bkash-sim-invoice">8921</span></span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-pink-200 block">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
+                <span class="text-xs font-bold text-white">Wedding Registry ID: #UTSAB-<span id="bkash-sim-invoice">8921</span></span>
               </div>
               <div class="text-right">
-                <span class="text-[10px] text-pink-200 block">Amount:</span>
+                <span class="text-[10px] text-pink-200 block">পরিমাণ:</span>
                 <strong id="bkash-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ১,০০০</strong>
               </div>
             </div>
 
             <!-- bKash Step 1: Phone -->
             <div id="bkash-step-1" class="space-y-3">
-              <label class="block text-xs font-bold text-white">Enter Your bKash Account Number:</label>
+              <label class="block text-xs font-bold text-white">আপনার বিকাশ নম্বর লিখুন:</label>
               <div class="relative">
                 <span class="absolute left-3 top-2.5 text-gray-400 font-bold text-xs">+88</span>
                 <input type="text" id="bkash-input-phone" value="01712345678" placeholder="01XXXXXXXXX" class="w-full pl-12 pr-3 py-2.5 rounded-xl bkash-pgw-input text-sm font-mono">
               </div>
               <div class="flex items-center gap-2 text-[11px] text-pink-100">
                 <input type="checkbox" id="bkash-agree-terms" checked class="rounded text-pink-600">
-                <span>I agree to the terms and conditions</span>
+                <span>শর্তাবলীতে সম্মত</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs hover:bg-pink-900">Close</button>
-                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">Proceed</button>
+                <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs hover:bg-pink-900">বাতিল</button>
+                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">পরবর্তী ধাপ</button>
               </div>
             </div>
 
             <!-- bKash Step 2: OTP -->
             <div id="bkash-step-2" class="hidden space-y-3">
               <div class="flex items-center justify-between">
-                <label class="block text-xs font-bold text-white">Enter 6-digit Verification Code (OTP):</label>
+                <label class="block text-xs font-bold text-white">৬-সংখ্যার ওটিপি কোড (OTP):</label>
                 <button type="button" onclick="autoFillBkashOtp()" class="text-[10px] font-bold underline text-amber-200">Auto-fill OTP</button>
               </div>
               <input type="text" id="bkash-input-otp" maxlength="6" placeholder="••••••" class="w-full px-3 py-2.5 rounded-xl bkash-pgw-input text-center text-lg font-mono tracking-widest">
-              <p class="text-[10px] text-pink-100 text-center">A verification code has been sent to your mobile</p>
+              <p class="text-[10px] text-pink-100 text-center">আপনার মোবাইলে ওটিপি কোড পাঠানো হয়েছে</p>
               <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceBkashStep(1)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">Back</button>
-                <button type="button" onclick="advanceBkashStep(3)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">Verify OTP</button>
+                <button type="button" onclick="advanceBkashStep(1)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">পেছনে</button>
+                <button type="button" onclick="advanceBkashStep(3)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">যাচাই করুন</button>
               </div>
             </div>
 
             <!-- bKash Step 3: PIN -->
             <div id="bkash-step-3" class="hidden space-y-3">
-              <label class="block text-xs font-bold text-white">Enter 5-digit bKash PIN:</label>
+              <label class="block text-xs font-bold text-white">৫-সংখ্যার বিকাশ পিন (PIN):</label>
               <input type="password" id="bkash-input-pin" maxlength="5" value="12345" placeholder="•••••" class="w-full px-3 py-2.5 rounded-xl bkash-pgw-input text-center text-lg font-mono tracking-widest">
-              <p class="text-[10px] text-pink-100 text-center">Demo test PIN: 12345</p>
               <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">Back</button>
+                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">পেছনে</button>
                 <button type="button" onclick="completeGatewayDemoPayment('bKash')" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow flex items-center justify-center gap-1.5">
-                  <i class="fa-solid fa-lock text-pink-600"></i> Confirm Payment
+                  <i class="fa-solid fa-lock text-pink-600"></i> পেমেন্ট নিশ্চিত করুন
                 </button>
               </div>
             </div>
@@ -1318,24 +690,23 @@
             <div id="bkash-step-spinner" class="hidden py-8 text-center space-y-3">
               <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
               <p class="text-xs font-bold text-white">বিকাশ পেমেন্ট প্রসেসিং হচ্ছে...</p>
-              <span class="text-[10px] text-pink-200">Connecting to bKash Payment Engine</span>
             </div>
 
           </div>
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW 2: AUTHENTIC NAGAD PGW DEMO SIMULATOR -->
+        <!-- VIEW 2: NAGAD CHECKOUT -->
         <!-- ============================================== -->
         <div id="pgw-simulator-nagad" class="pgw-sim-container hidden space-y-4">
           <div class="nagad-pgw-frame p-5">
             <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
               <div>
                 <span class="text-[10px] uppercase font-bold tracking-wider text-orange-200 block">ডাক বিভাগ নগদ • চেকআউট</span>
-                <span class="text-xs font-bold text-white">মার্চেন্ট: UtsabRegistry BD</span>
+                <span class="text-xs font-bold text-white">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
               </div>
               <div class="text-right">
-                <span class="text-[10px] text-orange-200 block">Amount:</span>
+                <span class="text-[10px] text-orange-200 block">পরিমাণ:</span>
                 <strong id="nagad-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ১,০০০</strong>
               </div>
             </div>
@@ -1383,7 +754,7 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW: AUTHENTIC DUTCH-BANGLA ROCKET PGW DEMO -->
+        <!-- VIEW: DUTCH-BANGLA ROCKET CHECKOUT -->
         <!-- ============================================== -->
         <div id="pgw-simulator-rocket" class="pgw-sim-container hidden space-y-4">
           <div class="rocket-pgw-frame p-5">
@@ -1392,10 +763,10 @@
                 <span class="text-[10px] uppercase font-bold tracking-wider text-purple-200 block flex items-center gap-1">
                   <i class="fa-solid fa-rocket"></i> ডাচ-বাংলা ব্যাংক রকেট • পেমেন্ট
                 </span>
-                <span class="text-xs font-bold text-white">মার্চেন্ট: UtsabRegistry BD</span>
+                <span class="text-xs font-bold text-white">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
               </div>
               <div class="text-right">
-                <span class="text-[10px] text-purple-200 block">Amount:</span>
+                <span class="text-[10px] text-purple-200 block">পরিমাণ:</span>
                 <strong id="rocket-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ১,০০০</strong>
               </div>
             </div>
@@ -1410,7 +781,7 @@
               <p class="text-[10px] text-purple-100 font-bangla">মোবাইল নম্বর + ১ ডিজিট চেকসাম (১২ ডিজিট একাউন্ট)</p>
               <div class="flex items-center gap-2 text-[11px] text-purple-100">
                 <input type="checkbox" id="rocket-agree-terms" checked class="rounded text-purple-600">
-                <span>আমি শর্তাবলী ও নিয়মাবলীতে সম্মত</span>
+                <span>শর্তাবলীতে সম্মত</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-purple-900/80 text-white font-bold text-xs hover:bg-purple-950">বাতিল</button>
@@ -1432,11 +803,10 @@
               </div>
             </div>
 
-            <!-- Rocket Step 3: 4-digit Secret PIN -->
+            <!-- Rocket Step 3: PIN -->
             <div id="rocket-step-3" class="hidden space-y-3">
               <label class="block text-xs font-bold text-white">৪-সংখ্যার গোপন রকেট পিন (PIN):</label>
               <input type="password" id="rocket-input-pin" maxlength="4" value="1234" placeholder="••••" class="w-full px-3 py-2.5 rounded-xl rocket-pgw-input text-center text-lg font-mono tracking-widest">
-              <p class="text-[10px] text-purple-100 text-center">ডেমো টেস্ট পিন: 1234</p>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button type="button" onclick="advanceRocketStep(2)" class="py-2 rounded-xl bg-purple-900/80 text-white font-bold text-xs">পেছনে</button>
                 <button type="button" onclick="completeGatewayDemoPayment('Rocket')" class="py-2 rounded-xl bg-white text-purple-900 font-bold text-xs hover:bg-purple-50 shadow flex items-center justify-center gap-1.5">
@@ -1449,14 +819,13 @@
             <div id="rocket-step-spinner" class="hidden py-8 text-center space-y-3">
               <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
               <p class="text-xs font-bold text-white">রকেট পেমেন্ট সম্পন্ন হচ্ছে...</p>
-              <span class="text-[10px] text-purple-200">Connecting to Dutch-Bangla Bank Rocket Engine</span>
             </div>
 
           </div>
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW 3: SSLCOMMERZ CARD GATEWAY DEMO SIMULATOR -->
+        <!-- VIEW 3: CARD CHECKOUT (SSL) -->
         <!-- ============================================== -->
         <div id="pgw-simulator-card" class="pgw-sim-container hidden space-y-3">
           <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50/70 text-xs space-y-3">
@@ -1474,14 +843,11 @@
 
             <div>
               <label class="block font-bold text-gray-600 mb-1">কার্ডধারীর নাম (Name on Card):</label>
-              <input type="text" value="TANVIR AHMED" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
+              <input type="text" value="ARINDAM CHAKRABORTY" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
             </div>
 
             <div>
-              <div class="flex justify-between items-center mb-1">
-                <label class="font-bold text-gray-600">কার্ড নম্বর (16-Digit Card):</label>
-                <button type="button" onclick="autoFillTestCard()" class="text-[10px] text-blue-700 font-bold underline">টেস্ট কার্ড অটো-ফিল</button>
-              </div>
+              <label class="block font-bold text-gray-600 mb-1">কার্ড নম্বর (16-Digit Card):</label>
               <input type="text" id="ssl-card-number" value="4532 8901 2345 8092" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-sm tracking-wider">
             </div>
 
@@ -1504,7 +870,7 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW: BANK DIRECT TRANSFER & DEPOSIT DETAILS -->
+        <!-- VIEW 4: BANK DIRECT TRANSFER & DEPOSIT DETAILS -->
         <!-- ============================================== -->
         <div id="pgw-simulator-bank" class="pgw-sim-container hidden space-y-3">
           <div class="bank-pgw-frame p-5 text-xs space-y-4">
@@ -1571,16 +937,16 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- VIEW 4: MANUAL SEND MONEY / QR (OFFLINE FLOW) -->
+        <!-- VIEW 5: MANUAL SEND MONEY / QR (OFFLINE FLOW) -->
         <!-- ============================================== -->
         <div id="pgw-simulator-manual" class="pgw-sim-container hidden space-y-4">
           <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-xs space-y-3">
-            <span class="font-bold text-amber-900 block">মোবাইল ওয়ালেট বা কিউআর কোডে ম্যানুয়াল সেন্ড মানি</span>
+            <span class="font-bold text-amber-900 block">মোবাইল ওয়ালেট বা কিউআর কোডে সরাসরি সেন্ড মানি</span>
             <div class="flex items-center gap-3">
               <div id="qr-container-manual" class="w-20 h-20 bg-white p-1 rounded-xl shadow border shrink-0 flex items-center justify-center"></div>
               <div class="space-y-1">
-                <span class="text-[10px] font-bold uppercase text-gray-500">বিকাশ / নগদ নম্বর:</span>
-                <div class="font-mono font-bold text-sm text-gray-900">01712-890123</div>
+                <span class="text-[10px] font-bold uppercase text-gray-500">বিকাশ / নগদ / রকেট নম্বর:</span>
+                <div class="font-mono font-bold text-sm text-gray-900">01712-345678</div>
                 <p class="text-[11px] text-gray-600">টাকা সেন্ড মানি করার পর প্রাপ্ত মেসেজের TrxID নিচে লিখুন:</p>
               </div>
             </div>
@@ -1660,10 +1026,10 @@
   <footer class="mt-auto bg-amber-950 text-amber-100 py-8 px-4 sm:px-6 border-t-2 border-amber-600/40 text-xs text-center md:text-left">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
-        <h4 class="font-serif-wedding text-base font-bold text-amber-200">উৎসব রেজিস্ট্রি BD • Escrow Protected</h4>
-        <p class="text-amber-200/70 text-[11px] font-bangla">Aarong, Walton, Daraz সরাসরি কানেক্টেড বিবাহ উপহার ও এসক্রো ফান্ড সুরক্ষা।</p>
+        <h4 class="font-serif-wedding text-base font-bold text-amber-200">অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</h4>
+        <p class="text-amber-200/70 text-[11px] font-bangla">শুভ বিবাহ ও বৌভাত প্রীতিভোজ • ২১ জানুয়ারি ২০২৭ • ইঞ্জিনিয়ার্স ইনস্টিটিউট, চট্টগ্রাম</p>
       </div>
-      <span class="text-[11px] text-amber-400/60 font-mono">UtsabRegistry BD • Crafted with ❤️ in Bangladesh</span>
+      <span class="text-[11px] text-amber-400/60 font-mono">সপরিবারে সানন্দ আমন্ত্রণ • মাঙ্গলিক শুভেচ্ছা ও আশীর্বাদ</span>
     </div>
   </footer>
 
