@@ -6,7 +6,7 @@ This repository hosts the static, responsive, and interactive wedding celebratio
 
 - **Reception Date & Time:** 21 January 2027 • 7:00 PM BST onwards (২১ জানুয়ারি, ২০২৭ • সন্ধ্যা ৭:০০ ঘটিকা থেকে)
 - **Venue:** The Institution of Engineers Bangladesh (IEB), Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম কেন্দ্র), S.S. Khaled Road, Lalkhan Bazar, Chattogram
-- **Live GitHub Pages URL:** `https://<your-username>.github.io/<repository-name>/`
+- **Live GitHub Pages URL:** `https://anirbanchakraborty96.github.io/utshobregistrybd/`
 
 ---
 
