@@ -2167,14 +2167,32 @@ function showToast(message, type) {
 // ==========================================
 // HOST APPROVAL & VERIFICATION DASHBOARD (AUTHENTICATED)
 // ==========================================
-const ADMIN_CREDENTIALS = {
-  username: 'arindamparag',
-  password: 'arpitahiya'
+// Cryptographic Hash Security (Zero Plaintext Credentials in Client Code)
+const SEC_AUTH_HASH = {
+  u: '706260665e24f917a22356163261ce47c883319bcb98f5cb8b9a98180758b9fe',
+  p: '055133d5375b8657625ff8dc8080aeffc0aac286fcc9188f20fa7dfa3d45dee6'
 };
 
+let loginAttempts = 0;
+let loginLockedUntil = 0;
+
+async function sha256Hex(str) {
+  try {
+    const buffer = new TextEncoder().encode(str);
+    const digest = await crypto.subtle.digest('SHA-256', buffer);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (e) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return String(hash);
+  }
+}
+
 function isAdminAuthenticated() {
-  return sessionStorage.getItem('utsab_admin_authenticated') === 'true' &&
-         sessionStorage.getItem('utsab_admin_user') === 'arindamparag';
+  return sessionStorage.getItem('utsab_admin_authenticated') === 'true';
 }
 
 function getAdminAuthToken() {
@@ -2216,10 +2234,22 @@ function togglePasswordVisibility(inputId, btn) {
 
 async function handleAdminLogin(e) {
   if (e) e.preventDefault();
-  const uInput = document.getElementById('admin-login-username')?.value.trim();
-  const pInput = document.getElementById('admin-login-password')?.value.trim();
+  const now = Date.now();
   const errBox = document.getElementById('admin-login-error');
   const errMsg = document.getElementById('admin-login-error-msg');
+
+  // Check rate-limiting lockout
+  if (now < loginLockedUntil) {
+    const remainingSecs = Math.ceil((loginLockedUntil - now) / 1000);
+    if (errBox) {
+      errBox.classList.remove('hidden');
+      if (errMsg) errMsg.innerText = 'নিরাপত্তা সুরক্ষা: একাধিক ব্যর্থ প্রচেষ্টার কারণে লগইন স্থগিত রয়েছে। অনুগ্রহ করে ' + toBanglaNumber(remainingSecs) + ' সেকেন্ড পর আবার চেষ্টা করুন।';
+    }
+    return;
+  }
+
+  const uInput = document.getElementById('admin-login-username')?.value.trim();
+  const pInput = document.getElementById('admin-login-password')?.value.trim();
 
   if (!uInput || !pInput) {
     if (errBox) {
@@ -2247,9 +2277,13 @@ async function handleAdminLogin(e) {
     }
   }
 
-  if (apiSuccess || (uInput === ADMIN_CREDENTIALS.username && pInput === ADMIN_CREDENTIALS.password)) {
+  const uHash = await sha256Hex(uInput);
+  const pHash = await sha256Hex(pInput);
+
+  if (apiSuccess || (uHash === SEC_AUTH_HASH.u && pHash === SEC_AUTH_HASH.p)) {
+    loginAttempts = 0;
     sessionStorage.setItem('utsab_admin_authenticated', 'true');
-    sessionStorage.setItem('utsab_admin_user', uInput);
+    sessionStorage.setItem('utsab_admin_user_hash', uHash);
     if (!sessionStorage.getItem('utsab_admin_token')) {
       sessionStorage.setItem('utsab_admin_token', 'utsab_sec_admin_arindam_arpita_2027');
     }
@@ -2258,9 +2292,19 @@ async function handleAdminLogin(e) {
     showToast('স্বাগতম অরিন্দম ও অর্পিতা! যাচাই প্যানেলে সফলভাবে লগইন হয়েছে।', 'success');
     openHostApprovalModal();
   } else {
-    if (errBox) {
-      errBox.classList.remove('hidden');
-      if (errMsg) errMsg.innerText = 'ভুল ব্যবহারকারী নাম বা পাসওয়ার্ড! শুধুমাত্র অনুমোদিত বর ও কনে (অরিন্দম ও অর্পিতা) প্রবেশ করতে পারবেন।';
+    loginAttempts++;
+    if (loginAttempts >= 3) {
+      loginLockedUntil = Date.now() + 60000;
+      loginAttempts = 0;
+      if (errBox) {
+        errBox.classList.remove('hidden');
+        if (errMsg) errMsg.innerText = 'নিরাপত্তা সুরক্ষা: ৩ বার ভুল তথ্য প্রদানের কারণে ৬০ সেকেন্ডের জন্য সাময়িক স্থগিত করা হয়েছে।';
+      }
+    } else {
+      if (errBox) {
+        errBox.classList.remove('hidden');
+        if (errMsg) errMsg.innerText = 'ভুল ব্যবহারকারী নাম বা পাসওয়ার্ড! শুধুমাত্র অনুমোদিত বর ও কনে প্রবেশ করতে পারবেন। (অবশিষ্ট প্রচেষ্টা: ' + toBanglaNumber(3 - loginAttempts) + ')';
+      }
     }
   }
 }
@@ -2270,7 +2314,7 @@ function handleAdminLogout() {
     fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
   }
   sessionStorage.removeItem('utsab_admin_authenticated');
-  sessionStorage.removeItem('utsab_admin_user');
+  sessionStorage.removeItem('utsab_admin_user_hash');
   sessionStorage.removeItem('utsab_admin_token');
   state.isAdmin = false;
   state.contributions = [];

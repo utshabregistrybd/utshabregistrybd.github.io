@@ -1,6 +1,10 @@
-# Python & Temporary Files
+# Backend & Local Server Files (Hidden from GitHub)
+server.py
+start.sh
+utsab.db
+*.db
+*.sqlite3
 __pycache__/
 *.pyc
 .DS_Store
-utsab.db
 frontend/fallback_data.json

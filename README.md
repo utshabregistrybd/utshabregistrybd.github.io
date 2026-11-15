@@ -1,44 +1,29 @@
 # ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ 🪔
-## Arindam & Arpita Auspicious Hindu Wedding Celebration & Gift Registry
-### অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলির শুভ বিবাহ ও বৌভাত প্রীতিভোজ
 
-This repository hosts the static, responsive, and interactive wedding celebration website and gift registry for **Arindam Chakraborty** (চক্রবর্ত্তী পরিবার, চট্টগ্রাম) & **Arpita Ganguly** (গাঙ্গুলি পরিবার, ঢাকা).
+## শুভ বিবাহ ও বৌভাত প্রীতিভোজ • মাঙ্গলিক উপহার রেজিস্ট্রি
+### Arindam Chakraborty & Arpita Ganguly Wedding Celebration
 
-- **Reception Date & Time:** 21 January 2027 • 7:00 PM BST onwards (২১ জানুয়ারি, ২০২৭ • সন্ধ্যা ৭:০০ ঘটিকা থেকে)
-- **Venue:** The Institution of Engineers Bangladesh (IEB), Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম কেন্দ্র), S.S. Khaled Road, Lalkhan Bazar, Chattogram
-- **Live GitHub Pages URL:** `https://anirbanchakraborty96.github.io/utshobregistrybd/`
+স্বাগতম **অরিন্দম চক্রবর্ত্তী** (চক্রবর্ত্তী পরিবারবর্গ, চট্টগ্রাম) ও **অর্পিতা গাঙ্গুলি** (গাঙ্গুলি পরিবারবর্গ, ঢাকা)-র শুভ বিবাহ ও বৌভাত প্রীতিভোজের ডিজিটাল মাঙ্গলিক উপহার রেজিস্ট্রি ও আমন্ত্রণ পোর্টালে।
 
 ---
 
-### Features & Highlights
-1. **Sacred Vedic & Traditional Bengali Theme:**
-   - Authentic Vedic shlokas (`যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম`) and traditional auspicious motifs (কূর্ম, শঙ্খ, স্বস্তিক, পঞ্চপ্রদীপ ও মাঙ্গলিক কলস).
-   - Soulful acoustic Indian classical Bansuri (bamboo flute) and Sitar soundscape with ambient drone.
-   - Elegant typography featuring `Cinzel`, `Tiro Bangla`, `Hind Siliguri`, and `Inter`.
-2. **Interactive Venue & Location:**
-   - Embedded interactive Google Map directly linked to IEB Chattogram with one-click navigation directions.
-3. **Curated Wedding Gift Registry & Ashirbadi Salami / Pronami Funds:**
-   - Curated gifts across 7 categories: Gold & Traditional Jewellery, Banarasi & Silk Sarees, Tech & Gadgets, Home Appliances, Mini Gifts (under 2,000 BDT), Kitchen & Dining, and Honeymoon/Home Setup funds.
-   - Traditional Ashirbadi amounts starting from 1,001 BDT upwards, with default preset of 2,001 BDT.
-   - Direct to couple: 100% of all contributions and blessings are directly dedicated to the newlyweds.
-4. **Bangladesh Payment Gateway Simulation:**
-   - **bKash & Nagad:** Full interactive mobile payment checkout simulator.
-   - **DBBL Rocket:** Rocket mobile wallet simulator (12-digit account, OTP, PIN).
-   - **Direct Bank Transfer:** BRAC Bank PLC (Agrabad Branch, Chattogram, Account No: `1501204892019001`) with 1-click copy for A/C, Branch, and Routing number.
-   - **Card / SSLCommerz:** Instant 3D Secure simulation.
-5. **Mobile First & Touch Optimized:**
-   - Responsive mobile navigation drawer menu with hamburger button.
-   - Sticky bottom navigation bar for quick access on mobile devices.
-   - Tap-to-zoom couple photo lightbox modal.
-   - Bottom-sheet dialogs and 16px touch targets for iOS/Android comfort.
-6. **Publish-Ready on GitHub Pages:**
-   - Fully client-side functional static architecture (`index.html`, `app.js`, `style.css`, `fallback_data.json`).
-   - Seamless offline fallback when deployed without an active backend.
+### 🌸 মাঙ্গলিক অনুষ্ঠান ও ভেন্যু বিবরণী (Ceremony & Venue Details)
+
+- **অনুষ্ঠান (Occasion):** শুভ বৌভাত ও প্রীতিভোজ (Reception)
+- **তারিখ (Date):** ২১শে জানুয়ারি, ২০২৭ (21st January 2027)
+- **সময় (Time):** সন্ধ্যা ৭:০০ ঘটিকা onwards (7:00 PM BST onwards)
+- **স্থান (Venue):** দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি), চট্টগ্রাম কেন্দ্র  
+  *The Institution of Engineers Bangladesh (IEB), S.S. Khaled Road, Lalkhan Bazar, Chattogram, Bangladesh*
 
 ---
 
-### How to Run Locally
-```bash
-python3 server.py
-# Open http://localhost:8080 in your browser
-```
+### 🌐 ডিজিটাল রেজিস্ট্রি ও লাইভ ওয়েবসাইট (Visit Registry)
+
+উপহার তালিকা দেখা, শুভাশিস বার্তা পাঠানো এবং নবদম্পতিকে আশীর্বাদী প্রেরণের জন্য সরাসরি ভিজিট করুন:
+
+👉 **[https://utshabregistrybd.github.io/](https://utshabregistrybd.github.io/)**
+
+---
+
+|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||  
+*আপনার সপরিবার সানন্দ উপস্থিতি ও মাঙ্গলিক আশীর্বাদ আমাদের নবদম্পতির আগামী জীবনের শ্রেষ্ঠ পাথেয়।*
