@@ -1,0 +1,6 @@
+# Python & Temporary Files
+__pycache__/
+*.pyc
+.DS_Store
+utsab.db
+frontend/fallback_data.json

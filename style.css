@@ -1,0 +1,326 @@
+/* UtsabRegistry BD - Hindu Marriage Themed Stylesheet with Auspicious Motifs & Mixed Typography */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap');
+
+:root {
+  /* Default: Sindoor Red & Auspicious Temple Gold */
+  --primary: #8b0000;
+  --primary-light: #ad1424;
+  --primary-dark: #580008;
+  --secondary: #d4af37;
+  --secondary-light: #fbeea4;
+  --accent: #b8860b;
+  --marigold: #f59e0b;
+  --marigold-deep: #d97706;
+  --alta-red: #c41e3a;
+  --chandan-bg: #fffbf0;
+  --bg-festive: #fffdf9;
+  --surface: #ffffff;
+  --text-main: #1f1d1a;
+  --text-muted: #5c554e;
+  --card-border: #f0e2c8;
+
+  --font-body: 'Poppins', 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
+  --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
+}
+
+/* Hindu Wedding Themes */
+body[data-wedding-theme="sindoor-gold"] {
+  --primary: #8e0b1d;
+  --primary-light: #b3162b;
+  --primary-dark: #5a000d;
+  --secondary: #d4af37;
+  --secondary-light: #fef3c7;
+  --bg-festive: #fffdfa;
+}
+
+body[data-wedding-theme="marigold-haldi"] {
+  --primary: #c2410c;
+  --primary-light: #ea580c;
+  --primary-dark: #7c2d12;
+  --secondary: #f59e0b;
+  --secondary-light: #fef08a;
+  --bg-festive: #fffbeb;
+}
+
+body[data-wedding-theme="royal-vedic"] {
+  --primary: #580016;
+  --primary-light: #7b0d25;
+  --primary-dark: #3b000e;
+  --secondary: #c59b27;
+  --secondary-light: #fce79f;
+  --bg-festive: #fdfaf6;
+}
+
+body[data-wedding-theme="lotus-rose"] {
+  --primary: #9d174d;
+  --primary-light: #be185d;
+  --primary-dark: #700c35;
+  --secondary: #eab308;
+  --secondary-light: #fef9c3;
+  --bg-festive: #fffafc;
+}
+
+/* Typography Presets */
+body[data-font="modern"] {
+  --font-body: 'Inter', 'Noto Sans Bengali', -apple-system, sans-serif;
+  --font-heading: 'Inter', 'Noto Sans Bengali', sans-serif;
+  --font-royal: 'Poppins', 'Noto Sans Bengali', sans-serif;
+}
+
+body[data-font="poppins-hind"] {
+  --font-body: 'Poppins', 'Hind Siliguri', 'Inter', sans-serif;
+  --font-heading: 'Poppins', 'Hind Siliguri', sans-serif;
+  --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
+}
+
+body[data-font="regal-tiro"] {
+  --font-body: 'Inter', 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
+  --font-heading: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
+  --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', 'Noto Serif Bengali', serif;
+}
+
+body[data-font="serif-classic"] {
+  --font-body: 'Inter', 'Noto Serif Bengali', serif;
+  --font-heading: 'Playfair Display', 'Noto Serif Bengali', serif;
+  --font-royal: 'Playfair Display', 'Noto Serif Bengali', 'Tiro Bangla', serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-festive);
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-royal { font-family: var(--font-royal); }
+.font-heading { font-family: var(--font-heading); }
+.font-ui { font-family: 'Inter', 'Noto Sans Bengali', sans-serif; }
+.font-bangla { font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; }
+.font-serif-wedding { font-family: var(--font-royal); }
+
+/* Auspicious Shloka Banner */
+.vedic-shloka-banner {
+  background: linear-gradient(90deg, rgba(142, 11, 29, 0.04) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(142, 11, 29, 0.04) 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+/* Alpana Border & Ornaments */
+.alpona-pattern-border {
+  background-image: radial-gradient(circle at 10px 10px, var(--secondary) 2px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.alpona-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+  color: var(--secondary);
+}
+.alpona-divider::before,
+.alpona-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--secondary), transparent);
+}
+
+/* Festive Marigold Garland Top Border */
+.marigold-garland-top {
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f59e0b 0px,
+    #f59e0b 16px,
+    #d97706 16px,
+    #d97706 28px,
+    #b45309 28px,
+    #b45309 40px,
+    #ef4444 40px,
+    #ef4444 46px
+  );
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
+}
+
+.crimson-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+/* Auspicious Ashirbadi & Pronami Envelope */
+.ashirbadi-envelope, .salami-envelope {
+  position: relative;
+  background: linear-gradient(145deg, #820819, #a61226);
+  border: 2px solid #d4af37;
+  box-shadow: 0 18px 40px -5px rgba(130, 8, 25, 0.45), 0 0 0 4px rgba(212, 175, 55, 0.25);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.ashirbadi-envelope::before, .salami-envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #d4af37 0px, #d4af37 10px, transparent 10px, transparent 16px);
+  opacity: 0.8;
+}
+
+.wax-seal {
+  background: radial-gradient(circle, #d4af37 0%, #a61226 70%, #580008 100%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+  border: 2px solid #fce79f;
+}
+
+/* Badges */
+.bkash-bg { background-color: #E2136E; color: white; }
+.nagad-bg { background-color: #F7941D; color: white; }
+.rocket-bg { background-color: #8C3494; color: white; }
+
+.vendor-badge-aarong { background-color: #5c1825; color: #f7d286; border: 1px solid #d4af37; }
+.vendor-badge-daraz { background-color: #ff6000; color: white; }
+.vendor-badge-walton { background-color: #0b4ea2; color: white; }
+.vendor-badge-transcom { background-color: #d8232a; color: white; }
+.vendor-badge-pickaboo { background-color: #27ae60; color: white; }
+.vendor-badge-monno { background-color: #1a2a3a; color: #e5b95c; }
+
+/* Rituals Card */
+.ritual-card {
+  transition: all 0.25s ease-in-out;
+  border: 1.5px solid var(--card-border);
+}
+.ritual-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--secondary);
+  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.25);
+}
+
+/* Shehnai Audio Pulsing Indicator */
+@keyframes audioPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+.audio-playing-pulse {
+  animation: audioPulse 1.6s infinite ease-in-out;
+}
+
+/* ======================================================== */
+/* REALISTIC PAYMENT GATEWAY SIMULATOR (bKash, Nagad, SSL) */
+/* ======================================================== */
+
+/* Simulated SMS Notification Banner */
+@keyframes slideDownFade {
+  0% { transform: translate(-50%, -100%); opacity: 0; }
+  15% { transform: translate(-50%, 0); opacity: 1; }
+  85% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, -100%); opacity: 0; }
+}
+
+.simulated-sms-banner {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  max-width: 420px;
+  width: 90%;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 16px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: slideDownFade 5s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Authentic bKash PGW Frame */
+.bkash-pgw-frame {
+  background: #E2136E;
+  color: white;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(226, 19, 110, 0.3);
+}
+
+.bkash-pgw-input {
+  background: #ffffff;
+  color: #111827;
+  font-weight: 600;
+  border: 1.5px solid #e5e7eb;
+}
+.bkash-pgw-input:focus {
+  border-color: #E2136E;
+  box-shadow: 0 0 0 3px rgba(226, 19, 110, 0.2);
+}
+
+/* Authentic Nagad PGW Frame */
+.nagad-pgw-frame {
+  background: #F7941D;
+  color: white;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(247, 148, 29, 0.3);
+}
+
+/* Authentic Rocket PGW Frame */
+.rocket-pgw-frame {
+  background: linear-gradient(145deg, #78267f 0%, #8C3494 50%, #5d1764 100%);
+  color: white;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(140, 52, 148, 0.35);
+}
+
+.rocket-pgw-input {
+  background: #ffffff;
+  color: #111827;
+  font-weight: 600;
+  border: 1.5px solid #e5e7eb;
+}
+.rocket-pgw-input:focus {
+  border-color: #8C3494;
+  box-shadow: 0 0 0 3px rgba(140, 52, 148, 0.25);
+}
+
+/* Bank Direct Transfer Frame */
+.bank-pgw-frame {
+  background: linear-gradient(145deg, #0f2b48 0%, #17426b 100%);
+  color: white;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 43, 72, 0.35);
+}
+
+/* SSLCommerz Card Gateway */
+.sslcz-tab.active {
+  border-bottom: 2px solid #0056b3;
+  color: #0056b3;
+  font-weight: 700;
+}
+
+/* Print Receipt Stylesheet */
+@media print {
+  body * { visibility: hidden; }
+  #printable-blessing-card, #printable-blessing-card * { visibility: visible; }
+  #printable-blessing-card {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+}
