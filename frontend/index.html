@@ -31,41 +31,40 @@
   <div class="marigold-garland-top"></div>
 
   <!-- Top Announcement Bar -->
-  <div class="crimson-gradient text-amber-200 text-xs py-2 px-4 shadow-sm">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2 font-bangla min-w-0 flex-1">
+  <div class="crimson-gradient text-amber-200 text-xs py-1.5 sm:py-2 px-3 sm:px-4 shadow-sm w-full overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2">
+      <div class="flex items-center gap-2 font-bangla min-w-0 max-w-full">
         <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0"></span>
-        <span class="font-bold text-[11px] sm:text-xs truncate block">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • <span class="font-extrabold text-amber-300 underline underline-offset-2 tracking-wide font-bangla">২১শে জানুয়ারি ২০২৭ (21st Jan)</span> • চট্টগ্রাম</span>
+        <span class="font-bold text-[10px] sm:text-xs truncate block">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • <span class="font-extrabold text-amber-300 underline underline-offset-2 tracking-wide font-bangla">২১শে জানুয়ারি ২০২৭</span> • চট্টগ্রাম</span>
       </div>
-      <div class="flex items-center gap-2 sm:gap-3 text-xs">
-        
+      <div class="flex items-center gap-2 text-xs shrink-0">
         <!-- Bansuri & Sitar Audio Player -->
-        <button id="audio-toggle-btn" onclick="toggleHinduWeddingAudio()" class="px-3 py-1 rounded-lg bg-black/30 hover:bg-black/50 text-amber-200 border border-amber-300/40 text-[11px] font-bold flex items-center gap-1.5 transition">
+        <button id="audio-toggle-btn" onclick="toggleHinduWeddingAudio()" class="px-2.5 py-1 rounded-lg bg-black/30 hover:bg-black/50 text-amber-200 border border-amber-300/40 text-[10px] sm:text-[11px] font-bold flex items-center gap-1.5 transition">
           <i class="fa-solid fa-music text-amber-300"></i>
-          <span id="audio-toggle-text">মাঙ্গলিক বাঁশি ও সেতারের সুর</span>
+          <span id="audio-toggle-text">মাঙ্গলিক সুর</span>
         </button>
 
         <!-- Language Switcher -->
         <div class="flex items-center bg-black/20 rounded-lg p-0.5 border border-amber-300/30">
-          <button id="lang-btn-bn" onclick="setLanguage('bn')" class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-900 transition">বাং</button>
-          <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2.5 py-0.5 rounded text-xs font-bold text-amber-200 hover:text-white transition">EN</button>
+          <button id="lang-btn-bn" onclick="setLanguage('bn')" class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-900 transition">বাং</button>
+          <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-[11px] font-bold text-amber-200 hover:text-white transition">EN</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Main Navigation Header -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:rotate-6 transition-transform" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1.5px solid var(--secondary);">
-          <span class="text-2xl text-amber-300 font-bold font-serif-wedding">ॐ</span>
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-100 shadow-sm w-full overflow-hidden">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+      <a href="#" class="flex items-center gap-2 sm:gap-3 group min-w-0">
+        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:rotate-6 transition-transform shrink-0" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1.5px solid var(--secondary);">
+          <span class="text-xl sm:text-2xl text-amber-300 font-bold font-serif-wedding">ॐ</span>
         </div>
-        <div>
-          <span class="font-serif-wedding text-xl sm:text-2xl font-bold tracking-tight text-gray-900 block leading-none">
+        <div class="min-w-0">
+          <span class="font-serif-wedding text-lg sm:text-2xl font-bold tracking-tight text-gray-900 block leading-tight truncate">
             উৎসব<span class="text-amber-700">রেজিস্ট্রি</span>
           </span>
-          <span class="text-[10px] tracking-widest uppercase font-semibold text-gray-500 font-sans block">
+          <span class="text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold text-gray-500 font-sans block truncate hidden sm:block">
             শুভ বিবাহ ও বৌভাত প্রীতিভোজ • চট্টগ্রাম
           </span>
         </div>
@@ -95,18 +94,18 @@
         </button>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <button onclick="openHostApprovalModal()" title="অ্যাডমিন উপহার যাচাই প্যানেল (লগইন প্রয়োজন)" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 shadow-sm transition">
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button onclick="openHostApprovalModal()" title="অ্যাডমিন উপহার যাচাই প্যানেল (লগইন প্রয়োজন)" class="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 shadow-sm transition">
           <i class="fa-solid fa-lock text-amber-800 text-xs"></i>
           <span class="hidden md:inline">যাচাই প্যানেল</span>
           <span id="host-pending-badge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-600 text-white font-bold hidden">0</span>
         </button>
-        <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
+        <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
           <i class="fa-solid fa-hand-holding-heart text-amber-300"></i>
           <span class="hidden sm:inline">শুভ আশীর্বাদ পাঠান</span>
           <span class="sm:hidden">আশীর্বাদ</span>
         </button>
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl border border-amber-200 text-amber-900 hover:bg-amber-50 transition" aria-label="মেনু">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="xl:hidden p-1.5 sm:p-2 rounded-xl border border-amber-200 text-amber-900 hover:bg-amber-50 transition" aria-label="মেনু">
           <i class="fa-solid fa-bars text-base"></i>
         </button>
       </div>
@@ -433,36 +432,38 @@
       </div>
 
       <!-- Scrollable Category Filter Pills (Mobile Responsive) -->
-      <div class="w-full max-w-full min-w-0 overflow-x-auto pb-2 scrollbar-none text-xs font-medium font-bangla -mx-4 px-4 sm:mx-0 sm:px-0">
-        <div class="inline-flex items-center gap-2 min-w-max py-1">
-          <button onclick="setCategory('all')" data-cat="all" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-900 text-white font-bold transition shadow-sm">
-            সব উপহার
-          </button>
-          <button onclick="setCategory('gadgets')" data-cat="gadgets" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-amber-950">
-            📱 গ্যাজেটস ও টেক (Gadgets)
-          </button>
-          <button onclick="setCategory('gold')" data-cat="gold" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-            ✨ স্বর্ণ ও অলংকার (Gold)
-          </button>
-          <button onclick="setCategory('sharee')" data-cat="sharee" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-            🥻 বেনারসী ও শাড়ি (Sharee)
-          </button>
-          <button onclick="setCategory('appliances')" data-cat="appliances" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-            ⚡ হোম অ্যাপ্লায়েন্স (Appliances)
-          </button>
-          <button onclick="setCategory('mini')" data-cat="mini" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-rose-800">
-            🎁 মিনি গিফট (১০০১৳ - ২০০০৳)
-          </button>
-          <button onclick="setCategory('kitchen')" data-cat="kitchen" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-            🍳 কিচেন ও ডিনারওয়্যার
-          </button>
-          <button onclick="setCategory('experience')" data-cat="experience" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-            🌴 হানিমুন ও সংসার তহবিল
-          </button>
+      <div class="w-full max-w-full overflow-hidden">
+        <div class="w-full overflow-x-auto pb-2 scrollbar-none text-xs font-medium font-bangla">
+          <div class="inline-flex items-center gap-2 min-w-max py-1">
+            <button onclick="setCategory('all')" data-cat="all" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-900 text-white font-bold transition shadow-sm">
+              সব উপহার
+            </button>
+            <button onclick="setCategory('gadgets')" data-cat="gadgets" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-amber-950">
+              📱 গ্যাজেটস ও টেক (Gadgets)
+            </button>
+            <button onclick="setCategory('gold')" data-cat="gold" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+              ✨ স্বর্ণ ও অলংকার (Gold)
+            </button>
+            <button onclick="setCategory('sharee')" data-cat="sharee" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+              🥻 বেনারসী ও শাড়ি (Sharee)
+            </button>
+            <button onclick="setCategory('appliances')" data-cat="appliances" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+              ⚡ হোম অ্যাপ্লায়েন্স (Appliances)
+            </button>
+            <button onclick="setCategory('mini')" data-cat="mini" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-rose-800">
+              🎁 মিনি গিফট (১০০১৳ - ২০০০৳)
+            </button>
+            <button onclick="setCategory('kitchen')" data-cat="kitchen" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+              🍳 কিচেন ও ডিনারওয়্যার
+            </button>
+            <button onclick="setCategory('experience')" data-cat="experience" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+              🌴 হানিমুন ও সংসার তহবিল
+            </button>
+          </div>
         </div>
       </div>
 
-      <div id="gifts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0"></div>
+      <div id="gifts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0 max-w-full"></div>
     </section>
 
     <!-- AUSPICIOUS ASHIRBADI & PRONAMI ENVELOPE (শুভ আশীর্বাদী ও প্রণামী খাম) -->

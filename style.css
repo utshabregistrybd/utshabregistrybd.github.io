@@ -25,11 +25,26 @@
   --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
 }
 
-/* Hindu Wedding Themes */
+/* Mobile Responsive Safeguards */
 html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+#sections-container,
+#section-gifts,
+#section-hero,
+#section-venue,
+#section-invitation,
+#section-salami,
+#section-gallery,
+#section-story,
+#section-guestbook {
+  max-width: 100vw !important;
+  width: 100% !important;
   overflow-x: hidden;
-  width: 100%;
-  max-width: 100vw;
 }
 
 body[data-wedding-theme="sindoor-gold"] {
