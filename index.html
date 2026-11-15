@@ -35,7 +35,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 font-bangla">
         <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span class="font-bold">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • ২১ জানুয়ারি ২০২৭ • ইঞ্জিনিয়ার্স ইনস্টিটিউট, চট্টগ্রাম</span>
+        <span class="font-bold text-[11px] sm:text-xs truncate">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • ২১ জানুয়ারি ২০২৭ • চট্টগ্রাম</span>
       </div>
       <div class="flex items-center gap-2 sm:gap-3 text-xs">
         
@@ -96,9 +96,13 @@
       </nav>
 
       <div class="flex items-center gap-2">
-        <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
+        <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
           <i class="fa-solid fa-hand-holding-heart text-amber-300"></i>
-          <span>শুভ আশীর্বাদ পাঠান</span>
+          <span class="hidden sm:inline">শুভ আশীর্বাদ পাঠান</span>
+          <span class="sm:hidden">আশীর্বাদ</span>
+        </button>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl border border-amber-200 text-amber-900 hover:bg-amber-50 transition" aria-label="মেনু">
+          <i class="fa-solid fa-bars text-base"></i>
         </button>
       </div>
     </div>
@@ -116,27 +120,31 @@
   </div>
 
   <!-- Mobile Bottom Nav -->
-  <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 py-2 px-3 flex justify-around text-[10px] font-bangla text-gray-600 shadow-xl">
-    <button onclick="switchTab('gifts')" class="flex flex-col items-center gap-0.5 text-amber-900 font-bold">
-      <i class="fa-solid fa-gifts text-sm"></i>
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-amber-200/80 py-1.5 px-2 flex justify-around text-[10px] font-bangla text-gray-600 shadow-2xl mobile-bottom-nav">
+    <button onclick="switchTab('gifts')" id="mob-nav-gifts" class="flex flex-col items-center gap-0.5 text-amber-900 font-bold px-2 py-1 transition">
+      <i class="fa-solid fa-gifts text-base"></i>
       <span>উপহার</span>
     </button>
-    <button onclick="switchTab('invitation')" class="flex flex-col items-center gap-0.5 text-gray-600">
-      <i class="fa-solid fa-scroll text-sm text-rose-700"></i>
+    <button onclick="switchTab('invitation')" id="mob-nav-invitation" class="flex flex-col items-center gap-0.5 text-gray-600 px-2 py-1 transition">
+      <i class="fa-solid fa-scroll text-base text-rose-700"></i>
       <span>আমন্ত্রণ</span>
     </button>
-    <button onclick="switchTab('venue')" class="flex flex-col items-center gap-0.5 text-gray-600">
-      <i class="fa-solid fa-map-location-dot text-sm text-rose-600"></i>
+    <button onclick="switchTab('venue')" id="mob-nav-venue" class="flex flex-col items-center gap-0.5 text-gray-600 px-2 py-1 transition">
+      <i class="fa-solid fa-map-location-dot text-base text-rose-600"></i>
       <span>ম্যাপ</span>
     </button>
-    <button onclick="switchTab('salami')" class="flex flex-col items-center gap-0.5 text-gray-600">
-      <i class="fa-solid fa-envelope-open-text text-sm text-rose-600"></i>
+    <button onclick="switchTab('salami')" id="mob-nav-salami" class="flex flex-col items-center gap-0.5 text-gray-600 px-2 py-1 transition">
+      <i class="fa-solid fa-envelope-open-text text-base text-rose-600"></i>
       <span>আশীর্বাদী</span>
     </button>
-  </div>
+    <button onclick="toggleMobileMenu()" id="mob-nav-menu" class="flex flex-col items-center gap-0.5 text-gray-600 px-2 py-1 transition">
+      <i class="fa-solid fa-bars text-base text-amber-800"></i>
+      <span>মেনু</span>
+    </button>
+  </nav>
 
   <!-- DYNAMIC SECTIONS CONTAINER -->
-  <div id="sections-container" class="flex flex-col w-full">
+  <div id="sections-container" class="flex flex-col w-full pb-24 md:pb-12">
 
     <!-- HERO SECTION -->
     <section id="section-hero" class="relative overflow-hidden pt-10 pb-16 lg:py-20 bg-gradient-to-b from-amber-50/70 to-transparent">
@@ -188,12 +196,12 @@
               </a>
             </div>
 
-            <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-              <button onclick="switchTab('gifts')" class="px-6 py-3.5 rounded-2xl font-bold text-sm text-white shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 w-full sm:w-auto">
+              <button onclick="switchTab('gifts')" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl font-bold text-sm text-white shadow-lg transition text-center" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
                 <i class="fa-solid fa-gift text-amber-300 mr-1.5"></i>
                 <span>উপহার তালিকা ও তহবিল</span>
               </button>
-              <button onclick="switchTab('venue')" class="px-6 py-3.5 rounded-2xl font-bold text-sm bg-white text-rose-900 border-2 border-rose-300 hover:bg-rose-50 shadow-sm transition">
+              <button onclick="switchTab('venue')" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl font-bold text-sm bg-white text-rose-900 border-2 border-rose-300 hover:bg-rose-50 shadow-sm transition text-center">
                 <i class="fa-solid fa-map-location-dot text-rose-700 mr-1.5"></i>
                 <span>ভেন্যু ও ম্যাপ লোকেশন</span>
               </button>
@@ -202,7 +210,7 @@
 
           <!-- Right: Countdown & Couple Featured Photo -->
           <div class="lg:col-span-5 flex flex-col items-center">
-            <div class="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 border-2 border-amber-200 shadow-xl relative overflow-hidden">
+            <div class="w-full max-w-md bg-white rounded-3xl p-4 sm:p-8 border-2 border-amber-200 shadow-xl relative overflow-hidden">
               <div class="h-56 rounded-2xl overflow-hidden mb-5 border border-amber-200 relative group">
                 <img id="hero-couple-img" src="uploads/arindam_arpita_sitting.jpg" alt="Couple" class="w-full h-full object-cover">
               </div>
@@ -245,22 +253,22 @@
 
     <!-- STATS STRIP -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 mb-10 relative z-20">
-      <div class="bg-white rounded-2xl p-5 border border-amber-200 shadow-md grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-amber-100">
-        <div>
-          <span class="text-xs text-gray-500 font-medium block">উপহার বুকিং সম্পন্ন</span>
-          <span id="stat-claimed-gifts" class="text-xl sm:text-2xl font-bold font-serif-wedding text-gray-900 mt-1 block">৭ / ২১</span>
+      <div class="bg-white rounded-2xl p-3 sm:p-5 border border-amber-200 shadow-md grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-center">
+        <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100/80">
+          <span class="text-[11px] sm:text-xs text-gray-500 font-medium block">উপহার বুকিং সম্পন্ন</span>
+          <span id="stat-claimed-gifts" class="text-lg sm:text-2xl font-bold font-serif-wedding text-gray-900 mt-0.5 block">৭ / ২১</span>
         </div>
-        <div>
-          <span class="text-xs text-gray-500 font-medium block">মোট সংগৃহীত উপহার ও ফান্ড</span>
-          <span id="stat-total-raised" class="text-xl sm:text-2xl font-bold font-serif-wedding text-amber-900 mt-1 block">৳ ৮৩,০০০</span>
+        <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100/80">
+          <span class="text-[11px] sm:text-xs text-gray-500 font-medium block">মোট সংগৃহীত উপহার</span>
+          <span id="stat-total-raised" class="text-lg sm:text-2xl font-bold font-serif-wedding text-amber-900 mt-0.5 block">৳ ৮৩,০০০</span>
         </div>
-        <div>
-          <span class="text-xs text-gray-500 font-medium block">ডিজিটাল শুভ আশীর্বাদী</span>
-          <span id="stat-total-salami" class="text-xl sm:text-2xl font-bold font-serif-wedding text-rose-700 mt-1 block">৳ ১৫,০০১</span>
+        <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100/80">
+          <span class="text-[11px] sm:text-xs text-gray-500 font-medium block">ডিজিটাল আশীর্বাদী</span>
+          <span id="stat-total-salami" class="text-lg sm:text-2xl font-bold font-serif-wedding text-rose-700 mt-0.5 block">৳ ১৫,০০১</span>
         </div>
-        <div>
-          <span class="text-xs text-gray-500 font-medium block">অতিথিদের শুভাশিষ বার্তা</span>
-          <span id="stat-blessings-count" class="text-xl sm:text-2xl font-bold font-serif-wedding text-emerald-800 mt-1 block">১২+ বার্তা</span>
+        <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100/80">
+          <span class="text-[11px] sm:text-xs text-gray-500 font-medium block">শুভাশিষ বার্তা</span>
+          <span id="stat-blessings-count" class="text-lg sm:text-2xl font-bold font-serif-wedding text-emerald-800 mt-0.5 block">১২+ বার্তা</span>
         </div>
       </div>
     </section>
@@ -546,7 +554,7 @@
   <!-- ======================================================== -->
   <!-- PAYMENT GATEWAY & BLESSING CONTRIBUTION MODAL -->
   <!-- ======================================================== -->
-  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-0 sm:p-4 overflow-y-auto mobile-bottom-sheet">
     <div class="bg-white rounded-3xl max-w-xl w-full border border-amber-200 shadow-2xl overflow-hidden my-8">
       
       <!-- Modal Header -->
@@ -1011,7 +1019,7 @@
   </div>
 
   <!-- RECEIPT MODAL -->
-  <div id="receipt-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+  <div id="receipt-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-0 sm:p-4 overflow-y-auto mobile-bottom-sheet">
     <div class="max-w-md w-full bg-transparent relative my-8">
       <div id="printable-blessing-card"></div>
       <div class="mt-4 flex items-center justify-center gap-3">
@@ -1026,7 +1034,7 @@
   </div>
 
   <!-- Traditional Footer -->
-  <footer class="mt-auto bg-amber-950 text-amber-100 py-8 px-4 sm:px-6 border-t-2 border-amber-600/40 text-xs text-center md:text-left">
+  <footer class="mt-auto bg-amber-950 text-amber-100 py-8 pb-28 md:pb-8 px-4 sm:px-6 border-t-2 border-amber-600/40 text-xs text-center md:text-left">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
         <h4 class="font-serif-wedding text-base font-bold text-amber-200">অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</h4>
@@ -1037,5 +1045,89 @@
   </footer>
 
   <script src="app.js"></script>
+
+  <!-- ========================================== -->
+  <!-- MOBILE SLIDE-IN NAVIGATION DRAWER -->
+  <!-- ========================================== -->
+  <div id="mobile-drawer-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden opacity-0" onclick="closeMobileMenu()"></div>
+  <div id="mobile-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white shadow-2xl transform translate-x-full flex flex-col font-bangla">
+    <!-- Drawer Header -->
+    <div class="crimson-gradient p-5 text-white flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 text-xl border border-amber-300/30">
+          <span>ॐ</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-base font-serif-wedding text-white leading-tight">অরিন্দম ও অর্পিতা</h3>
+          <span class="text-[11px] text-amber-200/90 block">শুভ বিবাহ ও বৌভাত প্রীতিভোজ</span>
+        </div>
+      </div>
+      <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center" aria-label="বন্ধ করুন">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Menu Items -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-1 text-sm font-semibold text-gray-800">
+      <button onclick="switchTab('gifts'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition text-amber-900 font-bold">
+        <i class="fa-solid fa-gifts text-amber-700 w-5"></i>
+        <span>উপহার রেজিস্ট্রি</span>
+      </button>
+      <button onclick="setCategory('gadgets'); switchTab('gifts'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition text-rose-800">
+        <i class="fa-solid fa-mobile-screen text-rose-700 w-5"></i>
+        <span>গ্যাজেটস ও টেক (Gadgets)</span>
+      </button>
+      <button onclick="switchTab('invitation'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-scroll text-rose-800 w-5"></i>
+        <span>মাঙ্গলিক নিমন্ত্রণ পত্র</span>
+      </button>
+      <button onclick="switchTab('venue'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-map-location-dot text-rose-700 w-5"></i>
+        <span>ভেন্যু ও গুগল ম্যাপ</span>
+      </button>
+      <button onclick="switchTab('gallery'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-camera-retro text-amber-800 w-5"></i>
+        <span>স্মৃতি মালা (ফটো গ্যালারি)</span>
+      </button>
+      <button onclick="switchTab('salami'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-envelope-open-text text-rose-700 w-5"></i>
+        <span>শুভাশিস ও আশীর্বাদী খাম</span>
+      </button>
+      <button onclick="switchTab('story'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-heart text-pink-600 w-5"></i>
+        <span>শুভ পরিণয় গাথা</span>
+      </button>
+      <button onclick="switchTab('guestbook'); closeMobileMenu();" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-amber-50 text-left transition">
+        <i class="fa-solid fa-book-open text-emerald-700 w-5"></i>
+        <span>শুভাশিষ খাতা</span>
+      </button>
+    </div>
+
+    <!-- Drawer Footer Actions -->
+    <div class="p-4 border-t border-amber-100 bg-amber-50/50 space-y-2.5">
+      <a href="https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram" target="_blank" rel="noopener" class="w-full py-2.5 rounded-xl font-bold text-xs bg-rose-50 text-rose-900 border border-rose-200 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-diamond-turn-right text-rose-700"></i>
+        <span>গুগল ম্যাপে দিকনির্দেশনা</span>
+      </a>
+      <button onclick="openPaymentModal('salami-fund'); closeMobileMenu();" class="w-full py-3 rounded-xl font-bold text-xs text-white shadow" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+        <i class="fa-solid fa-hand-holding-heart text-amber-300 mr-1.5"></i>
+        <span>শুভ আশীর্বাদ পাঠান</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- FULLSCREEN PHOTO LIGHTBOX MODAL -->
+  <!-- ========================================== -->
+  <div id="gallery-lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightboxModal()">
+    <div class="relative max-w-lg w-full max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightboxModal()" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center text-lg hover:bg-white/30" aria-label="বন্ধ করুন">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="lightbox-img" src="" alt="Couple Photo" class="max-w-full max-h-[75vh] rounded-2xl object-contain shadow-2xl border border-white/20">
+      <p id="lightbox-caption" class="text-amber-200 font-bangla text-center text-sm font-bold mt-3 px-4"></p>
+    </div>
+  </div>
+
 </body>
 </html>

@@ -324,3 +324,52 @@ body {
     padding: 20px;
   }
 }
+
+/* ==========================================
+   MOBILE RESPONSIVENESS & SAFE AREA ENHANCEMENTS
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media screen and (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+.mobile-bottom-nav {
+  padding-bottom: max(0.5rem, calc(0.35rem + env(safe-area-inset-bottom, 0px)));
+}
+
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+.touch-scroll > * {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 640px) {
+  .mobile-bottom-sheet {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+  .mobile-bottom-sheet > div {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    max-height: 90vh !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+#mobile-drawer-backdrop {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#mobile-drawer {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}

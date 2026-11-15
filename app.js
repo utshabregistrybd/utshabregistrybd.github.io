@@ -1170,11 +1170,11 @@ function renderGallery() {
   }
 
   container.innerHTML = state.gallery.map(item => `
-    <div class="gallery-card group relative h-64 rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm bg-gray-100">
+    <div onclick="openLightboxModal('${normalizeImagePath(item.image_url)}', '${item.caption || ''}')" class="gallery-card group relative h-48 sm:h-64 rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm bg-gray-100 cursor-pointer active:scale-95 transition-transform">
       <img src="${normalizeImagePath(item.image_url)}" alt="${item.caption || 'Photo'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-      <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 text-white">
+      <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 sm:transition-all sm:duration-300 flex flex-col justify-end p-3.5 text-white">
         <p class="text-xs font-bold font-bangla text-amber-200">${item.caption || 'আমাদের সুন্দর স্মৃতি'}</p>
-        <span class="text-[10px] text-gray-300 mt-0.5">Utsab Moments</span>
+        <span class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1"><i class="fa-solid fa-expand text-[9px]"></i> স্পর্শ করে বড় দেখুন</span>
       </div>
     </div>
   `).join('');
@@ -2570,3 +2570,51 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('withdraw-form')?.addEventListener('submit', submitWithdrawalRequest);
   document.getElementById('cloud-db-form')?.addEventListener('submit', saveCloudDbConfig);
 });
+
+// ==========================================
+// MOBILE DRAWER & LIGHTBOX CONTROLS
+// ==========================================
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobile-drawer');
+  const backdrop = document.getElementById('mobile-drawer-backdrop');
+  if (!drawer || !backdrop) return;
+  const isClosed = drawer.classList.contains('translate-x-full');
+  if (isClosed) {
+    backdrop.classList.remove('hidden');
+    setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+    drawer.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  } else {
+    closeMobileMenu();
+  }
+}
+
+function closeMobileMenu() {
+  const drawer = document.getElementById('mobile-drawer');
+  const backdrop = document.getElementById('mobile-drawer-backdrop');
+  if (!drawer || !backdrop) return;
+  drawer.classList.add('translate-x-full');
+  backdrop.classList.add('opacity-0');
+  setTimeout(() => backdrop.classList.add('hidden'), 300);
+  document.body.style.overflow = '';
+}
+
+function openLightboxModal(src, caption) {
+  const modal = document.getElementById('gallery-lightbox-modal');
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  if (!modal || !img) return;
+  img.src = src;
+  if (cap) cap.innerText = caption || '';
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightboxModal() {
+  const modal = document.getElementById('gallery-lightbox-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
