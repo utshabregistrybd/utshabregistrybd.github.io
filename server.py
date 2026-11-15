@@ -266,202 +266,36 @@ def init_db():
         if c.fetchone()[0] == 0 or force:
             if force:
                 c.execute('DELETE FROM gifts')
-            demo_gifts = [
-                (
-                    'gift-1',
-                    'Aarong Handcrafted Pure Katan Silk Banarasi Saree (Crimson Red & Antique Zari)',
-                    'আড়ং হ্যান্ডক্রাফটেড পিওর কাতান সিল্ক বেনারসী শাড়ি (সিঁদুর লাল ও অ্যান্টিক জরি)',
-                    'luxury',
-                    24500.0,
-                    24500.0,
-                    24500.0,
-                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
-                    'https://www.aarong.com/women/sarees/banarasi/crimson-katan-silk-wedding',
-                    'Aarong Lifestyle',
-                    'AAR-BAN-RED-01',
-                    'বিশুদ্ধ কাতান সিল্কে বোনা ট্র্যাডিশনাল লাল বেনারসী শাড়ি। লগ্ন ও শুভ বিবাহের জন্য উপযুক্ত।',
-                    0,
-                    'claimed',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-2',
-                    'Monno Ceramic Royal 24K Gold Rim 52-Piece Luxury Bone China Dinner Set',
-                    'মুন্নু সিরামিক রয়্যাল ২৪ ক্যারেট গোল্ড রিম ৫২-পিস লাক্সারি ডিনার সেট',
-                    'luxury',
-                    19800.0,
-                    19800.0,
-                    19800.0,
-                    'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=800&q=80',
-                    'https://monno.com.bd/product/royal-gold-52-bonechina',
-                    'Monno Ceramics BD',
-                    'MONNO-GLD-52',
-                    'পূর্ণ বোন চায়না পোরসেলিন ডিনার সেট, যাতে রয়েছে ২৪ ক্যারেট খাঁটি স্বর্ণের সুক্ষ্ম ফিনিশিং।',
-                    0,
-                    'claimed',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-3',
-                    'Aarong Heritage Brass & Bell-Metal Mangal Pooja Thali & Panchapradeep Set',
-                    'আড়ং হেরিটেজ নকশী পিতল ও কাঁসার পঞ্চপ্রদীপ ও মাঙ্গলিক পূজা থালি সেট',
-                    'luxury',
-                    8750.0,
-                    8750.0,
-                    0.0,
-                    'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80',
-                    'https://www.aarong.com/home-decor/brass-bronze/pooja-thali-panchapradeep',
-                    'Aarong Living',
-                    'AAR-BRS-THL-09',
-                    'হাতে খোদাই করা পদ্ম ও স্বস্তিক নকশার পিতলের থালি, পঞ্চপ্রদীপ, শঙ্খ ও ঘণ্টা সেট। নতুন সংসারের ঠাকুরঘরের জন্য পবিত্র উপহার।',
-                    0,
-                    'available',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-4',
-                    'Walton Double-Door Inverter Frost Refrigerator (Group Gift)',
-                    'ওয়ালটন ইনভার্টার ফ্রস্ট ডাবল ডোর রেফ্রিজারেটর (গ্রুপ গিফট)',
-                    'appliances',
-                    54500.0,
-                    54500.0,
-                    38000.0,
-                    'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80',
-                    'https://eplaza.waltonbd.com/refrigerators/wfd-3b2-gdxx',
-                    'Walton Plaza BD',
-                    'WLT-INV-3B2',
-                    'নবদম্পতির নতুন সংসারের জন্য ওয়ালটন ইনভার্টার রেফ্রিজারেটর। ১০০% ফান্ড সংগৃহীত হলে হোম ডেলিভারি হবে।',
-                    1,
-                    'partially_funded',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-5',
-                    'Philips Essential Digital XL Air Fryer & Kitchen Combo HD9270',
-                    'ফিলিপস ডিজিটাল এক্সএল এয়ার ফ্রায়ার ও কিচেন ব্লেন্ডার কম্বো',
-                    'kitchen',
-                    15200.0,
-                    15200.0,
-                    0.0,
-                    'https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=800&q=80',
-                    'https://transcomdigital.com/philips-airfryer-hd9270',
-                    'Transcom Digital',
-                    'TRN-PHIL-9270',
-                    'স্বাস্থ্যকর রান্না ও সনাতনী সুস্বাদু পদ তৈরির জন্য ৬.২ লিটার র‍্যাপিড এয়ার টেকনোলজি এয়ার ফ্রায়ার।',
-                    0,
-                    'available',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-6',
-                    'Subarna Ashirbad: Couple Gold Jewellery & Savings Fund (Group Gift)',
-                    'সুবর্ণ আশীর্বাদ: নবদম্পতির জন্য স্বর্ণালংকার ও সঞ্চয় তহবিল (গ্রুপ গিফট)',
-                    'experience',
-                    60000.0,
-                    60000.0,
-                    35000.0,
-                    'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
-                    'https://utsab.bd/funds/subarna-ashirbad',
-                    'Couple Escrow Account',
-                    'GLD-ASHIRBAD-01',
-                    'কনের সোনার গয়না (শাখা-পলা স্বর্ণ বাঁধানো ও নেকলেস) এবং নবদম্পতির ভবিষ্যৎ সঞ্চয়ের জন্য আশীর্বাদী উপহার তহবিল।',
-                    1,
-                    'partially_funded',
-                    datetime.datetime.now().isoformat()
-                ),
-                (
-                    'gift-7',
-                    'Honeymoon Experience: Darjeeling & Kalimpong Heritage Tour',
-                    'হানিমুন অভিজ্ঞতা: দার্জিলিং ও কালিম্পং হেরিটেজ রিট্রিট',
-                    'experience',
-                    45000.0,
-                    45000.0,
-                    27500.0,
-                    'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
-                    'https://heritagetravels.com.bd/darjeeling-honeymoon',
-                    'Heritage Travels BD',
-                    'EXP-HNY-01',
-                    'কাঞ্চনজঙ্ঘার দৃশ্য ও শান্ত চা বাগানের মাঝে নবদম্পতির প্রথম স্মরণীয় মধুচন্দ্রিমা সফর।',
-                    1,
-                    'partially_funded',
-                    datetime.datetime.now().isoformat()
-                )
-            ]
-            c.executemany('INSERT INTO gifts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', demo_gifts)
+            fb_path = os.path.join(BASE_DIR, 'fallback_data.json')
+            if os.path.exists(fb_path):
+                with open(fb_path, 'r', encoding='utf-8') as f:
+                    fb = json.load(f)
+                all_gifts = [
+                    (
+                        g['id'],
+                        g['title'],
+                        g['title_bn'],
+                        g['category'],
+                        float(g['price']),
+                        float(g['target_amount']),
+                        0.0,
+                        g['image_url'],
+                        g.get('merchant_url', ''),
+                        g.get('merchant_name', ''),
+                        g.get('vendor_sku', ''),
+                        g.get('description', ''),
+                        int(g.get('is_group_gift', 0)),
+                        'available',
+                        g.get('created_at', datetime.datetime.now().isoformat())
+                    )
+                    for g in fb.get('gifts', [])
+                ]
+                c.executemany('INSERT INTO gifts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', all_gifts)
 
-        c.execute('SELECT COUNT(*) FROM funds_escrow')
-        if c.fetchone()[0] == 0 or force:
-            if force:
-                c.execute('DELETE FROM funds_escrow')
-            demo_escrow = [
-                (
-                    'ESC-9011',
-                    'gift_purchase',
-                    'gift-1',
-                    'Aarong Handcrafted Pure Katan Silk Banarasi Saree',
-                    'Dr. Debabrata Roy & Family',
-                    '01711223344',
-                    24500.0,
-                    1225.00,
-                    23275.00,
-                    'reserved',
-                    'vendor_delivery_confirmed',
-                    'Aarong Lifestyle (Dhanmondi Branch)',
-                    datetime.datetime.now().isoformat(),
-                    None
-                ),
-                (
-                    'ESC-9012',
-                    'group_contribution',
-                    'gift-4',
-                    'Walton Double-Door Inverter Frost Refrigerator (Group Gift)',
-                    'BUET 14 Batch Friends Forum',
-                    '01819334455',
-                    25000.0,
-                    1250.00,
-                    23750.00,
-                    'reserved',
-                    'group_gift_completion',
-                    'Walton Plaza BD Logistics',
-                    datetime.datetime.now().isoformat(),
-                    None
-                ),
-                (
-                    'ESC-9013',
-                    'salami_cash',
-                    'salami-fund',
-                    'Auspicious Ashirbadi & Pronami Envelope',
-                    'Kakoli Sengupta (Choto Mashi)',
-                    '01611556677',
-                    5001.0,
-                    0.0,
-                    5001.00,
-                    'released_host',
-                    'immediate_host',
-                    'bKash: 01712-345678 (Couple Personal)',
-                    datetime.datetime.now().isoformat(),
-                    datetime.datetime.now().isoformat()
-                )
-            ]
-            c.executemany('INSERT INTO funds_escrow VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', demo_escrow)
-
-        c.execute('SELECT COUNT(*) FROM payout_requests')
-        if c.fetchone()[0] == 0 or force:
-            if force:
-                c.execute('DELETE FROM payout_requests')
-            c.execute('''
-                INSERT INTO payout_requests VALUES (
-                    'PO-1001',
-                    'Partha Roy & Ananya Sengupta',
-                    5001.0,
-                    'bKash',
-                    '01712-345678 (Personal)',
-                    'transferred',
-                    'Auspicious Ashirbadi cash gift fund transferred directly to couple mobile wallet.',
-                    ?,
-                    ?
-                )
-            ''', (datetime.datetime.now().isoformat(), datetime.datetime.now().isoformat()))
+        if force:
+            c.execute('DELETE FROM funds_escrow')
+            c.execute('DELETE FROM payout_requests')
+            c.execute('DELETE FROM contributions')
 
         c.execute('SELECT COUNT(*) FROM gallery')
         if c.fetchone()[0] == 0 or force:
@@ -992,16 +826,34 @@ class RegistryHandler(BaseHTTPRequestHandler):
                 )
             ''', (default_sections, default_visibility))
             c.execute('DELETE FROM gifts')
-            demo_gifts = [
-                ('gift-1', 'Aarong Handcrafted Pure Katan Silk Banarasi Saree (Crimson Red & Antique Zari)', 'আড়ং হ্যান্ডক্রাফটেড পিওর কাতান সিল্ক বেনারসী শাড়ি (সিঁদুর লাল ও অ্যান্টিক জরি)', 'luxury', 24500.0, 24500.0, 24500.0, 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80', 'https://www.aarong.com/women/sarees/banarasi/crimson-katan-silk-wedding', 'Aarong Lifestyle', 'AAR-BAN-RED-01', 'বিশুদ্ধ কাতান সিল্কে বোনা ট্র্যাডিশনাল লাল বেনারসী শাড়ি। লগ্ন ও শুভ বিবাহের জন্য উপযুক্ত।', 0, 'claimed', datetime.datetime.now().isoformat()),
-                ('gift-2', 'Monno Ceramic Royal 24K Gold Rim 52-Piece Luxury Bone China Dinner Set', 'মুন্নু সিরামিক রয়্যাল ২৪ ক্যারেট গোল্ড রিম ৫২-পিস লাক্সারি ডিনার সেট', 'luxury', 19800.0, 19800.0, 19800.0, 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=800&q=80', 'https://monno.com.bd/product/royal-gold-52-bonechina', 'Monno Ceramics BD', 'MONNO-GLD-52', 'পূর্ণ বোন চায়না পোরসেলিন ডিনার সেট, যাতে রয়েছে ২৪ ক্যারেট খাঁটি স্বর্ণের সুক্ষ্ম ফিনিশিং।', 0, 'claimed', datetime.datetime.now().isoformat()),
-                ('gift-3', 'Aarong Heritage Brass & Bell-Metal Mangal Pooja Thali & Panchapradeep Set', 'আড়ং হেরিটেজ নকশী পিতল ও কাঁসার পঞ্চপ্রদীপ ও মাঙ্গলিক পূজা থালি সেট', 'luxury', 8750.0, 8750.0, 0.0, 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80', 'https://www.aarong.com/home-decor/brass-bronze/pooja-thali-panchapradeep', 'Aarong Living', 'AAR-BRS-THL-09', 'হাতে খোদাই করা পদ্ম ও স্বস্তিক নকশার পিতলের থালি, পঞ্চপ্রদীপ, শঙ্খ ও ঘণ্টা সেট। নতুন সংসারের ঠাকুরঘরের জন্য পবিত্র উপহার।', 0, 'available', datetime.datetime.now().isoformat()),
-                ('gift-4', 'Walton Double-Door Inverter Frost Refrigerator (Group Gift)', 'ওয়ালটন ইনভার্টার ফ্রস্ট ডাবল ডোর রেফ্রিজারেটর (গ্রুপ গিফট)', 'appliances', 54500.0, 54500.0, 38000.0, 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80', 'https://eplaza.waltonbd.com/refrigerators/wfd-3b2-gdxx', 'Walton Plaza BD', 'WLT-INV-3B2', 'নবদম্পতির নতুন সংসারের জন্য ওয়ালটন ইনভার্টার রেফ্রিজারেটর। ১০০% ফান্ড সংগৃহীত হলে হোম ডেলিভারি হবে।', 1, 'partially_funded', datetime.datetime.now().isoformat()),
-                ('gift-5', 'Philips Essential Digital XL Air Fryer & Kitchen Combo HD9270', 'ফিলিপস ডিজিটাল এক্সএল এয়ার ফ্রায়ার ও কিচেন ব্লেন্ডার কম্বো', 'kitchen', 15200.0, 15200.0, 0.0, 'https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=800&q=80', 'https://transcomdigital.com/philips-airfryer-hd9270', 'Transcom Digital', 'TRN-PHIL-9270', 'স্বাস্থ্যকর রান্না ও সনাতনী সুস্বাদু পদ তৈরির জন্য ৬.২ লিটার র‍্যাপিড এয়ার টেকনোলজি এয়ার ফ্রায়ার।', 0, 'available', datetime.datetime.now().isoformat()),
-                ('gift-6', 'Subarna Ashirbad: Couple Gold Jewellery & Savings Fund (Group Gift)', 'সুবর্ণ আশীর্বাদ: নবদম্পতির জন্য স্বর্ণালংকার ও সঞ্চয় তহবিল (গ্রুপ গিফট)', 'experience', 60000.0, 60000.0, 35000.0, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80', 'https://utsab.bd/funds/subarna-ashirbad', 'Couple Escrow Account', 'GLD-ASHIRBAD-01', 'কনের সোনার গয়না (শাখা-পলা স্বর্ণ বাঁধানো ও নেকলেস) এবং নবদম্পতির ভবিষ্যৎ সঞ্চয়ের জন্য আশীর্বাদী উপহার তহবিল।', 1, 'partially_funded', datetime.datetime.now().isoformat()),
-                ('gift-7', 'Honeymoon Experience: Darjeeling & Kalimpong Heritage Tour', 'হানিমুন অভিজ্ঞতা: দার্জিলিং ও কালিম্পং হেরিটেজ রিট্রিট', 'experience', 45000.0, 45000.0, 27500.0, 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80', 'https://heritagetravels.com.bd/darjeeling-honeymoon', 'Heritage Travels BD', 'EXP-HNY-01', 'কাঞ্চনজঙ্ঘার দৃশ্য ও শান্ত চা বাগানের মাঝে নবদম্পতির প্রথম স্মরণীয় মধুচন্দ্রিমা সফর।', 1, 'partially_funded', datetime.datetime.now().isoformat())
-            ]
-            c.executemany('INSERT INTO gifts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', demo_gifts)
+            c.execute('DELETE FROM contributions')
+            c.execute('DELETE FROM funds_escrow')
+            c.execute('DELETE FROM payout_requests')
+            fb_path = os.path.join(BASE_DIR, 'fallback_data.json')
+            if os.path.exists(fb_path):
+                with open(fb_path, 'r', encoding='utf-8') as f:
+                    fb = json.load(f)
+                all_gifts = [
+                    (
+                        g['id'],
+                        g['title'],
+                        g['title_bn'],
+                        g['category'],
+                        float(g['price']),
+                        float(g['target_amount']),
+                        0.0,
+                        g['image_url'],
+                        g.get('merchant_url', ''),
+                        g.get('merchant_name', ''),
+                        g.get('vendor_sku', ''),
+                        g.get('description', ''),
+                        int(g.get('is_group_gift', 0)),
+                        'available',
+                        g.get('created_at', datetime.datetime.now().isoformat())
+                    )
+                    for g in fb.get('gifts', [])
+                ]
+                c.executemany('INSERT INTO gifts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', all_gifts)
             conn.commit()
             conn.close()
             self.send_json({"success": True, "message": "Hindu marriage theme applied successfully"})

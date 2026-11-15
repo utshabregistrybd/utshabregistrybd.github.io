@@ -199,53 +199,53 @@ const defaultStaticState = {
   "gifts": [
     {
       "id": "gift-gold-1",
-      "title": "22K Hallmarked Auspicious Gold Coin Ginni (1 Vori / 11.66g)",
+      "title": "22K Hallmarked Auspicious Sovereign Gold Bullion & Ginni Fund (Group Gift)",
       "title_bn": "২২ ক্যারেট হলমার্ক সার্বভৌম স্বর্ণমুদ্রা (গিনি) ও সঞ্চয় তহবিল (গ্রুপ গিফট)",
       "category": "gold",
       "price": 500000.0,
       "target_amount": 500000.0,
-      "current_amount": 285000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "BAJUS / Diamond World",
       "vendor_sku": "GLD-GIN-01",
       "description": "নবদম্পতির ভবিষ্যৎ সঞ্চয় ও স্থায়ী আর্থিক নিরাপত্তার জন্য ২২ ক্যারেট খাঁটি স্বর্ণের গিনি ও সার্বভৌম তহবিল (৳ ৫,০০,০০০)। আত্মীয়-স্বজন ও শুভানুধ্যায়ীরা যেকোনো পরিমাণে যৌথভাবে উপহারে অংশ নিতে পারেন।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410047"
     },
     {
       "id": "gift-gold-2",
-      "title": "Traditional 21K Gold-Trimmed Shankha & Pola Bangle Set",
+      "title": "Traditional 21K Gold-Trimmed Shankha & Pola with Heavy Gold Choor Set",
       "title_bn": "ঐতিহ্যবাহী ২১ ক্যারেট স্বর্ণ বাঁধানো শাঁখা ও পলা জোড়া এবং সোনার চুড় সেট",
       "category": "gold",
       "price": 150000.0,
       "target_amount": 150000.0,
-      "current_amount": 90000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "Aparupa Jewellers BD",
       "vendor_sku": "GLD-SHK-02",
       "description": "সনাতন হিন্দু নববধূর সৌভাগ্যের স্মারক ২১ ক্যারেট খাঁটি স্বর্ণে নিখুঁত কারুকাজে বাঁধানো শাঁখা ও পলা জোড়া এবং স্বর্ণের চুড় সেট।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410056"
     },
     {
       "id": "gift-gold-3",
-      "title": "22K Gold Auspicious Om & Sacred Lotus Pendant with Chain",
+      "title": "22K Hallmarked Royal Bridal Gold Necklace, Lotus & Om Pendant Set (Group Gift)",
       "title_bn": "২২ ক্যারেট খাঁটি স্বর্ণের মাঙ্গলিক রাজকীয় রানিহার, পদ্ম ও ওম লকেট-চেইন ব্রাইডাল সেট (গ্রুপ গিফট)",
       "category": "gold",
       "price": 500000.0,
       "target_amount": 500000.0,
-      "current_amount": 320000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "Apan Jewellers",
       "vendor_sku": "GLD-OM-03",
       "description": "পবিত্র বৈদিক মাঙ্গলিক ওম ও প্রস্ফুটিত পদ্ম মোটিফের ২২ ক্যারেট খাঁটি স্বর্ণের রাজকীয় ব্রাইডাল নেকলেস, লকেট ও সোনার চেইন সেট (৳ ৫,০০,০০০)। আত্মীয়-স্বজন মিলে যৌথভাবে উপহার দিতে পারেন।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410060"
     },
     {
@@ -255,14 +255,14 @@ const defaultStaticState = {
       "category": "sharee",
       "price": 26500.0,
       "target_amount": 26500.0,
-      "current_amount": 26500.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://www.aarong.com/women/sarees/banarasi/crimson-katan-silk-wedding",
       "merchant_name": "Aarong Lifestyle",
       "vendor_sku": "AAR-BAN-RED-01",
       "description": "বিশুদ্ধ কাতান সিল্কে বোনা ট্র্যাডিশনাল লাল বেনারসী শাড়ি। লগ্ন ও শুভ বিবাহের জন্য উপযুক্ত।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410063"
     },
     {
@@ -306,14 +306,14 @@ const defaultStaticState = {
       "category": "gadgets",
       "price": 46500.0,
       "target_amount": 46500.0,
-      "current_amount": 25000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://www.startech.com.bd/apple-ipad-10th-gen",
       "merchant_name": "Star Tech / Apple Authorized",
       "vendor_sku": "GAD-IPAD-10",
       "description": "নতুন দম্পতির স্মার্ট রিডিং, ফটো মেমোরিজ ও মাল্টিমিডিয়া দেখার জন্য এ১৪ বায়োনিক চিপ সমৃদ্ধ অ্যাপল আইপ্যাড।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:30:00"
     },
     {
@@ -323,14 +323,14 @@ const defaultStaticState = {
       "category": "gadgets",
       "price": 19500.0,
       "target_amount": 19500.0,
-      "current_amount": 19500.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://www.ryanscomputers.com/marshall-emberton-ii",
       "merchant_name": "Ryans Computers / Marshall",
       "vendor_sku": "GAD-MRSH-02",
       "description": "নবদম্পতির গৃহকোণ ও ভ্রমণের রোমান্টিক আবহ তৈরিতে ৩০+ ঘণ্টার ব্যাটারি ও ৩৬০ ডিগ্রি আইকনিক মার্শাল অডিও।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:30:00"
     },
     {
@@ -340,14 +340,14 @@ const defaultStaticState = {
       "category": "gadgets",
       "price": 36000.0,
       "target_amount": 36000.0,
-      "current_amount": 18000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://pickaboo.com/product/sony-wh1000xm5",
       "merchant_name": "Pickaboo BD / Sony",
       "vendor_sku": "GAD-SNY-XM5",
       "description": "হাই-রেজুলিউশন ক্রিস্টাল অডিও ও ইন্ডাস্ট্রির সেরা অ্যাক্টিভ নয়েজ ক্যান্সেলেশন সমৃদ্ধ প্রিমিয়াম হেডফোন।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:30:00"
     },
     {
@@ -391,14 +391,14 @@ const defaultStaticState = {
       "category": "gadgets",
       "price": 12500.0,
       "target_amount": 12500.0,
-      "current_amount": 12500.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://daraz.com.bd/products/fujifilm-instax-mini-12",
       "merchant_name": "Daraz BD / Fujifilm",
       "vendor_sku": "GAD-INS-MINI",
       "description": "নবদম্পতির মধুচন্দ্রিমা ও বিশেষ মুহূর্তগুলো সাথে সাথে প্রিন্ট করে স্মৃতি বাঁধাই করার ইনস্ট্যান্ট পোলারয়েড ক্যামেরা।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:30:00"
     },
     {
@@ -408,14 +408,14 @@ const defaultStaticState = {
       "category": "appliances",
       "price": 52000.0,
       "target_amount": 52000.0,
-      "current_amount": 52000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://eplaza.waltonbd.com/refrigerators/inverter-380",
       "merchant_name": "Walton Plaza BD",
       "vendor_sku": "WLT-REF-380",
       "description": "অরিন্দম ও অর্পিতার নতুন গৃহের জন্য বিদ্যুৎ সাশ্রয়ী ইনভার্টার প্রযুক্তির সুবিশাল ডাবল ডোর ফ্রিজ।",
       "is_group_gift": 1,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410069"
     },
     {
@@ -442,14 +442,14 @@ const defaultStaticState = {
       "category": "appliances",
       "price": 68000.0,
       "target_amount": 68000.0,
-      "current_amount": 34000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://transcomdigital.com/lg-washing-machine-8kg",
       "merchant_name": "Transcom Digital",
       "vendor_sku": "LG-WSH-8KG",
       "description": "দৈনন্দিন জীবনকে আরামদায়ক করতে ৯৯.৯% অ্যালার্জি কেয়ার স্টিম ওয়াশার ও ডিরেক্ট ড্রাইভ মোটর।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410072"
     },
     {
@@ -459,14 +459,14 @@ const defaultStaticState = {
       "category": "appliances",
       "price": 75000.0,
       "target_amount": 75000.0,
-      "current_amount": 45000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://rangs.com.bd/sony-55-4k-google-tv",
       "merchant_name": "Rangs Electronics BD",
       "vendor_sku": "SNY-TV-55",
       "description": "নতুন ফ্ল্যাটের ড্রয়িং রুমের পারিবারিক বিনোদন ও সিনেমার অভিজ্ঞতার জন্য ক্রিস্টাল ক্লিয়ার ৪কে টিভি।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410074"
     },
     {
@@ -493,14 +493,14 @@ const defaultStaticState = {
       "category": "mini",
       "price": 1450.0,
       "target_amount": 1450.0,
-      "current_amount": 1450.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://www.aarong.com/home-decor/brass-bronze/pooja-thali",
       "merchant_name": "Aarong Living",
       "vendor_sku": "MIN-AAR-101",
       "description": "নতুন গৃহের ঠাকুরঘরের নিত্য পূজার্চনার জন্য খাঁটি পিতলের খোদাই করা পঞ্চপ্রদীপ ও মধুর ঘণ্টার শুভ উপহার।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410078"
     },
     {
@@ -510,14 +510,14 @@ const defaultStaticState = {
       "category": "mini",
       "price": 1250.0,
       "target_amount": 1250.0,
-      "current_amount": 1250.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "Aarong Living",
       "vendor_sku": "MIN-SIN-102",
       "description": "সনাতনী নববধূর সিঁদুরদানের স্মৃতি ধরে রাখার জন্য হাতে নকশা করা পিতলের রাজকীয় সিঁদুর কৌটা।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410079"
     },
     {
@@ -578,14 +578,14 @@ const defaultStaticState = {
       "category": "mini",
       "price": 1350.0,
       "target_amount": 1350.0,
-      "current_amount": 1350.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "https://www.aarong.com/home-decor/cushions",
       "merchant_name": "Aarong Lifestyle",
       "vendor_sku": "MIN-CSH-106",
       "description": "বাংলার ঐতিহ্যবাহী সূচিশিল্পে হাতে বোনা নিপুণ নকশী কাঁথার কুশন কভার সেট।",
       "is_group_gift": 0,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410087"
     },
     {
@@ -629,14 +629,14 @@ const defaultStaticState = {
       "category": "experience",
       "price": 40000.0,
       "target_amount": 40000.0,
-      "current_amount": 25000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "Honeymoon Fund",
       "vendor_sku": "HNY-RET-01",
       "description": "পাহাড় ও সমুদ্রের সান্নিধ্যে নবদম্পতির প্রথম স্মরণীয় মধুচন্দ্রিমা অবকাশ।",
       "is_group_gift": 1,
-      "status": "partially_funded",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410092"
     },
     {
@@ -646,14 +646,14 @@ const defaultStaticState = {
       "category": "experience",
       "price": 35000.0,
       "target_amount": 35000.0,
-      "current_amount": 35000.0,
+      "current_amount": 0.0,
       "image_url": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
       "merchant_url": "",
       "merchant_name": "Home Setup Fund",
       "vendor_sku": "HOM-SET-01",
       "description": "নবদম্পতির নতুন বাসার আরামদায়ক ড্রয়িং ও লিভিং রুম সাজানোর জন্য উপহার তহবিল।",
       "is_group_gift": 1,
-      "status": "claimed",
+      "status": "available",
       "created_at": "2026-11-15T01:09:45.410094"
     }
   ],
@@ -731,6 +731,8 @@ function normalizeImagePath(url) {
 
 // Master Data Loader
 async function loadData() {
+  localStorage.removeItem('utsab_gifts');
+  localStorage.removeItem('utsab_contributions');
   try {
     const [eventRes, giftsRes, contribRes, guestRes, statsRes, ordersRes, escrowRes, dbRes, galleryRes] = await Promise.all([
       fetch('/api/event').then(r => r.json()).catch(() => null),
@@ -785,14 +787,14 @@ async function loadData() {
     state.guestbook = cachedGuestbook ? JSON.parse(cachedGuestbook) : defaultStaticState.guestbook;
     state.stats = {
       total_gifts: state.gifts.length,
-      claimed_gifts: state.gifts.filter(g => g.status === 'claimed').length,
-      total_amount_raised: 83000,
-      total_salami_raised: 15001,
+      claimed_gifts: 0,
+      total_amount_raised: 0,
+      total_salami_raised: 0,
       total_platform_commission: 0
     };
     state.escrowSummary = {
-      total_reserved_funds: 83000,
-      available_for_couple_withdrawal: 78850,
+      total_reserved_funds: 0,
+      available_for_couple_withdrawal: 0,
       held_for_vendor_delivery: 0,
       platform_commission_held: 0
     };
