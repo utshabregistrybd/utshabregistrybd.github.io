@@ -406,7 +406,7 @@ const defaultStaticState = {
       "title": "Heritage Brass Hand-Engraved Peacock Sindoor Kouto",
       "title_bn": "হেরিটেজ খাঁটি পিতলের ময়ূর খোদাই সিঁদুর কৌটো ও কঙ্কণ দানি",
       "category": "mini",
-      "price": 850.0,
+      "price": 1250.0,
       "target_amount": 850.0,
       "current_amount": 850.0,
       "image_url": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
@@ -1551,23 +1551,35 @@ function onSearchChange(e) {
 function renderSalamiPresets() {
   const container = document.getElementById('salami-preset-pills');
   if (!container) return;
-  const presets = [501, 1001, 2001, 5001, 10001, 25001];
-  container.innerHTML = presets.map((amt, idx) => `
-    <button type="button" onclick="selectSalamiPreset(${amt})" class="preset-pill px-3 py-2 rounded-xl font-bold text-xs border-2 transition ${idx === 1 ? 'border-amber-400 bg-amber-500/20 text-white' : 'border-amber-300/40 bg-white/10 text-amber-100 hover:bg-white/20'}">
+  // Starting from 1001 and above, default is 2001
+  const presets = [1001, 2001, 5001, 10001, 15001, 25001];
+  container.innerHTML = presets.map((amt) => `
+    <button type="button" onclick="selectSalamiPreset(${amt}, this)" class="preset-pill px-3 py-2 rounded-xl font-bold text-xs border-2 transition ${amt === 2001 ? 'border-amber-400 bg-amber-500/30 text-white font-extrabold shadow' : 'border-amber-300/40 bg-white/10 text-amber-100 hover:bg-white/20'}">
       ${formatCurrency(amt)}
     </button>
   `).join('');
+
+  const input = document.getElementById('salami-custom-input');
+  if (input && (!input.value || parseFloat(input.value) < 1001)) {
+    input.value = 2001;
+  }
 }
 
-function selectSalamiPreset(amt) {
+function selectSalamiPreset(amt, btn) {
   const input = document.getElementById('salami-custom-input');
   if (input) input.value = amt;
+  document.querySelectorAll('.preset-pill').forEach(b => {
+    b.className = 'preset-pill px-3 py-2 rounded-xl font-bold text-xs border-2 transition border-amber-300/40 bg-white/10 text-amber-100 hover:bg-white/20';
+  });
+  if (btn) {
+    btn.className = 'preset-pill px-3 py-2 rounded-xl font-bold text-xs border-2 transition border-amber-400 bg-amber-500/30 text-white font-extrabold shadow';
+  }
 }
 
 function submitSalamiForm(e) {
   e.preventDefault();
   const input = document.getElementById('salami-custom-input');
-  const amount = parseFloat(input.value) || 1001;
+  const amount = parseFloat(input.value) || 2001;
   const note = document.getElementById('salami-blessing-note')?.value || '';
   openPaymentModal('salami-fund', amount, note);
 }
@@ -1716,7 +1728,7 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
     const remaining = Math.max(0, (currentPaymentGift.target_amount || currentPaymentGift.price) - (currentPaymentGift.current_amount || 0));
 
     if (currentPaymentGift.is_group_gift) {
-      amountInput.value = Math.min(remaining, defaultAmount || 2000);
+      amountInput.value = Math.min(remaining, defaultAmount || 2001);
       amountInput.readOnly = false;
       targetInfo.innerText = `গ্রুপ গিফটের অবশিষ্ট: ${formatCurrency(remaining)} (তহবিল ১০০% পূর্ণ হওয়া পর্যন্ত এসক্রোতে সুরক্ষিত)`;
     } else {
@@ -1726,7 +1738,7 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
     }
   } else {
     titleDisplay.innerText = '🧧 ডিজিটাল বর-কনে সালামি খাম';
-    amountInput.value = defaultAmount || 1000;
+    amountInput.value = defaultAmount || 2001;
     amountInput.readOnly = false;
     targetInfo.innerText = 'সরাসরি বর-কনের একাউন্টে প্রত্যাহারযোগ্য সালামি প্রদান';
   }
@@ -1794,7 +1806,7 @@ function selectPaymentMethod(method) {
   // Hide all simulator views
   document.querySelectorAll('.pgw-sim-container').forEach(c => c.classList.add('hidden'));
 
-  const amount = parseFloat(document.getElementById('pay-amount-input').value) || 1000;
+  const amount = parseFloat(document.getElementById('pay-amount-input').value) || 2001;
   const formattedAmt = formatCurrency(amount);
 
   if (method === 'bkash') {
@@ -1987,7 +1999,7 @@ async function completeGatewayDemoPayment(providerName) {
 
   const name = document.getElementById('pay-guest-name')?.value.trim() || 'চৌধুরী পরিবার (চট্টগ্রাম)';
   const phone = document.getElementById('pay-guest-phone')?.value.trim() || '01819-876543';
-  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 1000;
+  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 2001;
   const blessing = document.getElementById('pay-blessing')?.value.trim() || 'অরিন্দম ও অর্পিতার যুগল জীবনের জন্য অন্তরের অন্তস্থল থেকে শুভকামনা ও আশীর্বাদ!';
 
   const prefix = providerName.includes('bKash') ? 'BK' :
@@ -2057,7 +2069,7 @@ function generateManualQR() {
   if (!container) return;
   container.innerHTML = '';
 
-  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 1000;
+  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 2001;
   const qrData = `bkash://payment?number=${(ev.bkash_number || '01712890123').replace(/[^0-9]/g, '')}&amount=${amount}&ref=UTSAB`;
 
   if (typeof QRCode === 'function') {
