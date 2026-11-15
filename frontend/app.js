@@ -1574,6 +1574,11 @@ function renderGifts() {
                 🤝 গ্রুপ গিফট (${percent}%)
               </span>
             ` : ''}
+            ${(state.contributions || []).some(c => c.gift_id === gift.id && c.status === 'pending_verification') ? `
+              <span class="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-amber-200 text-amber-950 border border-amber-400 flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-clock-rotate-left text-amber-800"></i> যাচাই প্রক্রিয়াধীন
+              </span>
+            ` : ''}
           </div>
 
           ${gift.merchant_url ? `
@@ -1810,6 +1815,96 @@ async function submitGuestbookForm(e) {
 // ==========================================
 let currentPaymentGift = null;
 
+// ==========================================
+// PERSONAL ACCOUNT PAYMENT & VERIFICATION FLOW
+// ==========================================
+let currentPaymentGift = null;
+let currentPaymentMethod = 'bkash';
+let activeApprovalTab = 'pending';
+
+function selectPaymentMethod(method) {
+  currentPaymentMethod = method;
+
+  // Update button active state
+  document.querySelectorAll('.pay-method-btn').forEach(btn => {
+    if (btn.getAttribute('data-method') === method) {
+      btn.className = 'pay-method-btn active-method flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition shadow-sm ' +
+        (method === 'bkash' ? 'border-pink-500 bg-pink-50 text-pink-900' :
+         method === 'nagad' ? 'border-orange-500 bg-orange-50 text-orange-900' :
+         method === 'rocket' ? 'border-purple-500 bg-purple-50 text-purple-900' :
+         'border-emerald-600 bg-emerald-50 text-emerald-950') + ' font-bold text-xs';
+    } else {
+      btn.className = 'pay-method-btn flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition border-gray-200 bg-white hover:border-amber-300 text-gray-700 font-bold text-xs';
+    }
+  });
+
+  // Toggle detail boxes
+  ['bkash', 'nagad', 'rocket', 'bank'].forEach(m => {
+    const el = document.getElementById('method-box-' + m);
+    if (el) {
+      if (m === method) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    }
+  });
+}
+
+function copyToClipboard(text, btn) {
+  const performCopy = () => {
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> কপি হয়েছে!';
+      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+    }
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(performCopy).catch(() => {
+      fallbackCopy(text);
+      performCopy();
+    });
+  } else {
+    fallbackCopy(text);
+    performCopy();
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+function setPayAmountPreset(amount) {
+  const input = document.getElementById('pay-amount-input');
+  if (input) input.value = amount;
+
+  document.querySelectorAll('.pay-preset-pill').forEach(btn => {
+    if (btn.innerText.includes(amount.toLocaleString('en-IN')) || btn.innerText.includes(toBanglaNumber(amount.toLocaleString('en-IN')))) {
+      btn.className = 'pay-preset-pill active-preset px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-800 text-white border border-amber-800 transition shadow-sm';
+    } else {
+      btn.className = 'pay-preset-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition';
+    }
+  });
+}
+
+function autoGenerateSampleTrxId() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let trx = '';
+  for (let i = 0; i < 8; i++) {
+    trx += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  const input = document.getElementById('pay-trx-id');
+  if (input) input.value = trx;
+}
+
 function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
   const modal = document.getElementById('payment-modal');
   currentPaymentGift = giftId === 'salami-fund' ? null : state.gifts.find(g => g.id === giftId);
@@ -1817,418 +1912,390 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
   const amountInput = document.getElementById('pay-amount-input');
   const titleDisplay = document.getElementById('pay-gift-title');
   const targetInfo = document.getElementById('pay-target-info');
-  const blessingInput = document.getElementById('pay-blessing');
+  const blessingInput = document.getElementById('pay-blessing-note');
+  const nameInput = document.getElementById('pay-guest-name');
+  const phoneInput = document.getElementById('pay-guest-phone');
+  const trxInput = document.getElementById('pay-trx-id');
 
   if (currentPaymentGift) {
     titleDisplay.innerText = state.currentLang === 'bn' ? (currentPaymentGift.title_bn || currentPaymentGift.title) : currentPaymentGift.title;
     const remaining = Math.max(0, (currentPaymentGift.target_amount || currentPaymentGift.price) - (currentPaymentGift.current_amount || 0));
 
     if (currentPaymentGift.is_group_gift) {
-      amountInput.value = Math.min(remaining, defaultAmount || 2001);
-      amountInput.readOnly = false;
+      amountInput.value = defaultAmount || 2001;
       targetInfo.innerText = `গ্রুপ গিফটের অবশিষ্ট: ${formatCurrency(remaining)} (যেকোনো পরিমাণ উপহার হিসেবে পাঠানো যাবে)`;
     } else {
-      amountInput.value = currentPaymentGift.price;
-      amountInput.readOnly = true;
-      targetInfo.innerText = `ফুল পেমেন্ট: ${formatCurrency(currentPaymentGift.price)} (ভেন্ডর ডেলিভারি পর্যন্ত তহবিল সংরক্ষিত)`;
+      amountInput.value = defaultAmount || currentPaymentGift.price;
+      targetInfo.innerText = `উপহারের লক্ষ্যমূল্য: ${formatCurrency(currentPaymentGift.price)} • ব্যক্তিগত একাউন্টে সেন্ড মানি করুন`;
     }
   } else {
-    titleDisplay.innerText = '🧧 ডিজিটাল বর-কনে সালামি খাম';
+    titleDisplay.innerText = '🧧 নবদম্পতির শুভ আশীর্বাদী ও সালামি তহবিল';
     amountInput.value = defaultAmount || 2001;
-    amountInput.readOnly = false;
-    targetInfo.innerText = 'সরাসরি বর-কনের একাউন্টে প্রত্যাহারযোগ্য সালামি প্রদান';
+    targetInfo.innerText = 'অরিন্দম ও অর্পিতার ব্যক্তিগত একাউন্টে সরাসরি শুভাশিস ও আশীর্বাদী উপহার';
   }
 
-  if (defaultBlessing) blessingInput.value = defaultBlessing;
+  if (blessingInput && defaultBlessing) blessingInput.value = defaultBlessing;
+  if (nameInput && !nameInput.value) nameInput.value = '';
+  if (trxInput) trxInput.value = '';
 
-  // Initialize Demo Simulator
-  switchPaymentMode('pgw');
   selectPaymentMethod('bkash');
+  setPayAmountPreset(parseFloat(amountInput.value) || 2001);
 
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
 function closePaymentModal() {
-  document.getElementById('payment-modal').classList.add('hidden');
-  document.getElementById('payment-modal').classList.remove('flex');
-}
-
-// Payment Mode Switcher (Interactive PGW Demo vs Manual)
-let activePaymentMode = 'pgw';
-let activeSimulatedOtp = '849201';
-
-function switchPaymentMode(mode) {
-  activePaymentMode = mode;
-  const tabPgw = document.getElementById('tab-pgw-mode');
-  const tabManual = document.getElementById('tab-manual-mode');
-
-  if (mode === 'pgw') {
-    tabPgw.classList.add('bg-amber-900', 'text-white', 'shadow');
-    tabPgw.classList.remove('bg-gray-100', 'text-gray-700');
-    tabManual.classList.remove('bg-amber-900', 'text-white', 'shadow');
-    tabManual.classList.add('bg-gray-100', 'text-gray-700');
-    selectPaymentMethod(state.currentPaymentMethod || 'bkash');
-  } else {
-    tabManual.classList.add('bg-amber-900', 'text-white', 'shadow');
-    tabManual.classList.remove('bg-gray-100', 'text-gray-700');
-    tabPgw.classList.remove('bg-amber-900', 'text-white', 'shadow');
-    tabPgw.classList.add('bg-gray-100', 'text-gray-700');
-
-    document.querySelectorAll('.pgw-sim-container').forEach(c => c.classList.add('hidden'));
-    document.getElementById('pgw-simulator-manual')?.classList.remove('hidden');
-    generateManualQR();
+  const modal = document.getElementById('payment-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
   }
 }
 
-function selectPaymentMethod(method) {
-  state.currentPaymentMethod = method;
+async function handlePersonalPaymentSubmit(event) {
+  event.preventDefault();
 
-  document.querySelectorAll('.pay-method-btn').forEach(btn => {
-    const isSelected = btn.getAttribute('data-method') === method;
-    btn.classList.toggle('ring-4', isSelected);
-    btn.classList.toggle('ring-amber-400', isSelected);
-    btn.classList.toggle('opacity-100', isSelected);
-    btn.classList.toggle('opacity-60', !isSelected);
-  });
+  const amountInput = document.getElementById('pay-amount-input');
+  const nameInput = document.getElementById('pay-guest-name');
+  const phoneInput = document.getElementById('pay-guest-phone');
+  const trxInput = document.getElementById('pay-trx-id');
+  const blessingInput = document.getElementById('pay-blessing-note');
 
-  if (activePaymentMode === 'manual') {
-    document.querySelectorAll('.pgw-sim-container').forEach(c => c.classList.add('hidden'));
-    document.getElementById('pgw-simulator-manual')?.classList.remove('hidden');
-    generateManualQR();
-    return;
-  }
+  const amount = parseFloat(amountInput.value) || 2001;
+  const name = nameInput.value.trim() || 'শুভাকাঙ্ক্ষী অতিথি';
+  const phone = phoneInput.value.trim() || '০১৭xxxxxxxx';
+  const trxId = trxInput.value.trim().toUpperCase() || ('TRX-' + Math.random().toString(36).substring(2, 8).toUpperCase());
+  const blessing = blessingInput ? blessingInput.value.trim() : '';
 
-  // Hide all simulator views
-  document.querySelectorAll('.pgw-sim-container').forEach(c => c.classList.add('hidden'));
+  const methodNames = {
+    bkash: 'bKash Personal',
+    nagad: 'Nagad Personal',
+    rocket: 'Rocket Personal',
+    bank: 'BRAC Bank PLC Transfer'
+  };
+  const paymentMethod = methodNames[currentPaymentMethod] || 'Personal Mobile Wallet';
 
-  const amount = parseFloat(document.getElementById('pay-amount-input').value) || 2001;
-  const formattedAmt = formatCurrency(amount);
+  const giftId = currentPaymentGift ? currentPaymentGift.id : 'salami-fund';
+  const giftTitle = currentPaymentGift ? (currentPaymentGift.title_bn || currentPaymentGift.title) : 'নবদম্পতির শুভ আশীর্বাদী ও সালামি তহবিল';
 
-  if (method === 'bkash') {
-    const el = document.getElementById('pgw-simulator-bkash');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('bkash-sim-amount').innerText = formattedAmt;
-    document.getElementById('bkash-sim-invoice').innerText = Math.floor(1000 + Math.random() * 9000);
-    advanceBkashStep(1);
-  } else if (method === 'rocket') {
-    const el = document.getElementById('pgw-simulator-rocket');
-    if (el) el.classList.remove('hidden');
-    const rktAmt = document.getElementById('rocket-sim-amount');
-    if (rktAmt) rktAmt.innerText = formattedAmt;
-    advanceRocketStep(1);
-  } else if (method === 'nagad') {
-    const el = document.getElementById('pgw-simulator-nagad');
-    if (el) el.classList.remove('hidden');
-    document.getElementById('nagad-sim-amount').innerText = formattedAmt;
-    advanceNagadStep(1);
-  } else if (method === 'bank') {
-    const el = document.getElementById('pgw-simulator-bank');
-    if (el) el.classList.remove('hidden');
-  } else if (method === 'card') {
-    const el = document.getElementById('pgw-simulator-card');
-    if (el) el.classList.remove('hidden');
-  } else {
-    // Fallback to manual MFS / QR
-    document.getElementById('pgw-simulator-manual')?.classList.remove('hidden');
-    generateManualQR();
-  }
-}
-
-// ==========================================
-// ROCKET PGW SIMULATOR STEP FLOW
-// ==========================================
-function advanceRocketStep(step) {
-  document.getElementById('rocket-step-1')?.classList.add('hidden');
-  document.getElementById('rocket-step-2')?.classList.add('hidden');
-  document.getElementById('rocket-step-3')?.classList.add('hidden');
-  document.getElementById('rocket-step-spinner')?.classList.add('hidden');
-
-  if (step === 1) {
-    document.getElementById('rocket-step-1')?.classList.remove('hidden');
-  } else if (step === 2) {
-    activeSimulatedOtp = String(Math.floor(100000 + Math.random() * 900000));
-    document.getElementById('rocket-step-2')?.classList.remove('hidden');
-    showSimulatedSmsBanner(activeSimulatedOtp, 'DBBL Rocket');
-  } else if (step === 3) {
-    document.getElementById('rocket-step-3')?.classList.remove('hidden');
-  }
-}
-
-function autoFillRocketOtp() {
-  const input = document.getElementById('rocket-input-otp');
-  if (input) input.value = activeSimulatedOtp;
-}
-
-function copyBankAccNumber() {
-  const accNo = document.getElementById('bank-acc-no-display')?.innerText || '1501204892019001';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(accNo);
-  }
-  showToast('BRAC Bank হিসাব নম্বর (1501204892019001) কপি করা হয়েছে!');
-}
-
-// ==========================================
-// bKASH PGW SIMULATOR STEP FLOW
-// ==========================================
-function advanceBkashStep(step) {
-  document.getElementById('bkash-step-1')?.classList.add('hidden');
-  document.getElementById('bkash-step-2')?.classList.add('hidden');
-  document.getElementById('bkash-step-3')?.classList.add('hidden');
-  document.getElementById('bkash-step-spinner')?.classList.add('hidden');
-
-  if (step === 1) {
-    document.getElementById('bkash-step-1')?.classList.remove('hidden');
-  } else if (step === 2) {
-    activeSimulatedOtp = String(Math.floor(100000 + Math.random() * 900000));
-    document.getElementById('bkash-step-2')?.classList.remove('hidden');
-    showSimulatedSmsBanner(activeSimulatedOtp, 'bKash');
-  } else if (step === 3) {
-    document.getElementById('bkash-step-3')?.classList.remove('hidden');
-  }
-}
-
-function autoFillBkashOtp() {
-  const input = document.getElementById('bkash-input-otp');
-  if (input) input.value = activeSimulatedOtp;
-}
-
-// ==========================================
-// NAGAD PGW SIMULATOR STEP FLOW
-// ==========================================
-function advanceNagadStep(step) {
-  document.getElementById('nagad-step-1')?.classList.add('hidden');
-  document.getElementById('nagad-step-2')?.classList.add('hidden');
-  document.getElementById('nagad-step-3')?.classList.add('hidden');
-  document.getElementById('nagad-step-spinner')?.classList.add('hidden');
-
-  if (step === 1) {
-    document.getElementById('nagad-step-1')?.classList.remove('hidden');
-  } else if (step === 2) {
-    activeSimulatedOtp = String(Math.floor(100000 + Math.random() * 900000));
-    document.getElementById('nagad-step-2')?.classList.remove('hidden');
-    showSimulatedSmsBanner(activeSimulatedOtp, 'Nagad');
-  } else if (step === 3) {
-    document.getElementById('nagad-step-3')?.classList.remove('hidden');
-  }
-}
-
-function autoFillNagadOtp() {
-  const input = document.getElementById('nagad-input-otp');
-  if (input) input.value = activeSimulatedOtp;
-}
-
-// ==========================================
-// SIMULATED MOBILE SMS BANNER
-// ==========================================
-function showSimulatedSmsBanner(code, sender = 'bKash') {
-  const banner = document.getElementById('simulated-sms-banner');
-  if (!banner) return;
-
-  document.getElementById('sms-banner-sender').innerText = sender;
-  document.getElementById('sms-banner-text').innerText =
-    `Your ${sender} verification code is ${code}. Never share this code with anyone. (Demo Mode)`;
-
-  banner.classList.remove('hidden');
-  setTimeout(() => {
-    banner.classList.add('hidden');
-  }, 6000);
-}
-
-function autoFillActiveOtp() {
-  autoFillBkashOtp();
-  autoFillNagadOtp();
-  autoFillRocketOtp();
-  const input3d = document.getElementById('3d-secure-otp');
-  if (input3d) input3d.value = activeSimulatedOtp;
-  document.getElementById('simulated-sms-banner')?.classList.add('hidden');
-}
-
-// ==========================================
-// SSLCOMMERZ 3D SECURE MODAL SIMULATOR
-// ==========================================
-function autoFillTestCard() {
-  const input = document.getElementById('ssl-card-number');
-  if (input) input.value = '4532 8901 2345 8092';
-}
-
-function trigger3DSecureSimulation() {
-  activeSimulatedOtp = String(Math.floor(100000 + Math.random() * 900000));
-  const modal = document.getElementById('3d-secure-modal');
-  const otpInput = document.getElementById('3d-secure-otp');
-  if (otpInput) otpInput.value = activeSimulatedOtp;
-
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-  showSimulatedSmsBanner(activeSimulatedOtp, 'BRAC Bank Visa 3D Secure');
-}
-
-function close3DSecureModal() {
-  const modal = document.getElementById('3d-secure-modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-
-function confirm3DSecurePayment() {
-  close3DSecureModal();
-  completeGatewayDemoPayment('Card-SSLCommerz');
-}
-
-// ==========================================
-// COMPLETE DEMO PAYMENT
-// ==========================================
-async function completeGatewayDemoPayment(providerName) {
-  // Show spinner briefly for realism
-  if (providerName.includes('bKash')) {
-    document.getElementById('bkash-step-3')?.classList.add('hidden');
-    document.getElementById('bkash-step-spinner')?.classList.remove('hidden');
-  } else if (providerName.includes('Nagad')) {
-    document.getElementById('nagad-step-3')?.classList.add('hidden');
-    document.getElementById('nagad-step-spinner')?.classList.remove('hidden');
-  } else if (providerName.includes('Rocket')) {
-    document.getElementById('rocket-step-3')?.classList.add('hidden');
-    document.getElementById('rocket-step-spinner')?.classList.remove('hidden');
-  }
-
-  // Artificial 800ms gateway delay for realistic demonstration
-  await new Promise(r => setTimeout(r, 800));
-
-  const name = document.getElementById('pay-guest-name')?.value.trim() || 'চৌধুরী পরিবার (চট্টগ্রাম)';
-  const phone = document.getElementById('pay-guest-phone')?.value.trim() || '01819-876543';
-  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 2001;
-  const blessing = document.getElementById('pay-blessing')?.value.trim() || 'অরিন্দম ও অর্পিতার যুগল জীবনের জন্য অন্তরের অন্তস্থল থেকে শুভকামনা ও আশীর্বাদ!';
-
-  const prefix = providerName.includes('bKash') ? 'BK' :
-                 providerName.includes('Nagad') ? 'NG' :
-                 providerName.includes('Rocket') ? 'RKT' :
-                 providerName.includes('Bank') ? 'BANK' :
-                 providerName.includes('Card') ? 'SSLCZ' : 'TRX';
-  const generatedTrxId = `${prefix}-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
-
-  const payload = {
-    gift_id: currentPaymentGift ? currentPaymentGift.id : 'salami-fund',
+  const contribRecord = {
+    id: 'c-' + Math.random().toString(36).substring(2, 10),
+    gift_id: giftId,
+    gift_title: giftTitle,
     contributor_name: name,
     contributor_phone: phone,
-    contributor_email: 'guest@demo.com',
-    amount,
-    payment_method: `${providerName} (Demo Gateway)`,
-    trx_id: generatedTrxId,
-    blessing_msg: blessing
+    amount: amount,
+    payment_method: paymentMethod,
+    trx_id: trxId,
+    blessing_msg: blessing,
+    status: 'pending_verification',
+    created_at: new Date().toISOString()
   };
 
+  // Try API submission if backend is online
   if (state.apiAvailable) {
     try {
-      await fetch('/api/contribute', {
+      const res = await fetch('/api/contribute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(contribRecord)
       });
-    } catch (e) {}
+      const data = await res.json();
+      if (data.contribution_id) contribRecord.id = data.contribution_id;
+    } catch (e) {
+      console.warn('API contribute failed, stored locally:', e);
+    }
   }
 
+  // Add to local state contributions as pending_verification
+  state.contributions.unshift(contribRecord);
+
+  // Close payment modal
   closePaymentModal();
-  loadData();
-  triggerConfetti();
+
+  // Open Receipt Modal in 'Verifying' state
+  renderReceiptModal(contribRecord);
+
+  // Update Host Pending Count Badges
+  updatePendingBadges();
+
+  // Play chime
   playAuspiciousChime();
-
-  showBlessingCardReceipt({
-    id: `REC-${Date.now()}`,
-    contributor_name: name,
-    contributor_phone: phone,
-    gift_title: currentPaymentGift ? currentPaymentGift.title : 'ডিজিটাল বর-কনে সালামি ও আশীর্বাদী',
-    amount,
-    payment_method: `${providerName} Verified`,
-    trx_id: generatedTrxId,
-    blessing_msg: blessing
-  });
 }
 
-// 1-Click Instant Test Demo Payment
-function quickFillAndPayDemo() {
-  document.getElementById('pay-guest-name').value = 'চৌধুরী পরিবার (চট্টগ্রাম)';
-  document.getElementById('pay-guest-phone').value = '01819-876543';
-  document.getElementById('pay-blessing').value = 'অরিন্দম ও অর্পিতার সুন্দর ও আনন্দময় দাম্পত্য জীবনের জন্য সপরিবারে আন্তরিক শুভকামনা ও আশীর্বাদ!';
-  const methodMap = {
-    bkash: 'bKash',
-    nagad: 'Nagad',
-    rocket: 'Rocket',
-    bank: 'BRAC Bank Transfer',
-    card: 'Card-SSLCommerz'
-  };
-  completeGatewayDemoPayment(methodMap[state.currentPaymentMethod] || 'bKash');
-}
-
-function generateManualQR() {
-  const ev = state.event;
-  if (!ev) return;
-  const container = document.getElementById('qr-container-manual');
-  if (!container) return;
-  container.innerHTML = '';
-
-  const amount = parseFloat(document.getElementById('pay-amount-input')?.value) || 2001;
-  const qrData = `bkash://payment?number=${(ev.bkash_number || '01712890123').replace(/[^0-9]/g, '')}&amount=${amount}&ref=UTSAB`;
-
-  if (typeof QRCode === 'function') {
-    new QRCode(container, {
-      text: qrData,
-      width: 80,
-      height: 80,
-      colorDark: '#800020',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  }
-}
-
-function showBlessingCardReceipt(record) {
+function renderReceiptModal(record) {
   const modal = document.getElementById('receipt-modal');
   const card = document.getElementById('printable-blessing-card');
-  const ev = state.event;
+  const ev = state.event || defaultStaticState.event;
 
   card.innerHTML = `
-    <div class="salami-envelope p-7 text-white relative">
+    <div class="salami-envelope p-6 sm:p-7 text-white relative rounded-3xl shadow-2xl border border-amber-300/40">
       <div class="text-center mb-5">
-        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold gold-gradient text-amber-950 uppercase mb-1">
-          মাঙ্গলিক আশীর্বাদী ও উপহার স্বীকৃতি
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-400 text-amber-950 uppercase mb-2 shadow-sm">
+          <i class="fa-solid fa-clock-rotate-left"></i> উপহার গৃহীত • যাচাই প্রক্রিয়াধীন
         </span>
         <h2 class="text-xl font-bold font-serif-wedding text-amber-200">${ev.title_bn || ev.title_en}</h2>
-        <p class="text-[11px] text-amber-100/70">${ev.venue_name}</p>
+        <p class="text-[11px] text-amber-100/70 mt-1">${ev.venue_name}</p>
       </div>
-      <div class="bg-white/10 rounded-2xl p-5 border border-amber-300/30 text-xs space-y-3">
+
+      <div class="bg-white/10 rounded-2xl p-4 sm:p-5 border border-amber-300/30 text-xs space-y-3 font-bangla">
+        <div class="flex justify-between items-center pb-2 border-b border-amber-300/20">
+          <span class="text-amber-200">বর্তমান স্ট্যাটাস:</span>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-amber-950 flex items-center gap-1">
+            <i class="fa-solid fa-hourglass-half"></i> যাচাই প্রক্রিয়াধীন (Verifying)
+          </span>
+        </div>
+
         <div class="flex justify-between">
           <span class="text-amber-200">উপহারদাতা:</span>
-          <strong class="text-white">${record.contributor_name} (${record.contributor_phone || ''})</strong>
+          <strong class="text-white">${record.contributor_name} (${record.contributor_phone})</strong>
         </div>
+
         <div class="flex justify-between">
-          <span class="text-amber-200">উপহার:</span>
-          <strong class="text-amber-300">${record.gift_title}</strong>
+          <span class="text-amber-200">নির্বাচিত উপহার:</span>
+          <strong class="text-amber-300 text-right">${record.gift_title}</strong>
         </div>
+
         <div class="flex justify-between border-t border-amber-300/20 pt-2">
-          <span class="text-amber-200">পরিশোধ:</span>
-          <span>${record.payment_method} (TrxID: ${record.trx_id})</span>
+          <span class="text-amber-200">পেমেন্ট মাধ্যম:</span>
+          <span class="font-semibold text-white">${record.payment_method}</span>
         </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-amber-200">লেনদেন TrxID:</span>
+          <span class="font-mono text-amber-300 font-bold bg-black/40 px-2 py-0.5 rounded border border-white/10 tracking-wider">${record.trx_id}</span>
+        </div>
+
         <div class="flex justify-between items-center border-t border-amber-300/20 pt-2">
-          <span class="text-amber-200 font-bold">মোট পরিমাণ:</span>
+          <span class="text-amber-200 font-bold">প্রেরিত মোট অর্থ:</span>
           <span class="text-2xl font-bold text-amber-300 font-serif-wedding">${formatCurrency(record.amount)}</span>
         </div>
-        <div class="text-[10px] text-emerald-300 flex items-center gap-1">
-          <i class="fa-solid fa-lock"></i> ✨ অরিন্দম ও অর্পিতার পক্ষ থেকে অনেক অনেক ভালোবাসা ও সশ্রদ্ধ কৃতজ্ঞতা
+
+        <div class="p-3 rounded-xl bg-black/30 border border-amber-300/20 text-[11px] text-amber-100/90 leading-relaxed">
+          <i class="fa-solid fa-circle-info text-amber-300 mr-1"></i>
+          আপনার প্রেরিত TrxID এবং তথ্যের সত্যতা বর-কনে (অরিন্দম ও অর্পিতা) তাঁদের একাউন্ট স্টেটমেন্ট মিলিয়ে যাচাই করছেন। অনুমোদন সম্পন্ন হলে এটি উপহার তালিকায় চূড়ান্তভাবে নিশ্চিত হবে।
         </div>
-        ${record.blessing_msg ? `<p class="italic text-amber-100 pt-2 border-t border-amber-300/20">"${record.blessing_msg}"</p>` : ''}
+
+        ${record.blessing_msg ? `
+          <div class="pt-2 border-t border-amber-300/20 text-[11px] italic text-amber-100">
+            "${record.blessing_msg}"
+          </div>
+        ` : ''}
       </div>
-      <div class="mt-4 pt-3 border-t border-amber-300/30 text-[10px] text-amber-200/70 flex justify-between">
-        <span>Receipt ID: <strong>${record.id}</strong></span>
-        <span>অরিন্দম ও অর্পিতার পক্ষ থেকে সশ্রদ্ধ ধন্যবাদ ❤️</span>
+
+      <div class="mt-4 pt-3 border-t border-amber-300/30 text-[10px] text-amber-200/70 flex justify-between items-center">
+        <span>তারিখ: ${new Date().toLocaleDateString('bn-BD')}</span>
+        <span>রেফারেন্স: ${record.id}</span>
       </div>
     </div>
   `;
+
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
 function closeReceiptModal() {
-  document.getElementById('receipt-modal').classList.add('hidden');
-  document.getElementById('receipt-modal').classList.remove('flex');
+  const modal = document.getElementById('receipt-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+}
+
+// ==========================================
+// HOST APPROVAL & VERIFICATION DASHBOARD
+// ==========================================
+function updatePendingBadges() {
+  const pendingCount = (state.contributions || []).filter(c => c.status === 'pending_verification').length;
+  const hBadge = document.getElementById('host-pending-badge');
+  const mBadge = document.getElementById('mobile-pending-badge');
+
+  [hBadge, mBadge].forEach(b => {
+    if (b) {
+      b.innerText = toBanglaNumber(pendingCount);
+      if (pendingCount > 0) {
+        b.classList.remove('hidden');
+      } else {
+        b.classList.add('hidden');
+      }
+    }
+  });
+
+  const appPendCount = document.getElementById('approval-pending-count');
+  if (appPendCount) appPendCount.innerText = toBanglaNumber(pendingCount);
+
+  const verifiedCount = (state.contributions || []).filter(c => c.status === 'verified').length;
+  const appVerCount = document.getElementById('approval-verified-count');
+  if (appVerCount) appVerCount.innerText = toBanglaNumber(verifiedCount);
+}
+
+function openHostApprovalModal() {
+  const modal = document.getElementById('host-approval-modal');
+  if (!modal) return;
+  activeApprovalTab = 'pending';
+  switchApprovalTab('pending');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeHostApprovalModal() {
+  const modal = document.getElementById('host-approval-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+
+function switchApprovalTab(tab) {
+  activeApprovalTab = tab;
+  const btnP = document.getElementById('tab-approval-pending');
+  const btnV = document.getElementById('tab-approval-verified');
+
+  if (tab === 'pending') {
+    if (btnP) btnP.className = 'flex-1 py-2 px-3 rounded-xl border-2 transition border-amber-800 bg-amber-800 text-white shadow-sm flex items-center justify-center gap-1.5';
+    if (btnV) btnV.className = 'flex-1 py-2 px-3 rounded-xl border-2 transition border-gray-200 bg-white hover:bg-amber-50 text-gray-700 flex items-center justify-center gap-1.5';
+  } else {
+    if (btnP) btnP.className = 'flex-1 py-2 px-3 rounded-xl border-2 transition border-gray-200 bg-white hover:bg-amber-50 text-gray-700 flex items-center justify-center gap-1.5';
+    if (btnV) btnV.className = 'flex-1 py-2 px-3 rounded-xl border-2 transition border-emerald-700 bg-emerald-700 text-white shadow-sm flex items-center justify-center gap-1.5';
+  }
+
+  renderApprovalCards();
+}
+
+function renderApprovalCards() {
+  const container = document.getElementById('approval-cards-container');
+  if (!container) return;
+
+  updatePendingBadges();
+
+  const list = (state.contributions || []).filter(c => activeApprovalTab === 'pending' ? c.status === 'pending_verification' : c.status === 'verified');
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="py-12 text-center text-gray-400 space-y-2">
+        <i class="fa-solid fa-inbox text-4xl text-amber-200 block mb-2"></i>
+        <p class="font-bold text-gray-600 text-sm">${activeApprovalTab === 'pending' ? 'আপাতত কোনো অপেক্ষমাণ যাচাই নেই' : 'কোনো অনুমোদিত উপহার পাওয়া যায়নি'}</p>
+        <p class="text-xs text-gray-400">${activeApprovalTab === 'pending' ? 'অতিথিরা উপহার পাঠালে TrxID এখানে ভেরিফিকেশনের জন্য প্রদর্শিত হবে।' : ''}</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = list.map(c => `
+    <div class="p-4 rounded-2xl border ${c.status === 'pending_verification' ? 'bg-amber-50/60 border-amber-200' : 'bg-emerald-50/60 border-emerald-200'} space-y-2.5 shadow-sm transition">
+      <div class="flex items-start justify-between gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <h4 class="font-bold text-gray-900 text-sm">${c.contributor_name}</h4>
+            <span class="text-[10px] font-semibold text-gray-500">${c.contributor_phone || ''}</span>
+          </div>
+          <p class="text-xs text-amber-900 font-semibold mt-0.5">${c.gift_title || 'শুভ আশীর্বাদী'}</p>
+        </div>
+        <div class="text-right">
+          <span class="text-base font-bold font-serif-wedding text-amber-900 block">${formatCurrency(c.amount)}</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${c.status === 'pending_verification' ? 'bg-amber-200 text-amber-900' : 'bg-emerald-200 text-emerald-900'}">
+            ${c.status === 'pending_verification' ? '⏳ যাচাই অপেক্ষমাণ' : '✅ অনুমোদিত'}
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs pt-1 border-t border-gray-200/60">
+        <div class="flex items-center gap-2">
+          <span class="text-gray-500 text-[11px]">${c.payment_method}</span>
+          <span class="font-mono font-bold bg-white px-2 py-0.5 rounded border border-gray-300 text-amber-900 text-xs">TrxID: ${c.trx_id}</span>
+        </div>
+        <span class="text-[10px] text-gray-400">${new Date(c.created_at).toLocaleString('bn-BD')}</span>
+      </div>
+
+      ${c.blessing_msg ? `
+        <p class="text-xs italic text-gray-600 bg-white/70 p-2.5 rounded-xl border border-gray-100">
+          "${c.blessing_msg}"
+        </p>
+      ` : ''}
+
+      ${c.status === 'pending_verification' ? `
+        <div class="flex items-center gap-2 pt-2 border-t border-amber-200">
+          <button onclick="approveContribution('${c.id}')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-check"></i> অনুমোদন করুন (Approve)
+          </button>
+          <button onclick="rejectContribution('${c.id}')" class="px-3 py-2 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-800 font-bold text-xs transition">
+            বাতিল
+          </button>
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+async function approveContribution(contribId) {
+  const item = state.contributions.find(c => c.id === contribId);
+  if (!item) return;
+
+  if (state.apiAvailable) {
+    try {
+      await fetch('/api/contributions/' + contribId + '/approve', { method: 'POST' });
+    } catch (e) {
+      console.warn('API approve failed, using local update:', e);
+    }
+  }
+
+  // Update contribution status
+  item.status = 'verified';
+
+  // Update associated gift
+  if (item.gift_id && item.gift_id !== 'salami-fund') {
+    const gift = state.gifts.find(g => g.id === item.gift_id);
+    if (gift) {
+      gift.current_amount = (gift.current_amount || 0) + item.amount;
+      const target = gift.target_amount || gift.price;
+      if (gift.current_amount >= target) {
+        gift.status = 'claimed';
+      }
+    }
+  }
+
+  // Add blessing message to guestbook if present
+  if (item.blessing_msg) {
+    const already = state.guestbook.some(g => g.name === item.contributor_name && g.message === item.blessing_msg);
+    if (!already) {
+      state.guestbook.unshift({
+        id: 'gb-' + item.id,
+        name: item.contributor_name,
+        relation: 'শুভানুধ্যায়ী',
+        message: item.blessing_msg,
+        reaction: '🌸',
+        created_at: new Date().toISOString()
+      });
+    }
+  }
+
+  // Play audio chime and trigger confetti!
+  playAuspiciousChime();
+  triggerConfetti();
+
+  // Re-render components
+  renderGifts();
+  renderStatsStrip();
+  renderGuestbook();
+  renderApprovalCards();
+  updatePendingBadges();
+}
+
+async function rejectContribution(contribId) {
+  if (!confirm('আপনি কি এই উপহারের তথ্যটি বাতিল করতে চান?')) return;
+
+  const item = state.contributions.find(c => c.id === contribId);
+  if (!item) return;
+
+  if (state.apiAvailable) {
+    try {
+      await fetch('/api/contributions/' + contribId + '/reject', { method: 'POST' });
+    } catch (e) {}
+  }
+
+  item.status = 'rejected';
+  renderApprovalCards();
+  updatePendingBadges();
 }
 
 function printReceipt() {

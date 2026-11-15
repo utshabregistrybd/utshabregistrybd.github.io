@@ -755,12 +755,15 @@ class RegistryHandler(BaseHTTPRequestHandler):
             c.execute("SELECT COUNT(*) FROM gifts WHERE status = 'claimed'")
             claimed_count = c.fetchone()[0]
 
-            c.execute('SELECT COUNT(*), SUM(amount) FROM contributions')
+            c.execute("SELECT COUNT(*), SUM(amount) FROM contributions WHERE status = 'verified'")
             contrib_count, total_raised = c.fetchone()
 
-            c.execute("SELECT SUM(amount) FROM contributions WHERE gift_id = 'salami-fund' OR gift_id LIKE 'salami%'")
+            c.execute("SELECT SUM(amount) FROM contributions WHERE (gift_id = 'salami-fund' OR gift_id LIKE 'salami%') AND status = 'verified'")
             salami_row = c.fetchone()
             salami_total = salami_row[0] if salami_row and salami_row[0] else 0.0
+
+            c.execute("SELECT COUNT(*) FROM contributions WHERE status = 'pending_verification'")
+            pending_count = c.fetchone()[0] or 0
 
             c.execute('SELECT SUM(platform_commission) FROM vendor_orders')
             comm_row = c.fetchone()
@@ -780,6 +783,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                     "total_contributions_count": contrib_count or 0,
                     "total_amount_raised": total_raised or 0.0,
                     "total_salami_raised": salami_total or 0.0,
+                    "pending_contributions_count": pending_count,
                     "total_platform_commission": 0.0,
                     "total_reserved_in_escrow": escrow_reserved
                 }
@@ -1075,7 +1079,59 @@ class RegistryHandler(BaseHTTPRequestHandler):
             self.send_json({"success": True, "message": "Gift added to registry", "gift_id": gift_id})
             return
 
-        # 9. Place Contribution & Reserve Funds in Escrow
+        # 8. Approve or Reject Contribution (Host Approval)
+        elif path.startswith('/api/contributions/') and path.endswith('/approve'):
+            parts = path.strip('/').split('/')
+            if len(parts) >= 4:
+                contrib_id = parts[2]
+            else:
+                contrib_id = parts[1]
+            conn = get_db()
+            c = conn.cursor()
+            c.execute('SELECT * FROM contributions WHERE id = ?', (contrib_id,))
+            contrib = c.fetchone()
+            if not contrib:
+                conn.close()
+                self.send_error_json("Contribution not found")
+                return
+
+            c.execute("UPDATE contributions SET status = 'verified' WHERE id = ?", (contrib_id,))
+            gift_id = contrib['gift_id']
+            if gift_id and gift_id != 'salami-fund':
+                c.execute('SELECT * FROM gifts WHERE id = ?', (gift_id,))
+                gift = c.fetchone()
+                if gift:
+                    new_curr = (gift['current_amount'] or 0.0) + float(contrib['amount'])
+                    target = gift['target_amount'] or gift['price']
+                    new_stat = 'claimed' if new_curr >= target else 'partially_funded'
+                    c.execute('UPDATE gifts SET current_amount = ?, status = ? WHERE id = ?', (new_curr, new_stat, gift_id))
+
+            if contrib['blessing_msg']:
+                gb_id = f"gb-{contrib_id}"
+                now_str = datetime.datetime.now().isoformat()
+                c.execute('INSERT OR REPLACE INTO guestbook (id, name, relation, message, reaction, created_at) VALUES (?, ?, ?, ?, ?, ?)',
+                          (gb_id, contrib['contributor_name'], f"Gift via {contrib['payment_method']}", contrib['blessing_msg'], "🌸", now_str))
+
+            conn.commit()
+            conn.close()
+            self.send_json({"success": True, "message": "উপহার ও TrxID সফলভাবে অনুমোদিত হয়েছে!"})
+            return
+
+        elif path.startswith('/api/contributions/') and path.endswith('/reject'):
+            parts = path.strip('/').split('/')
+            if len(parts) >= 4:
+                contrib_id = parts[2]
+            else:
+                contrib_id = parts[1]
+            conn = get_db()
+            c = conn.cursor()
+            c.execute("UPDATE contributions SET status = 'rejected' WHERE id = ?", (contrib_id,))
+            conn.commit()
+            conn.close()
+            self.send_json({"success": True, "message": "উপহার বাতিল করা হয়েছে।"})
+            return
+
+        # 9. Place Contribution (Personal Send Money & Pending Verification)
         elif path == '/api/contribute':
             gift_id = data.get('gift_id')
             name = data.get('contributor_name', 'Anonymous Well-wisher')
@@ -1097,10 +1153,10 @@ class RegistryHandler(BaseHTTPRequestHandler):
             conn = get_db()
             c = conn.cursor()
 
-            # Record contribution
+            # Record contribution with status 'pending_verification'
             c.execute('''
                 INSERT INTO contributions (id, gift_id, contributor_name, contributor_phone, contributor_email, amount, payment_method, trx_id, blessing_msg, created_at, status)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'verified')
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_verification')
             ''', (contrib_id, gift_id, name, phone, email, amount, payment_method, trx_id, blessing_msg, now))
 
             # Event delivery info & commission rate
@@ -1129,11 +1185,8 @@ class RegistryHandler(BaseHTTPRequestHandler):
                 merchant_name = gift_row['merchant_name'] if gift_row else 'Vendor'
                 is_group = bool(gift_row['is_group_gift']) if gift_row else False
 
-                new_current = (gift_row['current_amount'] or 0.0) + amount
-                target = gift_row['target_amount'] or gift_row['price']
-                new_status = 'claimed' if new_current >= target else 'partially_funded'
-
-                c.execute('UPDATE gifts SET current_amount = ?, status = ? WHERE id = ?', (new_current, new_status, gift_id))
+                # Gift is NOT updated until host approves the contribution
+                pass
 
                 release_cond = 'group_gift_completion' if is_group else 'vendor_delivery_confirmed'
 
@@ -1193,7 +1246,8 @@ class RegistryHandler(BaseHTTPRequestHandler):
 
             self.send_json({
                 "success": True,
-                "message": "পেমেন্ট সফল ও আশীর্বাদী উপহার নবদম্পতির নিকট প্রেরিত হয়েছে!",
+                "message": "উপহারের তথ্য সফলভাবে জমা হয়েছে এবং বর-কনের অনুমোদনের জন্য যাচাই প্রক্রিয়াধীন রয়েছে।",
+                "status": "pending_verification",
                 "contribution_id": contrib_id,
                 "escrow_id": escrow_id,
                 "trx_id": trx_id,

@@ -96,6 +96,11 @@
       </nav>
 
       <div class="flex items-center gap-2">
+        <button onclick="openHostApprovalModal()" title="বর-কনের উপহার যাচাই ও অনুমোদন প্যানেল" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 shadow-sm transition">
+          <i class="fa-solid fa-clipboard-check text-amber-700"></i>
+          <span class="hidden md:inline">যাচাই প্যানেল</span>
+          <span id="host-pending-badge" class="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-600 text-white font-bold hidden">0</span>
+        </button>
         <button onclick="openPaymentModal('salami-fund')" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
           <i class="fa-solid fa-hand-holding-heart text-amber-300"></i>
           <span class="hidden sm:inline">শুভ আশীর্বাদ পাঠান</span>
@@ -554,466 +559,260 @@
   <!-- ======================================================== -->
   <!-- PAYMENT GATEWAY & BLESSING CONTRIBUTION MODAL -->
   <!-- ======================================================== -->
-  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-0 sm:p-4 overflow-y-auto mobile-bottom-sheet">
-    <div class="bg-white rounded-3xl max-w-xl w-full border border-amber-200 shadow-2xl overflow-hidden my-8">
+    <!-- PERSONAL ACCOUNT PAYMENT & VERIFICATION MODAL -->
+  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto mobile-bottom-sheet">
+    <div class="bg-white rounded-3xl max-w-xl w-full border border-amber-200 shadow-2xl overflow-hidden my-6">
       
       <!-- Modal Header -->
       <div class="crimson-gradient p-5 text-white flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 text-lg border border-amber-300/30">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 text-lg shadow-inner">
             <i class="fa-solid fa-hand-holding-heart"></i>
           </div>
           <div>
-            <h3 class="font-bold text-base font-serif-wedding text-white leading-tight" id="pay-gift-title">উপহার ও আশীর্বাদ প্রদান</h3>
-            <span id="pay-target-info" class="text-xs text-amber-200/90 font-bangla block">অরিন্দম ও অর্পিতার শুভ বিবাহ উপলক্ষে শুভেচ্ছা ও উপহার</span>
+            <h3 class="font-bold text-base font-serif-wedding text-white leading-tight" id="pay-gift-title">উপহারের নাম</h3>
+            <span id="pay-target-info" class="text-xs text-amber-200/90 font-bangla block">অরিন্দম ও অর্পিতার শুভ পরিণয়</span>
           </div>
         </div>
-        <button onclick="closePaymentModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+        <button onclick="closePaymentModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <!-- Mode Selector: Gateway vs Manual -->
-      <div class="px-5 pt-3 pb-2 border-b border-gray-100 flex gap-2 text-xs font-bold">
-        <button type="button" id="tab-pgw-mode" onclick="switchPaymentMode('pgw')" class="flex-1 py-2 rounded-xl bg-amber-900 text-white shadow transition flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-credit-card"></i> অনলাইন পেমেন্ট চেকআউট
-        </button>
-        <button type="button" id="tab-manual-mode" onclick="switchPaymentMode('manual')" class="flex-1 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-qrcode"></i> সরাসরি সেন্ড মানি / QR
-        </button>
+      <!-- Instruction Notice -->
+      <div class="bg-amber-50/90 px-5 py-3 border-b border-amber-200/80 flex items-start gap-2.5 text-xs text-amber-950 font-bangla">
+        <i class="fa-solid fa-circle-info text-amber-700 mt-0.5 text-sm shrink-0"></i>
+        <div>
+          <span class="font-bold block text-amber-900">ব্যক্তিগত অ্যাকাউন্ট থেকে উপহার পাঠানোর নিয়ম:</span>
+          <span class="text-[11px] text-amber-900/90 leading-relaxed">আপনার নিজস্ব মোবাইল/ব্যাংক অ্যাপ থেকে নিচের নম্বরে সেন্ড মানি বা ট্রান্সফার সম্পন্ন করে ট্রানজেকশন আইডি (TrxID) দিয়ে নিচের ফর্মটি সাবমিট করুন। বর-কনে যাচাই ও অনুমোদন করার পর এটি তালিকায় যুক্ত হবে।</span>
+        </div>
       </div>
 
-      <!-- Payment Method Icons -->
-      <div class="p-5 border-b border-gray-100 bg-gray-50/50">
-        <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">পেমেন্ট মাধ্যম বেছে নিন:</label>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
-          <button type="button" onclick="selectPaymentMethod('bkash')" data-method="bkash" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bkash-bg transition font-bold text-xs">
-            <span>bKash</span>
-            <span class="text-[9px] opacity-80">বিকাশ</span>
+      <!-- Payment Method Selector Tabs -->
+      <div class="p-4 sm:p-5 border-b border-gray-100 bg-gray-50/50">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">উপহার পাঠানোর মাধ্যম নির্বাচন করুন:</label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button type="button" onclick="selectPaymentMethod('bkash')" data-method="bkash" class="pay-method-btn active-method flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition border-pink-500 bg-pink-50 text-pink-900 font-bold text-xs shadow-sm">
+            <span class="text-sm font-extrabold text-pink-600">bKash</span>
+            <span class="text-[10px] text-pink-800 font-semibold mt-0.5">বিকাশ পার্সোনাল</span>
           </button>
-          <button type="button" onclick="selectPaymentMethod('rocket')" data-method="rocket" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl rocket-bg transition font-bold text-xs opacity-60">
-            <span class="flex items-center gap-1"><i class="fa-solid fa-rocket text-[10px]"></i> Rocket</span>
-            <span class="text-[9px] opacity-80">রকেট</span>
+          <button type="button" onclick="selectPaymentMethod('nagad')" data-method="nagad" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition border-gray-200 bg-white hover:border-orange-300 text-gray-700 font-bold text-xs">
+            <span class="text-sm font-extrabold text-orange-600">Nagad</span>
+            <span class="text-[10px] text-gray-600 font-semibold mt-0.5">নগদ পার্সোনাল</span>
           </button>
-          <button type="button" onclick="selectPaymentMethod('nagad')" data-method="nagad" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl nagad-bg transition font-bold text-xs opacity-60">
-            <span>Nagad</span>
-            <span class="text-[9px] opacity-80">নগদ</span>
+          <button type="button" onclick="selectPaymentMethod('rocket')" data-method="rocket" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition border-gray-200 bg-white hover:border-purple-300 text-gray-700 font-bold text-xs">
+            <span class="text-sm font-extrabold text-purple-700">Rocket</span>
+            <span class="text-[10px] text-gray-600 font-semibold mt-0.5">রকেট পার্সোনাল</span>
           </button>
-          <button type="button" onclick="selectPaymentMethod('bank')" data-method="bank" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-sky-900 text-white transition font-bold text-xs opacity-60">
-            <span class="flex items-center gap-1"><i class="fa-solid fa-building-columns text-[10px]"></i> Bank</span>
-            <span class="text-[9px] opacity-80">ব্যাংক ডিপোজিট</span>
-          </button>
-          <button type="button" onclick="selectPaymentMethod('card')" data-method="card" class="pay-method-btn flex flex-col items-center justify-center p-2 rounded-xl bg-emerald-700 text-white transition font-bold text-xs opacity-60">
-            <i class="fa-solid fa-credit-card text-xs mb-0.5"></i>
-            <span class="text-[9px]">কার্ড</span>
+          <button type="button" onclick="selectPaymentMethod('bank')" data-method="bank" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition border-gray-200 bg-white hover:border-emerald-300 text-gray-700 font-bold text-xs">
+            <span class="text-sm font-extrabold text-emerald-700 flex items-center gap-1"><i class="fa-solid fa-building-columns text-xs"></i> Bank</span>
+            <span class="text-[10px] text-gray-600 font-semibold mt-0.5">ব্র্যাক ব্যাংক</span>
           </button>
         </div>
       </div>
 
-      <!-- MODAL BODY -->
-      <div class="p-5 max-h-[60vh] overflow-y-auto">
-        
-        <!-- Common Amount and Contributor Details -->
-        <div id="pgw-common-fields" class="space-y-3 mb-4 text-xs">
-          <div>
-            <label class="block font-bold text-gray-700 uppercase mb-1">টাকার পরিমাণ (BDT ৳) *</label>
-            <div class="relative">
-              <span class="absolute left-3 top-2.5 font-bold text-gray-500">৳</span>
-              <input type="number" id="pay-amount-input" required min="1001" value="2001" class="w-full pl-7 pr-3 py-2 rounded-xl border border-gray-200 text-sm font-bold bg-gray-50">
+      <!-- Dynamic Account Info Display Box -->
+      <div class="px-5 pt-4">
+        <!-- bKash Details Box -->
+        <div id="method-box-bkash" class="method-detail-box bg-gradient-to-r from-pink-500 to-rose-600 text-white p-4 rounded-2xl shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-xs">৳</span>
+              <span class="font-bold text-xs">অরিন্দম ও অর্পিতার বিকাশ পার্সোনাল নম্বর:</span>
             </div>
+            <span class="text-[10px] font-semibold bg-white/20 px-2 py-0.5 rounded-full">Send Money</span>
           </div>
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="block font-bold text-gray-700 uppercase mb-1">আপনার নাম *</label>
-              <input type="text" id="pay-guest-name" required placeholder="নাম (যেমন: সুব্রত রায়)" value="চৌধুরী পরিবার (চট্টগ্রাম)" class="w-full px-3 py-2 rounded-xl border border-gray-200">
-            </div>
-            <div>
-              <label class="block font-bold text-gray-700 uppercase mb-1">মোবাইল নম্বর</label>
-              <input type="tel" id="pay-guest-phone" placeholder="018xxxxxxxx" value="01819-876543" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono">
-            </div>
-          </div>
-          <div>
-            <label class="block font-bold text-gray-700 uppercase mb-1">শুভেচ্ছা বা আশীর্বাদ বার্তা</label>
-            <textarea id="pay-blessing" rows="2" placeholder="মাঙ্গলিক আশীর্বাদ লিখুন..." class="w-full px-3 py-2 rounded-xl border border-gray-200 font-bangla">অরিন্দম ও অর্পিতার শুভ বৌভাত ও দাম্পত্য জীবনের জন্য আন্তরিক শুভকামনা ও মাঙ্গলিক আশীর্বাদ রইলো!</textarea>
-          </div>
-        </div>
-
-        <!-- ============================================== -->
-        <!-- VIEW 1: bKASH CHECKOUT -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-bkash" class="pgw-sim-container hidden space-y-4">
-          <div class="bkash-pgw-frame p-5">
-            <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
-              <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-pink-200 block">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
-                <span class="text-xs font-bold text-white">Wedding Registry ID: #UTSAB-<span id="bkash-sim-invoice">8921</span></span>
-              </div>
-              <div class="text-right">
-                <span class="text-[10px] text-pink-200 block">পরিমাণ:</span>
-                <strong id="bkash-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ২,০০১</strong>
-              </div>
-            </div>
-
-            <!-- bKash Step 1: Phone -->
-            <div id="bkash-step-1" class="space-y-3">
-              <label class="block text-xs font-bold text-white">আপনার বিকাশ নম্বর লিখুন:</label>
-              <div class="relative">
-                <span class="absolute left-3 top-2.5 text-gray-400 font-bold text-xs">+88</span>
-                <input type="text" id="bkash-input-phone" value="01712345678" placeholder="01XXXXXXXXX" class="w-full pl-12 pr-3 py-2.5 rounded-xl bkash-pgw-input text-sm font-mono">
-              </div>
-              <div class="flex items-center gap-2 text-[11px] text-pink-100">
-                <input type="checkbox" id="bkash-agree-terms" checked class="rounded text-pink-600">
-                <span>শর্তাবলীতে সম্মত</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs hover:bg-pink-900">বাতিল</button>
-                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">পরবর্তী ধাপ</button>
-              </div>
-            </div>
-
-            <!-- bKash Step 2: OTP -->
-            <div id="bkash-step-2" class="hidden space-y-3">
-              <div class="flex items-center justify-between">
-                <label class="block text-xs font-bold text-white">৬-সংখ্যার ওটিপি কোড (OTP):</label>
-                <button type="button" onclick="autoFillBkashOtp()" class="text-[10px] font-bold underline text-amber-200">Auto-fill OTP</button>
-              </div>
-              <input type="text" id="bkash-input-otp" maxlength="6" placeholder="••••••" class="w-full px-3 py-2.5 rounded-xl bkash-pgw-input text-center text-lg font-mono tracking-widest">
-              <p class="text-[10px] text-pink-100 text-center">আপনার মোবাইলে ওটিপি কোড পাঠানো হয়েছে</p>
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceBkashStep(1)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="advanceBkashStep(3)" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow">যাচাই করুন</button>
-              </div>
-            </div>
-
-            <!-- bKash Step 3: PIN -->
-            <div id="bkash-step-3" class="hidden space-y-3">
-              <label class="block text-xs font-bold text-white">৫-সংখ্যার বিকাশ পিন (PIN):</label>
-              <input type="password" id="bkash-input-pin" maxlength="5" value="12345" placeholder="•••••" class="w-full px-3 py-2.5 rounded-xl bkash-pgw-input text-center text-lg font-mono tracking-widest">
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceBkashStep(2)" class="py-2 rounded-xl bg-pink-800 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="completeGatewayDemoPayment('bKash')" class="py-2 rounded-xl bg-white text-pink-700 font-bold text-xs hover:bg-pink-50 shadow flex items-center justify-center gap-1.5">
-                  <i class="fa-solid fa-lock text-pink-600"></i> পেমেন্ট নিশ্চিত করুন
-                </button>
-              </div>
-            </div>
-
-            <!-- Processing Spinner -->
-            <div id="bkash-step-spinner" class="hidden py-8 text-center space-y-3">
-              <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <p class="text-xs font-bold text-white">বিকাশ পেমেন্ট প্রসেসিং হচ্ছে...</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ============================================== -->
-        <!-- VIEW 2: NAGAD CHECKOUT -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-nagad" class="pgw-sim-container hidden space-y-4">
-          <div class="nagad-pgw-frame p-5">
-            <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
-              <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-orange-200 block">ডাক বিভাগ নগদ • চেকআউট</span>
-                <span class="text-xs font-bold text-white">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
-              </div>
-              <div class="text-right">
-                <span class="text-[10px] text-orange-200 block">পরিমাণ:</span>
-                <strong id="nagad-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ২,০০১</strong>
-              </div>
-            </div>
-
-            <!-- Nagad Step 1 -->
-            <div id="nagad-step-1" class="space-y-3">
-              <label class="block text-xs font-bold text-white">আপনার নগদ একাউন্ট নম্বর লিখুন:</label>
-              <input type="text" id="nagad-input-phone" value="01819456789" class="w-full px-3 py-2.5 rounded-xl text-gray-900 font-bold font-mono text-sm bg-white">
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-orange-800 text-white font-bold text-xs">বাতিল</button>
-                <button type="button" onclick="advanceNagadStep(2)" class="py-2 rounded-xl bg-white text-orange-700 font-bold text-xs hover:bg-orange-50 shadow">পরবর্তী ধাপ</button>
-              </div>
-            </div>
-
-            <!-- Nagad Step 2 -->
-            <div id="nagad-step-2" class="hidden space-y-3">
-              <div class="flex items-center justify-between">
-                <label class="block text-xs font-bold text-white">ওটিপি কোড (OTP):</label>
-                <button type="button" onclick="autoFillNagadOtp()" class="text-[10px] font-bold underline text-amber-200">Auto-fill OTP</button>
-              </div>
-              <input type="text" id="nagad-input-otp" maxlength="6" placeholder="••••••" class="w-full px-3 py-2.5 rounded-xl text-gray-900 text-center font-bold font-mono text-lg bg-white">
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceNagadStep(1)" class="py-2 rounded-xl bg-orange-800 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="advanceNagadStep(3)" class="py-2 rounded-xl bg-white text-orange-700 font-bold text-xs hover:bg-orange-50 shadow">যাচাই করুন</button>
-              </div>
-            </div>
-
-            <!-- Nagad Step 3: PIN -->
-            <div id="nagad-step-3" class="hidden space-y-3">
-              <label class="block text-xs font-bold text-white">নগদ পিন নম্বর (PIN):</label>
-              <input type="password" id="nagad-input-pin" maxlength="4" value="1234" placeholder="••••" class="w-full px-3 py-2.5 rounded-xl text-gray-900 text-center font-bold font-mono text-lg bg-white">
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceNagadStep(2)" class="py-2 rounded-xl bg-orange-800 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="completeGatewayDemoPayment('Nagad')" class="py-2 rounded-xl bg-white text-orange-700 font-bold text-xs hover:bg-orange-50 shadow">
-                  পেমেন্ট সম্পন্ন করুন
-                </button>
-              </div>
-            </div>
-
-            <div id="nagad-step-spinner" class="hidden py-8 text-center space-y-3">
-              <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <p class="text-xs font-bold text-white">নগদ পেমেন্ট সম্পন্ন হচ্ছে...</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ============================================== -->
-        <!-- VIEW: DUTCH-BANGLA ROCKET CHECKOUT -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-rocket" class="pgw-sim-container hidden space-y-4">
-          <div class="rocket-pgw-frame p-5">
-            <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
-              <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-purple-200 block flex items-center gap-1">
-                  <i class="fa-solid fa-rocket"></i> ডাচ-বাংলা ব্যাংক রকেট • পেমেন্ট
-                </span>
-                <span class="text-xs font-bold text-white">উপহার প্রাপক: অরিন্দম চক্রবর্ত্তী ও অর্পিতা গাঙ্গুলি</span>
-              </div>
-              <div class="text-right">
-                <span class="text-[10px] text-purple-200 block">পরিমাণ:</span>
-                <strong id="rocket-sim-amount" class="text-lg font-bold text-white font-serif-wedding">৳ ২,০০১</strong>
-              </div>
-            </div>
-
-            <!-- Rocket Step 1: Account Number -->
-            <div id="rocket-step-1" class="space-y-3">
-              <label class="block text-xs font-bold text-white">আপনার ১২-সংখ্যার রকেট একাউন্ট নম্বর লিখুন:</label>
-              <div class="relative">
-                <span class="absolute left-3 top-2.5 text-gray-400 font-bold text-xs">+88</span>
-                <input type="text" id="rocket-input-phone" value="019115678904" placeholder="01XXXXXXXXXX (১২ ডিজিট)" class="w-full pl-12 pr-3 py-2.5 rounded-xl rocket-pgw-input text-sm font-mono">
-              </div>
-              <p class="text-[10px] text-purple-100 font-bangla">মোবাইল নম্বর + ১ ডিজিট চেকসাম (১২ ডিজিট একাউন্ট)</p>
-              <div class="flex items-center gap-2 text-[11px] text-purple-100">
-                <input type="checkbox" id="rocket-agree-terms" checked class="rounded text-purple-600">
-                <span>শর্তাবলীতে সম্মত</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="closePaymentModal()" class="py-2 rounded-xl bg-purple-900/80 text-white font-bold text-xs hover:bg-purple-950">বাতিল</button>
-                <button type="button" onclick="advanceRocketStep(2)" class="py-2 rounded-xl bg-white text-purple-900 font-bold text-xs hover:bg-purple-50 shadow">পরবর্তী ধাপ</button>
-              </div>
-            </div>
-
-            <!-- Rocket Step 2: OTP Verification -->
-            <div id="rocket-step-2" class="hidden space-y-3">
-              <div class="flex items-center justify-between">
-                <label class="block text-xs font-bold text-white">৬-সংখ্যার নিরাপত্তা ওটিপি কোড (OTP):</label>
-                <button type="button" onclick="autoFillRocketOtp()" class="text-[10px] font-bold underline text-amber-200">Auto-fill OTP</button>
-              </div>
-              <input type="text" id="rocket-input-otp" maxlength="6" placeholder="••••••" class="w-full px-3 py-2.5 rounded-xl rocket-pgw-input text-center text-lg font-mono tracking-widest">
-              <p class="text-[10px] text-purple-100 text-center">আপনার রকেট রেজিস্টার্ড মোবাইলে ওটিপি পাঠানো হয়েছে</p>
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceRocketStep(1)" class="py-2 rounded-xl bg-purple-900/80 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="advanceRocketStep(3)" class="py-2 rounded-xl bg-white text-purple-900 font-bold text-xs hover:bg-purple-50 shadow">যাচাই করুন</button>
-              </div>
-            </div>
-
-            <!-- Rocket Step 3: PIN -->
-            <div id="rocket-step-3" class="hidden space-y-3">
-              <label class="block text-xs font-bold text-white">৪-সংখ্যার গোপন রকেট পিন (PIN):</label>
-              <input type="password" id="rocket-input-pin" maxlength="4" value="1234" placeholder="••••" class="w-full px-3 py-2.5 rounded-xl rocket-pgw-input text-center text-lg font-mono tracking-widest">
-              <div class="grid grid-cols-2 gap-2 pt-2">
-                <button type="button" onclick="advanceRocketStep(2)" class="py-2 rounded-xl bg-purple-900/80 text-white font-bold text-xs">পেছনে</button>
-                <button type="button" onclick="completeGatewayDemoPayment('Rocket')" class="py-2 rounded-xl bg-white text-purple-900 font-bold text-xs hover:bg-purple-50 shadow flex items-center justify-center gap-1.5">
-                  <i class="fa-solid fa-lock text-purple-700"></i> পেমেন্ট নিশ্চিত করুন
-                </button>
-              </div>
-            </div>
-
-            <!-- Rocket Processing Spinner -->
-            <div id="rocket-step-spinner" class="hidden py-8 text-center space-y-3">
-              <div class="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <p class="text-xs font-bold text-white">রকেট পেমেন্ট সম্পন্ন হচ্ছে...</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ============================================== -->
-        <!-- VIEW 3: CARD CHECKOUT (SSL) -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-card" class="pgw-sim-container hidden space-y-3">
-          <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50/70 text-xs space-y-3">
-            <div class="flex items-center justify-between border-b pb-2">
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-gray-800 uppercase">SSLCommerz Secured Payment</span>
-                <span class="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">3D SECURE</span>
-              </div>
-              <div class="flex gap-1.5 text-base text-gray-600">
-                <i class="fa-brands fa-cc-visa text-blue-700"></i>
-                <i class="fa-brands fa-cc-mastercard text-red-600"></i>
-                <i class="fa-brands fa-cc-amex text-cyan-700"></i>
-              </div>
-            </div>
-
-            <div>
-              <label class="block font-bold text-gray-600 mb-1">কার্ডধারীর নাম (Name on Card):</label>
-              <input type="text" value="ARINDAM CHAKRABORTY" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
-            </div>
-
-            <div>
-              <label class="block font-bold text-gray-600 mb-1">কার্ড নম্বর (16-Digit Card):</label>
-              <input type="text" id="ssl-card-number" value="4532 8901 2345 8092" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-sm tracking-wider">
-            </div>
-
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <label class="block font-bold text-gray-600 mb-1">মেয়াদ (MM/YY):</label>
-                <input type="text" value="12/28" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
-              </div>
-              <div>
-                <label class="block font-bold text-gray-600 mb-1">CVV / CVC:</label>
-                <input type="password" value="892" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
-              </div>
-            </div>
-
-            <button type="button" onclick="trigger3DSecureSimulation()" class="w-full py-2.5 rounded-xl font-bold text-xs bg-emerald-700 hover:bg-emerald-800 text-white shadow transition flex items-center justify-center gap-1.5">
-              <i class="fa-solid fa-lock"></i>
-              <span>Pay &amp; Proceed to 3D Secure</span>
+          <div class="flex items-center justify-between bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/20">
+            <span class="font-mono text-base sm:text-lg font-bold tracking-wider" id="bkash-number-val">01712-345678</span>
+            <button type="button" onclick="copyToClipboard('01712345678', this)" class="px-2.5 py-1 rounded-lg bg-white text-pink-700 font-bold text-[11px] shadow hover:bg-pink-50 transition flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i> <span>কপি করুন</span>
             </button>
           </div>
+          <p class="text-[11px] text-pink-100">আপনার বিকাশ অ্যাপে গিয়ে 'Send Money' করুন এবং ফিরতি মেসেজে পাওয়া TrxID নিচে লিখুন।</p>
         </div>
 
-        <!-- ============================================== -->
-        <!-- VIEW 4: BANK DIRECT TRANSFER & DEPOSIT DETAILS -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-bank" class="pgw-sim-container hidden space-y-3">
-          <div class="bank-pgw-frame p-5 text-xs space-y-4">
-            <div class="flex items-center justify-between border-b border-white/20 pb-3">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-building-columns text-amber-300 text-lg"></i>
-                <div>
-                  <h4 class="font-bold text-white text-sm">সরাসরি ব্যাংক অ্যাকাউন্ট ডিপোজিট / ট্রান্সফার</h4>
-                  <span class="text-[10px] text-sky-200">BEFTN • NPSB • RTGS • Internet Banking</span>
-                </div>
-              </div>
-              <span class="text-[9px] bg-sky-900/60 text-sky-200 border border-sky-400/40 px-2 py-0.5 rounded font-mono">Chattogram</span>
+        <!-- Nagad Details Box -->
+        <div id="method-box-nagad" class="method-detail-box hidden bg-gradient-to-r from-orange-500 to-amber-600 text-white p-4 rounded-2xl shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-xs">৳</span>
+              <span class="font-bold text-xs">অরিন্দম ও অর্পিতার নগদ পার্সোনাল নম্বর:</span>
             </div>
-
-            <!-- Bank Details Box -->
-            <div class="bg-white/10 rounded-xl p-3 border border-white/15 space-y-2.5 font-mono text-[11px]">
-              <div class="flex justify-between items-center">
-                <span class="text-sky-200 font-sans">ব্যাংকের নাম:</span>
-                <span class="font-bold text-white font-sans">BRAC Bank PLC</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-white/10 pt-1.5">
-                <span class="text-sky-200 font-sans">অ্যাকাউন্টের নাম:</span>
-                <span class="font-bold text-white font-sans">Arindam Chakraborty &amp; Arpita Ganguly</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-white/10 pt-1.5 bg-black/25 p-2 rounded-lg">
-                <div>
-                  <span class="text-[10px] text-sky-300 block font-sans">হিসাব নম্বর (Account No):</span>
-                  <span id="bank-acc-no-display" class="font-bold text-amber-300 text-sm tracking-wider">1501204892019001</span>
-                </div>
-                <button type="button" onclick="copyBankAccNumber()" class="px-2.5 py-1 rounded bg-amber-400 text-gray-900 font-sans font-bold text-[10px] hover:bg-amber-300 shadow">
-                  <i class="fa-solid fa-copy mr-1"></i>কপি
-                </button>
-              </div>
-              <div class="grid grid-cols-2 gap-2 border-t border-white/10 pt-1.5 text-[10px]">
-                <div>
-                  <span class="text-sky-200 block font-sans">শাখা (Branch):</span>
-                  <span class="font-bold text-white">Agrabad Branch, CTG</span>
-                </div>
-                <div>
-                  <span class="text-sky-200 block font-sans">রাউটিং নম্বর:</span>
-                  <span class="font-bold text-white">060152431</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bank Contribution / Transfer Reference Input -->
-            <div class="space-y-2 text-white">
-              <label class="block text-[11px] font-bold text-sky-100 font-sans">
-                ট্রান্সফার মাধ্যম ও রেফারেন্স / Trx স্লিপ নম্বর লিখুন:
-              </label>
-              <div class="grid grid-cols-2 gap-2">
-                <input type="text" id="bank-input-channel" placeholder="যেমন: BRAC Astha / City Touch" value="BRAC Bank Astha App" class="px-3 py-2 rounded-xl text-gray-900 text-xs font-sans bg-white font-semibold">
-                <input type="text" id="bank-input-ref" placeholder="Trx ID / Ref No" value="NPSB-984210" class="px-3 py-2 rounded-xl text-gray-900 text-xs font-mono bg-white font-bold">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 pt-1">
-              <button type="button" onclick="closePaymentModal()" class="py-2.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20">বাতিল</button>
-              <button type="button" onclick="completeGatewayDemoPayment('BRAC Bank Transfer')" class="py-2.5 rounded-xl bg-amber-400 text-gray-950 font-bold text-xs hover:bg-amber-300 shadow flex items-center justify-center gap-1.5">
-                <i class="fa-solid fa-circle-check text-emerald-800"></i> ট্রান্সফার কনফার্ম করুন
-              </button>
-            </div>
+            <span class="text-[10px] font-semibold bg-white/20 px-2 py-0.5 rounded-full">Send Money</span>
           </div>
-        </div>
-
-        <!-- ============================================== -->
-        <!-- VIEW 5: MANUAL SEND MONEY / QR (OFFLINE FLOW) -->
-        <!-- ============================================== -->
-        <div id="pgw-simulator-manual" class="pgw-sim-container hidden space-y-4">
-          <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-xs space-y-3">
-            <span class="font-bold text-amber-900 block">মোবাইল ওয়ালেট বা কিউআর কোডে সরাসরি সেন্ড মানি</span>
-            <div class="flex items-center gap-3">
-              <div id="qr-container-manual" class="w-20 h-20 bg-white p-1 rounded-xl shadow border shrink-0 flex items-center justify-center"></div>
-              <div class="space-y-1">
-                <span class="text-[10px] font-bold uppercase text-gray-500">বিকাশ / নগদ / রকেট নম্বর:</span>
-                <div class="font-mono font-bold text-sm text-gray-900">01712-345678</div>
-                <p class="text-[11px] text-gray-600">টাকা সেন্ড মানি করার পর প্রাপ্ত মেসেজের TrxID নিচে লিখুন:</p>
-              </div>
-            </div>
-            <div>
-              <label class="block font-bold text-gray-700 mb-1">Transaction ID (TrxID) *</label>
-              <input type="text" id="manual-trx-input" placeholder="যেমন: 9B82KA91XZ" value="MANUAL-TRX-901" class="w-full px-3 py-2 rounded-xl border bg-white font-mono text-xs">
-            </div>
-            <button type="button" onclick="completeGatewayDemoPayment('Manual-MFS')" class="w-full py-2.5 rounded-xl font-bold text-xs bg-amber-900 text-white shadow">
-              পেমেন্ট নিশ্চিত করুন
+          <div class="flex items-center justify-between bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/20">
+            <span class="font-mono text-base sm:text-lg font-bold tracking-wider" id="nagad-number-val">01819-876543</span>
+            <button type="button" onclick="copyToClipboard('01819876543', this)" class="px-2.5 py-1 rounded-lg bg-white text-orange-700 font-bold text-[11px] shadow hover:bg-orange-50 transition flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i> <span>কপি করুন</span>
             </button>
           </div>
+          <p class="text-[11px] text-orange-100">আপনার নগদ অ্যাপ থেকে 'Send Money' করুন এবং মেসেজে প্রাপ্ত TrxID নিচে লিখুন।</p>
         </div>
 
+        <!-- Rocket Details Box -->
+        <div id="method-box-rocket" class="method-detail-box hidden bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-4 rounded-2xl shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-rocket text-sm"></i>
+              <span class="font-bold text-xs">অরিন্দম ও অর্পিতার রকেট একাউন্ট নম্বর:</span>
+            </div>
+            <span class="text-[10px] font-semibold bg-white/20 px-2 py-0.5 rounded-full">১২ ডিজিট পার্সোনাল</span>
+          </div>
+          <div class="flex items-center justify-between bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/20">
+            <span class="font-mono text-base sm:text-lg font-bold tracking-wider" id="rocket-number-val">01911-567890-4</span>
+            <button type="button" onclick="copyToClipboard('019115678904', this)" class="px-2.5 py-1 rounded-lg bg-white text-purple-700 font-bold text-[11px] shadow hover:bg-purple-50 transition flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i> <span>কপি করুন</span>
+            </button>
+          </div>
+          <p class="text-[11px] text-purple-100">রকেট অ্যাপ বা *322# ডায়াল করে ১২ ডিজিটের নম্বরে সেন্ড মানি করুন।</p>
+        </div>
+
+        <!-- Bank Details Box -->
+        <div id="method-box-bank" class="method-detail-box hidden bg-gradient-to-r from-slate-800 to-slate-900 text-white p-4 rounded-2xl shadow-sm space-y-2.5">
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-building-columns text-amber-300"></i>
+              <span class="font-bold text-xs text-amber-200">ব্র্যাক ব্যাংক পিএলসি (BRAC Bank PLC)</span>
+            </div>
+            <span class="text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-400/30">NPSB / BEFTN</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div class="bg-white/5 p-2 rounded-xl">
+              <span class="text-[10px] text-gray-400 block">হিসাবের নাম (Account Name):</span>
+              <strong class="text-white text-xs">Arindam Chakraborty & Arpita Ganguly</strong>
+            </div>
+            <div class="bg-white/5 p-2 rounded-xl flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-gray-400 block">হিসাব নম্বর (Account No):</span>
+                <strong class="font-mono text-white text-xs">1501204892019001</strong>
+              </div>
+              <button type="button" onclick="copyToClipboard('1501204892019001', this)" class="px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 text-[10px]">কপি</button>
+            </div>
+            <div class="bg-white/5 p-2 rounded-xl">
+              <span class="text-[10px] text-gray-400 block">শাখা (Branch):</span>
+              <span class="text-gray-200 text-xs font-semibold">Agrabad Branch, Chattogram</span>
+            </div>
+            <div class="bg-white/5 p-2 rounded-xl flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-gray-400 block">রাউটিং নম্বর (Routing):</span>
+                <span class="font-mono text-gray-200 text-xs font-semibold">060152431</span>
+              </div>
+              <button type="button" onclick="copyToClipboard('060152431', this)" class="px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 text-[10px]">কপি</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- FORM BODY -->
+      <form id="personal-payment-form" onsubmit="handlePersonalPaymentSubmit(event)" class="p-5 space-y-4">
+        <!-- Amount Selection -->
+        <div>
+          <label class="block font-bold text-gray-700 text-xs uppercase mb-1">প্রেরিত টাকার পরিমাণ (BDT ৳) *</label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 font-bold text-gray-500">৳</span>
+            <input type="number" id="pay-amount-input" required min="1001" value="2001" class="w-full pl-7 pr-3 py-2.5 rounded-xl border border-gray-300 font-bold text-base text-gray-900 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          </div>
+          <!-- Quick Preset Pills -->
+          <div class="flex flex-wrap gap-1.5 mt-2">
+            <button type="button" onclick="setPayAmountPreset(1001)" class="pay-preset-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">৳ ১,০০১</button>
+            <button type="button" onclick="setPayAmountPreset(2001)" class="pay-preset-pill active-preset px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-800 text-white border border-amber-800 transition">৳ ২,০০১</button>
+            <button type="button" onclick="setPayAmountPreset(5001)" class="pay-preset-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">৳ ৫,০০১</button>
+            <button type="button" onclick="setPayAmountPreset(10001)" class="pay-preset-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">৳ ১০,০০১</button>
+            <button type="button" onclick="setPayAmountPreset(25001)" class="pay-preset-pill px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">৳ ২৫,০০১</button>
+          </div>
+        </div>
+
+        <!-- Sender Name & Phone -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div>
+            <label class="block font-bold text-gray-700 uppercase mb-1">আপনার নাম / পরিবার *</label>
+            <input type="text" id="pay-guest-name" required placeholder="উদাঃ সুব্রত ব্যানার্জী ও পরিবার" class="w-full px-3 py-2.5 rounded-xl border border-gray-300 text-gray-900 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 uppercase mb-1">আপনার মোবাইল নম্বর *</label>
+            <input type="tel" id="pay-guest-phone" required placeholder="০১৭xxxxxxxx" class="w-full px-3 py-2.5 rounded-xl border border-gray-300 text-gray-900 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          </div>
+        </div>
+
+        <!-- TrxID / Reference -->
+        <div>
+          <label class="block font-bold text-gray-700 text-xs uppercase mb-1">
+            লেনদেনের ট্রানজেকশন আইডি (TrxID / Reference ID) *
+          </label>
+          <div class="relative">
+            <input type="text" id="pay-trx-id" required placeholder="উদাঃ 9J8K2L1M অথবা ব্যাংকের রেফারেন্স নম্বর" class="w-full px-3 py-2.5 rounded-xl border-2 border-amber-300 bg-amber-50/30 font-mono text-sm font-bold text-gray-900 focus:ring-2 focus:ring-amber-500 focus:outline-none uppercase">
+            <button type="button" onclick="autoGenerateSampleTrxId()" class="absolute right-2 top-2 text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded-lg hover:bg-amber-200 transition">ডেমো TrxID</button>
+          </div>
+          <span class="text-[10px] text-gray-500 block mt-1">সেন্ড মানি বা ট্রান্সফার সফল হলে যে TrxID মেসেজে পেয়েছেন তা লিখুন।</span>
+        </div>
+
+        <!-- Blessing Message -->
+        <div>
+          <label class="block font-bold text-gray-700 text-xs uppercase mb-1">নবদম্পতির জন্য আশীর্বাদী বার্তা / শুভেচ্ছা (ঐচ্ছিক)</label>
+          <textarea id="pay-blessing-note" rows="2" placeholder="অরিন্দম ও অর্পিতার সুন্দর ও আনন্দময় দাম্পত্য জীবনের জন্য প্রাণঢালা আশীর্বাদ..." class="w-full px-3 py-2 rounded-xl border border-gray-300 text-xs text-gray-900 focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Notice Box -->
+        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200/80 text-[11px] text-amber-900 space-y-1">
+          <div class="flex items-center gap-1.5 font-bold text-amber-950">
+            <i class="fa-solid fa-clock-rotate-left text-amber-700"></i>
+            <span>যাচাই প্রক্রিয়াধীন (Verification in Progress)</span>
+          </div>
+          <p class="text-[10px] text-amber-800 leading-relaxed">
+            তথ্য সাবমিট করলে তা সরাসরি <strong>'যাচাই প্রক্রিয়াধীন'</strong> থাকবে। বর-কনে স্টেটমেন্ট যাচাই করে অনুমোদন দিলে এটি তালিকায় নিশ্চিত উপহার হিসেবে যুক্ত হবে।
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-3.5 rounded-2xl font-bold text-sm text-white shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border: 1px solid var(--secondary);">
+          <i class="fa-solid fa-paper-plane text-amber-300"></i>
+          <span>মাঙ্গলিক উপহারের তথ্য জমা দিন (যাচাইয়ের জন্য)</span>
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- 3D Secure Bank Verification Modal (Simulation) -->
-  <div id="3d-secure-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-blue-200">
-      <div class="flex items-center justify-between border-b pb-3">
-        <span class="text-xs font-bold text-blue-900 flex items-center gap-1.5">
-          <i class="fa-solid fa-building-columns"></i> BRAC Bank 3D Secure
-        </span>
-        <span class="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Verified by VISA</span>
-      </div>
-      <div>
-        <p class="text-xs text-gray-600 leading-relaxed font-bangla">
-          নিরাপত্তা যাচাইয়ের জন্য আপনার রেজিস্টার্ড মোবাইল নম্বরে একটি ওটিপি কোড পাঠানো হয়েছে।
-        </p>
-      </div>
-      <div>
-        <input type="text" id="3d-secure-otp" value="849201" maxlength="6" class="w-full px-3 py-2 rounded-xl border text-center font-bold font-mono text-lg tracking-widest bg-gray-50">
-      </div>
-      <div class="grid grid-cols-2 gap-2">
-        <button type="button" onclick="close3DSecureModal()" class="py-2 rounded-xl text-xs font-bold bg-gray-100 text-gray-700">বাতিল</button>
-        <button type="button" onclick="confirm3DSecurePayment()" class="py-2 rounded-xl text-xs font-bold bg-blue-700 text-white shadow hover:bg-blue-800">ওটিপি সাবমিট</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Simulated Mobile SMS Notification Banner -->
-  <div id="simulated-sms-banner" class="simulated-sms-banner hidden" onclick="autoFillActiveOtp()">
-    <div class="flex items-start gap-2.5">
-      <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 text-xs">
-        <i class="fa-solid fa-message"></i>
-      </div>
-      <div class="flex-1">
-        <div class="flex justify-between items-center text-[10px] text-gray-400">
-          <span id="sms-banner-sender" class="font-bold text-white">bKash</span>
-          <span>Just now</span>
+  <!-- HOST APPROVAL & VERIFICATION MODAL (FOR ARINDAM & ARPITA) -->
+  <div id="host-approval-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto mobile-bottom-sheet">
+    <div class="bg-white rounded-3xl max-w-2xl w-full border border-amber-200 shadow-2xl overflow-hidden my-6">
+      
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-amber-900 to-amber-950 p-5 text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-400/20 flex items-center justify-center text-amber-300 text-lg shadow-inner">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base font-serif-wedding text-white leading-tight">উপহার ও TrxID যাচাইকরণ প্যানেল</h3>
+            <span class="text-xs text-amber-200/90 font-bangla block">অরিন্দম ও অর্পিতার ড্যাশবোর্ড • প্রেরিত উপহার অনুমোদন করুন</span>
+          </div>
         </div>
-        <p id="sms-banner-text" class="text-xs font-mono font-medium text-amber-200 mt-0.5">
-          Your verification code is 849201. Never share this code.
-        </p>
-        <span class="text-[9px] text-emerald-300 block mt-1 underline cursor-pointer">👆 Click to auto-fill OTP</span>
+        <button onclick="closeHostApprovalModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Tabs: Pending vs Approved -->
+      <div class="px-5 pt-3 pb-2 border-b border-gray-100 bg-gray-50/70 flex gap-2 text-xs font-bold font-bangla">
+        <button type="button" id="tab-approval-pending" onclick="switchApprovalTab('pending')" class="flex-1 py-2 px-3 rounded-xl border-2 transition border-amber-800 bg-amber-800 text-white shadow-sm flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>অপেক্ষমাণ যাচাই (<span id="approval-pending-count">0</span>)</span>
+        </button>
+        <button type="button" id="tab-approval-verified" onclick="switchApprovalTab('verified')" class="flex-1 py-2 px-3 rounded-xl border-2 transition border-gray-200 bg-white hover:bg-amber-50 text-gray-700 flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i>
+          <span>অনুমোদিত উপহার (<span id="approval-verified-count">0</span>)</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 max-h-[60vh] overflow-y-auto space-y-3 font-bangla" id="approval-cards-container">
+        <!-- Rendered dynamically -->
+      </div>
+      
+      <!-- Footer -->
+      <div class="bg-gray-50 px-5 py-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+        <span>SMS বা ব্যাংক স্টেটমেন্টের TrxID মিলিয়ে 'অনুমোদন' বাটনে ক্লিক করুন।</span>
+        <button onclick="closeHostApprovalModal()" class="px-4 py-1.5 rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold transition">বন্ধ করুন</button>
       </div>
     </div>
   </div>
