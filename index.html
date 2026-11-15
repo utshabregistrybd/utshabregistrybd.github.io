@@ -33,9 +33,9 @@
   <!-- Top Announcement Bar -->
   <div class="crimson-gradient text-amber-200 text-xs py-2 px-4 shadow-sm">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2 font-bangla">
-        <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span class="font-bold text-[11px] sm:text-xs truncate">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • <span class="font-extrabold text-amber-300 underline underline-offset-2 tracking-wide font-bangla">২১শে জানুয়ারি ২০২৭ (21st Jan)</span> • চট্টগ্রাম</span>
+      <div class="flex items-center gap-2 font-bangla min-w-0 flex-1">
+        <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0"></span>
+        <span class="font-bold text-[11px] sm:text-xs truncate block">🪔 অরিন্দম ও অর্পিতার শুভ বিবাহ ও বৌভাত প্রীতিভোজ • <span class="font-extrabold text-amber-300 underline underline-offset-2 tracking-wide font-bangla">২১শে জানুয়ারি ২০২৭ (21st Jan)</span> • চট্টগ্রাম</span>
       </div>
       <div class="flex items-center gap-2 sm:gap-3 text-xs">
         
@@ -149,7 +149,7 @@
   </nav>
 
   <!-- DYNAMIC SECTIONS CONTAINER -->
-  <div id="sections-container" class="flex flex-col w-full pb-24 md:pb-12">
+  <div id="sections-container" class="flex flex-col w-full min-w-0 max-w-full overflow-x-hidden pb-24 md:pb-12">
 
     <!-- HERO SECTION -->
     <section id="section-hero" class="relative overflow-hidden pt-10 pb-16 lg:py-20 bg-gradient-to-b from-amber-50/70 to-transparent">
@@ -349,7 +349,7 @@
               দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি), চট্টগ্রাম কেন্দ্র • এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম
             </p>
           </div>
-          <a href="https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs bg-rose-700 text-white hover:bg-rose-800 shadow transition whitespace-nowrap self-start sm:self-auto">
+          <a href="https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl font-bold text-[11px] sm:text-xs bg-rose-700 text-white hover:bg-rose-800 shadow transition max-w-full text-center self-start sm:self-auto">
             <i class="fa-solid fa-diamond-turn-right text-amber-300"></i>
             <span>গুগল ম্যাপে রুট ও দিকনির্দেশনা (Open Directions)</span>
           </a>
@@ -407,12 +407,12 @@
     </section>
 
     <!-- GIFTS & WISH LIST -->
-    <section id="section-gifts" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 space-y-8">
+    <section id="section-gifts" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 space-y-6 sm:space-y-8 w-full min-w-0 max-w-full">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-amber-100 pb-5">
-        <div>
-          <div class="flex items-center gap-2">
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
             <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Wedding Wishlist &amp; Life Funds</span>
-            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
               <i class="fa-solid fa-shield-halved mr-1"></i> bKash • Rocket • Nagad • Bank
             </span>
           </div>
@@ -432,34 +432,37 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs font-medium font-bangla">
-        <button onclick="setCategory('all')" data-cat="all" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-900 text-white font-bold transition shadow-sm">
-          সব উপহার
-        </button>
-        <button onclick="setCategory('gadgets')" data-cat="gadgets" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-amber-950">
-          📱 গ্যাজেটস ও টেক (Gadgets)
-        </button>
-        <button onclick="setCategory('gold')" data-cat="gold" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          ✨ স্বর্ণ ও অলংকার (Gold)
-        </button>
-        <button onclick="setCategory('sharee')" data-cat="sharee" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          🥻 বেনারসী ও শাড়ি (Sharee)
-        </button>
-        <button onclick="setCategory('appliances')" data-cat="appliances" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          ⚡ হোম অ্যাপ্লায়েন্স (Appliances)
-        </button>
-        <button onclick="setCategory('mini')" data-cat="mini" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-rose-800">
-          🎁 মিনি গিফট (১০০১৳ - ২০০০৳)
-        </button>
-        <button onclick="setCategory('kitchen')" data-cat="kitchen" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          🍳 কিচেন ও ডিনারওয়্যার
-        </button>
-        <button onclick="setCategory('experience')" data-cat="experience" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
-          🌴 হানিমুন ও সংসার তহবিল
-        </button>
+      <!-- Scrollable Category Filter Pills (Mobile Responsive) -->
+      <div class="w-full max-w-full min-w-0 overflow-x-auto pb-2 scrollbar-none text-xs font-medium font-bangla -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div class="inline-flex items-center gap-2 min-w-max py-1">
+          <button onclick="setCategory('all')" data-cat="all" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-900 text-white font-bold transition shadow-sm">
+            সব উপহার
+          </button>
+          <button onclick="setCategory('gadgets')" data-cat="gadgets" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-amber-950">
+            📱 গ্যাজেটস ও টেক (Gadgets)
+          </button>
+          <button onclick="setCategory('gold')" data-cat="gold" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+            ✨ স্বর্ণ ও অলংকার (Gold)
+          </button>
+          <button onclick="setCategory('sharee')" data-cat="sharee" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+            🥻 বেনারসী ও শাড়ি (Sharee)
+          </button>
+          <button onclick="setCategory('appliances')" data-cat="appliances" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+            ⚡ হোম অ্যাপ্লায়েন্স (Appliances)
+          </button>
+          <button onclick="setCategory('mini')" data-cat="mini" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition font-bold text-rose-800">
+            🎁 মিনি গিফট (১০০১৳ - ২০০০৳)
+          </button>
+          <button onclick="setCategory('kitchen')" data-cat="kitchen" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+            🍳 কিচেন ও ডিনারওয়্যার
+          </button>
+          <button onclick="setCategory('experience')" data-cat="experience" class="cat-pill px-4 py-2 rounded-xl whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition">
+            🌴 হানিমুন ও সংসার তহবিল
+          </button>
+        </div>
       </div>
 
-      <div id="gifts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      <div id="gifts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0"></div>
     </section>
 
     <!-- AUSPICIOUS ASHIRBADI & PRONAMI ENVELOPE (শুভ আশীর্বাদী ও প্রণামী খাম) -->

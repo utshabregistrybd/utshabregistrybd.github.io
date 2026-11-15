@@ -1566,20 +1566,20 @@ function renderGifts() {
     else if (vendorName.includes('Pickaboo')) badgeClass = 'vendor-badge-pickaboo';
 
     return `
-      <div class="group bg-white rounded-2xl border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden relative">
-        <div class="relative h-56 w-full overflow-hidden bg-gray-50">
+      <div class="group bg-white rounded-2xl border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden relative w-full min-w-0 max-w-full">
+        <div class="relative h-48 sm:h-56 w-full overflow-hidden bg-gray-50">
           <img src="${gift.image_url}" alt="${gift.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
           
-          <div class="absolute top-3 left-3 flex flex-col gap-1.5">
-            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold shadow-md ${badgeClass}">
+          <div class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex flex-col gap-1.5">
+            <span class="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg text-[10px] font-bold shadow-md ${badgeClass}">
               <i class="fa-solid fa-store"></i> ${vendorName}
             </span>
             ${isClaimed ? `
-              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              <span class="px-2 sm:px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
                 ✅ সম্পন্ন (Claimed)
               </span>
             ` : isGroup ? `
-              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              <span class="px-2 sm:px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
                 🤝 গ্রুপ গিফট (${percent}%)
               </span>
             ` : ''}
@@ -1591,19 +1591,19 @@ function renderGifts() {
           </div>
 
           ${gift.merchant_url ? `
-            <a href="${gift.merchant_url}" target="_blank" rel="noopener" class="absolute bottom-3 right-3 text-[10px] font-bold bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-gray-700 hover:text-amber-900 border border-gray-200 shadow flex items-center gap-1" title="ভেন্ডরের অফিশিয়াল পেজ দেখুন">
+            <a href="${gift.merchant_url}" target="_blank" rel="noopener" class="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 text-[10px] font-bold bg-white/95 backdrop-blur-md px-2 sm:px-2.5 py-1 rounded-lg text-gray-700 hover:text-amber-900 border border-gray-200 shadow flex items-center gap-1" title="ভেন্ডরের অফিশিয়াল পেজ দেখুন">
               <i class="fa-solid fa-arrow-up-right-from-square text-amber-700"></i> শপ লিংক
             </a>
           ` : ''}
         </div>
 
-        <div class="p-5 flex-1 flex flex-col justify-between">
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-baseline justify-between gap-2 mb-1.5">
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-800">${gift.category}</span>
-              <span class="text-lg font-bold text-gray-900 font-serif-wedding">${formatCurrency(gift.price)}</span>
+              <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800">${gift.category}</span>
+              <span class="text-base sm:text-lg font-bold text-gray-900 font-serif-wedding">${formatCurrency(gift.price)}</span>
             </div>
-            <h3 class="text-sm font-bold text-gray-800 leading-snug mb-2 font-bangla group-hover:text-amber-900 transition-colors">
+            <h3 class="text-sm sm:text-base font-bold text-gray-800 leading-snug mb-1.5 sm:mb-2 font-bangla group-hover:text-amber-900 transition-colors">
               ${isBn ? (gift.title_bn || gift.title) : gift.title}
             </h3>
             <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">
@@ -1611,8 +1611,8 @@ function renderGifts() {
             </p>
 
             ${isGroup ? `
-              <div class="mt-4 pt-3 border-t border-amber-100/60">
-                <div class="flex justify-between text-xs text-gray-600 mb-1.5 font-medium">
+              <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-amber-100/60">
+                <div class="flex justify-between text-[11px] sm:text-xs text-gray-600 mb-1.5 font-medium">
                   <span>উত্তোলিত: <strong class="text-amber-900">${formatCurrency(current)}</strong></span>
                   <span>বাকি: <strong class="text-gray-900">${formatCurrency(remaining)}</strong></span>
                 </div>
@@ -1623,13 +1623,13 @@ function renderGifts() {
             ` : ''}
           </div>
 
-          <div class="mt-5">
+          <div class="mt-4 sm:mt-5">
             ${isClaimed ? `
-              <button disabled class="w-full py-2.5 rounded-xl text-xs font-bold bg-gray-100 text-gray-400 cursor-not-allowed flex items-center justify-center gap-1.5">
+              <button disabled class="w-full py-2.5 sm:py-3 rounded-xl text-xs font-bold bg-gray-100 text-gray-400 cursor-not-allowed flex items-center justify-center gap-1.5">
                 <i class="fa-solid fa-check"></i> সম্পূর্ণ উপহার দেওয়া হয়েছে
               </button>
             ` : `
-              <button onclick="openPaymentModal('${gift.id}')" class="w-full py-2.5 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition flex items-center justify-center gap-2" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+              <button onclick="openPaymentModal('${gift.id}')" class="w-full py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-lg transition flex items-center justify-center gap-2" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
                 <i class="fa-solid fa-cart-shopping text-amber-300"></i>
                 <span>${isGroup ? 'শেয়ার করে অংশ নিন (Chip In)' : 'সরাসরি অর্ডার ও উপহার দিন'}</span>
               </button>

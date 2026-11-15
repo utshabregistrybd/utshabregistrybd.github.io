@@ -26,6 +26,12 @@
 }
 
 /* Hindu Wedding Themes */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 body[data-wedding-theme="sindoor-gold"] {
   --primary: #8e0b1d;
   --primary-light: #b3162b;
