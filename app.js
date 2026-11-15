@@ -104,7 +104,7 @@ function toBanglaNumber(num) {
 
 function formatCurrency(amount, forceBangla = null) {
   const isBangla = forceBangla !== null ? forceBangla : (state.currentLang === 'bn');
-  const formatted = Math.round(amount).toLocaleString('en-US');
+  const formatted = Math.round(amount).toLocaleString('en-IN');
   return isBangla ? `৳ ${toBanglaNumber(formatted)}` : `৳ ${formatted} BDT`;
 }
 
