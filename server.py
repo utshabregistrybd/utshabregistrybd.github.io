@@ -1193,7 +1193,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
 
             self.send_json({
                 "success": True,
-                "message": "পেমেন্ট সফল ও তহবিল এসক্রোতে সংরক্ষিত হয়েছে! (Funds safely held in Escrow)",
+                "message": "পেমেন্ট সফল ও আশীর্বাদী উপহার নবদম্পতির নিকট প্রেরিত হয়েছে!",
                 "contribution_id": contrib_id,
                 "escrow_id": escrow_id,
                 "trx_id": trx_id,

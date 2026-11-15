@@ -1576,12 +1576,6 @@ function renderGifts() {
             ` : ''}
           </div>
 
-          <div class="absolute top-3 right-3">
-            <span class="bg-black/70 backdrop-blur text-white text-[9px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-              <i class="fa-solid fa-shield-halved text-amber-400"></i> এসক্রো সুরক্ষিত
-            </span>
-          </div>
-
           ${gift.merchant_url ? `
             <a href="${gift.merchant_url}" target="_blank" rel="noopener" class="absolute bottom-3 right-3 text-[10px] font-bold bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-gray-700 hover:text-amber-900 border border-gray-200 shadow flex items-center gap-1" title="ভেন্ডরের অফিশিয়াল পেজ দেখুন">
               <i class="fa-solid fa-arrow-up-right-from-square text-amber-700"></i> শপ লিংক
@@ -1832,7 +1826,7 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
     if (currentPaymentGift.is_group_gift) {
       amountInput.value = Math.min(remaining, defaultAmount || 2001);
       amountInput.readOnly = false;
-      targetInfo.innerText = `গ্রুপ গিফটের অবশিষ্ট: ${formatCurrency(remaining)} (তহবিল ১০০% পূর্ণ হওয়া পর্যন্ত এসক্রোতে সুরক্ষিত)`;
+      targetInfo.innerText = `গ্রুপ গিফটের অবশিষ্ট: ${formatCurrency(remaining)} (যেকোনো পরিমাণ উপহার হিসেবে পাঠানো যাবে)`;
     } else {
       amountInput.value = currentPaymentGift.price;
       amountInput.readOnly = true;
