@@ -25,7 +25,28 @@
   --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
 }
 
-/* Hindu Wedding Themes */
+/* Mobile Responsive Safeguards */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+#sections-container,
+#section-gifts,
+#section-hero,
+#section-venue,
+#section-invitation,
+#section-salami,
+#section-gallery,
+#section-story,
+#section-guestbook {
+  max-width: 100vw !important;
+  width: 100% !important;
+  overflow-x: hidden;
+}
+
 body[data-wedding-theme="sindoor-gold"] {
   --primary: #8e0b1d;
   --primary-light: #b3162b;
@@ -76,9 +97,9 @@ body[data-font="poppins-hind"] {
 }
 
 body[data-font="regal-tiro"] {
-  --font-body: 'Inter', 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
-  --font-heading: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
-  --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', 'Noto Serif Bengali', serif;
+  --font-body: 'Hind Siliguri', 'Inter', 'Noto Sans Bengali', 'Tiro Bangla', sans-serif;
+  --font-heading: 'Cinzel', 'Hind Siliguri', 'Tiro Bangla', 'Playfair Display', serif;
+  --font-royal: 'Cinzel', 'Tiro Bangla', 'Hind Siliguri', 'Playfair Display', 'Noto Serif Bengali', serif;
 }
 
 body[data-font="serif-classic"] {
@@ -355,15 +376,48 @@ html {
 @media (max-width: 640px) {
   .mobile-bottom-sheet {
     align-items: flex-end !important;
+    justify-content: center !important;
     padding: 0 !important;
+    overflow-y: hidden !important;
   }
   .mobile-bottom-sheet > div {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     max-height: 90vh !important;
+    max-height: 90dvh !important;
     width: 100% !important;
     margin: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
   }
+}
+
+/* Modal Sticky Headers & Smooth Scrolling */
+.modal-sticky-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 30 !important;
+}
+
+/* Modal Subtle Scrollbar */
+.mobile-bottom-sheet > div::-webkit-scrollbar,
+.modal-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-track,
+.modal-scrollable::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-thumb,
+.modal-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(180, 83, 9, 0.35);
+  border-radius: 9999px;
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-thumb:hover,
+.modal-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 83, 9, 0.6);
 }
 
 #mobile-drawer-backdrop {
@@ -372,4 +426,17 @@ html {
 
 #mobile-drawer {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Auspicious Wedding Date Highlighting & Crystal-Clear Numerals */
+.bengali-date-badge {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif !important;
+  letter-spacing: 0.01em;
+}
+.bengali-num-21 {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif !important;
+  font-weight: 800 !important;
+  color: #8b0000;
+  display: inline-block;
+  padding: 0 2px;
 }

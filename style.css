@@ -376,15 +376,48 @@ html {
 @media (max-width: 640px) {
   .mobile-bottom-sheet {
     align-items: flex-end !important;
+    justify-content: center !important;
     padding: 0 !important;
+    overflow-y: hidden !important;
   }
   .mobile-bottom-sheet > div {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     max-height: 90vh !important;
+    max-height: 90dvh !important;
     width: 100% !important;
     margin: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
   }
+}
+
+/* Modal Sticky Headers & Smooth Scrolling */
+.modal-sticky-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 30 !important;
+}
+
+/* Modal Subtle Scrollbar */
+.mobile-bottom-sheet > div::-webkit-scrollbar,
+.modal-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-track,
+.modal-scrollable::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-thumb,
+.modal-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(180, 83, 9, 0.35);
+  border-radius: 9999px;
+}
+.mobile-bottom-sheet > div::-webkit-scrollbar-thumb:hover,
+.modal-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 83, 9, 0.6);
 }
 
 #mobile-drawer-backdrop {

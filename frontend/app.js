@@ -1886,6 +1886,7 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
 
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
 }
 
 function closePaymentModal() {
@@ -1894,6 +1895,7 @@ function closePaymentModal() {
     modal.classList.add('hidden');
     modal.classList.remove('flex');
   }
+  document.body.style.overflow = '';
 }
 
 async function handlePersonalPaymentSubmit(event) {
@@ -2036,6 +2038,7 @@ function renderReceiptModal(record) {
 
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeReceiptModal() {
@@ -2044,6 +2047,7 @@ function closeReceiptModal() {
     modal.classList.add('hidden');
     modal.classList.remove('flex');
   }
+  document.body.style.overflow = '';
 }
 
 // ==========================================
@@ -2149,6 +2153,7 @@ function openAdminLoginModal() {
   if (p) p.value = '';
   m.classList.remove('hidden');
   m.classList.add('flex');
+  document.body.style.overflow = 'hidden';
   setTimeout(() => u?.focus(), 100);
 }
 
@@ -2158,6 +2163,7 @@ function closeAdminLoginModal() {
     m.classList.add('hidden');
     m.classList.remove('flex');
   }
+  document.body.style.overflow = '';
 }
 
 function togglePasswordVisibility(inputId, btn) {
@@ -2293,6 +2299,7 @@ function openHostApprovalModal() {
   switchApprovalTab('pending');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
   fetchAdminContributions();
 }
 
@@ -2301,6 +2308,7 @@ function closeHostApprovalModal() {
   if (!modal) return;
   modal.classList.add('hidden');
   modal.classList.remove('flex');
+  document.body.style.overflow = '';
 }
 
 function switchApprovalTab(tab) {
