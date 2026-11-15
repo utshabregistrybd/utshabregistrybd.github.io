@@ -17,7 +17,7 @@ This repository hosts the static, responsive, and interactive wedding celebratio
    - Elegant typography featuring `Cinzel`, `Tiro Bangla`, `Hind Siliguri`, and `Inter`.
 2. **Interactive Venue & Location:**
    - Embedded interactive Google Map directly linked to IEB Chattogram with one-click navigation directions.
-3. **Curated Wedding Gift Registry & Ashirbadi Salami Funds:**
+3. **Curated Wedding Gift Registry & Ashirbadi Salami / Pronami Funds:**
    - Curated gifts across 7 categories: Gold & Traditional Jewellery, Banarasi & Silk Sarees, Tech & Gadgets, Home Appliances, Mini Gifts (under 2,000 BDT), Kitchen & Dining, and Honeymoon/Home Setup funds.
    - Traditional Ashirbadi amounts starting from 1,001 BDT upwards, with default preset of 2,001 BDT.
    - Direct to couple: 100% of all contributions and blessings are directly dedicated to the newlyweds.

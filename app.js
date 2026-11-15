@@ -1924,9 +1924,9 @@ function openPaymentModal(giftId, defaultAmount = null, defaultBlessing = '') {
       targetInfo.innerText = `উপহারের লক্ষ্যমূল্য: ${formatCurrency(currentPaymentGift.price)} • ব্যক্তিগত একাউন্টে সেন্ড মানি করুন`;
     }
   } else {
-    titleDisplay.innerText = '🧧 নবদম্পতির শুভ আশীর্বাদী ও সালামি তহবিল';
+    titleDisplay.innerText = '🧧 নবদম্পতির শুভ আশীর্বাদী সালামি / প্রণামী তহবিল';
     amountInput.value = defaultAmount || 2001;
-    targetInfo.innerText = 'অরিন্দম ও অর্পিতার ব্যক্তিগত একাউন্টে সরাসরি শুভাশিস ও আশীর্বাদী উপহার';
+    targetInfo.innerText = 'অরিন্দম ও অর্পিতার ব্যক্তিগত একাউন্টে সরাসরি শুভাশিস ও সালামি/প্রণামী উপহার';
   }
 
   if (blessingInput && defaultBlessing) blessingInput.value = defaultBlessing;
@@ -1972,7 +1972,7 @@ async function handlePersonalPaymentSubmit(event) {
   const paymentMethod = methodNames[currentPaymentMethod] || 'Personal Mobile Wallet';
 
   const giftId = currentPaymentGift ? currentPaymentGift.id : 'salami-fund';
-  const giftTitle = currentPaymentGift ? (currentPaymentGift.title_bn || currentPaymentGift.title) : 'নবদম্পতির শুভ আশীর্বাদী ও সালামি তহবিল';
+  const giftTitle = currentPaymentGift ? (currentPaymentGift.title_bn || currentPaymentGift.title) : 'নবদম্পতির শুভ আশীর্বাদী সালামি / প্রণামী তহবিল';
 
   const contribRecord = {
     id: 'c-' + Math.random().toString(36).substring(2, 10),
