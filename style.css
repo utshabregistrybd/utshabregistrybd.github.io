@@ -76,9 +76,9 @@ body[data-font="poppins-hind"] {
 }
 
 body[data-font="regal-tiro"] {
-  --font-body: 'Inter', 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
-  --font-heading: 'Cinzel', 'Tiro Bangla', 'Playfair Display', serif;
-  --font-royal: 'Cinzel', 'Tiro Bangla', 'Playfair Display', 'Noto Serif Bengali', serif;
+  --font-body: 'Hind Siliguri', 'Inter', 'Noto Sans Bengali', 'Tiro Bangla', sans-serif;
+  --font-heading: 'Cinzel', 'Hind Siliguri', 'Tiro Bangla', 'Playfair Display', serif;
+  --font-royal: 'Cinzel', 'Tiro Bangla', 'Hind Siliguri', 'Playfair Display', 'Noto Serif Bengali', serif;
 }
 
 body[data-font="serif-classic"] {
@@ -372,4 +372,17 @@ html {
 
 #mobile-drawer {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Auspicious Wedding Date Highlighting & Crystal-Clear Numerals */
+.bengali-date-badge {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif !important;
+  letter-spacing: 0.01em;
+}
+.bengali-num-21 {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif !important;
+  font-weight: 800 !important;
+  color: #8b0000;
+  display: inline-block;
+  padding: 0 2px;
 }

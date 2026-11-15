@@ -161,7 +161,7 @@ const defaultStaticState = {
     "venue_name": "Engineers Institute Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম)",
     "venue_address": "এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ",
     "venue_map_url": "https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram",
-    "story": "|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরম করুণাময় পরমেশ্বরের অশেষ কৃপা এবং পরম পূজনীয় পিতৃপুরুষ ও গুরুজনদের আশিস মাথায় রেখে আমাদের শুভ পরিণয় উপলক্ষে আগামী ২১ জানুয়ারি ২০২৭ শুভ বৌভাত ও প্রীতিভোজ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভ বৌভাত ও প্রীতিভোজে আপনার সপরিবার সানন্দ উপস্থিতি ও মাঙ্গলিক আশীর্বাদ আমাদের নবদম্পতির আগামী দিনের শ্রেষ্ঠ পাথেয়।",
+    "story": "|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরম করুণাময় পরমেশ্বরের অশেষ কৃপা এবং পরম পূজনীয় পিতৃপুরুষ ও গুরুজনদের আশিস মাথায় রেখে আমাদের শুভ পরিণয় উপলক্ষে আগামী ২১শে জানুয়ারি ২০২৭ (21st January 2027) শুভ বৌভাত ও প্রীতিভোজ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভ বৌভাত ও প্রীতিভোজে আপনার সপরিবার সানন্দ উপস্থিতি ও মাঙ্গলিক আশীর্বাদ আমাদের নবদম্পতির আগামী দিনের শ্রেষ্ঠ পাথেয়।",
     "welcome_msg": "|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।",
     "theme_color": "sindoor-gold",
     "section_order": [
@@ -910,6 +910,13 @@ function renderHeroAndPhotos() {
 
   const welcomeEl = document.getElementById('hero-welcome-msg');
   if (welcomeEl) welcomeEl.innerText = ev.welcome_msg || '';
+
+  const dateEl = document.getElementById('hero-date-display');
+  if (dateEl) {
+    dateEl.innerHTML = isBn ?
+      '<span class="text-base sm:text-lg font-extrabold text-rose-900 bg-amber-200/90 px-2 py-0.5 rounded-lg border border-amber-300 shadow-xs">২১</span>শে জানুয়ারি, ২০২৭ <span class="text-xs font-bold text-amber-900">(21st Jan 2027)</span> • সন্ধ্যা ৭:০০ ঘটিকা onwards' :
+      '<span class="text-base sm:text-lg font-extrabold text-rose-900 bg-amber-200/90 px-2 py-0.5 rounded-lg border border-amber-300 shadow-xs">21st</span> January, 2027 (Thursday, 7:00 PM BST onwards)';
+  }
 
   const venueNameEl = document.getElementById('hero-venue-name');
   if (venueNameEl) venueNameEl.innerText = ev.venue_name || '';
@@ -2127,13 +2134,183 @@ function updatePendingBadges() {
   if (appVerCount) appVerCount.innerText = toBanglaNumber(verifiedCount);
 }
 
+// Toast Notification Helper
+function showToast(message, type) {
+  let toast = document.getElementById('utsab-toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'utsab-toast-notification';
+    document.body.appendChild(toast);
+  }
+
+  const isSuccess = type === 'success';
+  const isError = type === 'error';
+  toast.className = 'fixed bottom-6 right-6 z-50 max-w-sm px-4 py-3 rounded-2xl shadow-2xl font-bangla text-xs font-bold flex items-center gap-2.5 transition-all duration-300 transform ' +
+    (isSuccess ? 'bg-emerald-800 text-white border border-emerald-600' :
+     isError ? 'bg-rose-800 text-white border border-rose-600' :
+     'bg-gray-900 text-white border border-gray-700');
+
+  const iconClass = isSuccess ? 'fa-circle-check text-emerald-300' : isError ? 'fa-triangle-exclamation text-rose-300' : 'fa-circle-info text-amber-300';
+  toast.innerHTML = '<i class=\"fa-solid ' + iconClass + ' text-sm\"></i><span>' + message + '</span>';
+
+  requestAnimationFrame(() => {
+    toast.classList.remove('translate-y-12', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('translate-y-0', 'opacity-100');
+    toast.classList.add('translate-y-12', 'opacity-0');
+  }, 3500);
+}
+
+// ==========================================
+// HOST APPROVAL & VERIFICATION DASHBOARD (AUTHENTICATED)
+// ==========================================
+const ADMIN_CREDENTIALS = {
+  username: 'arindamparag',
+  password: 'arpitahiya'
+};
+
+function isAdminAuthenticated() {
+  return sessionStorage.getItem('utsab_admin_authenticated') === 'true' &&
+         sessionStorage.getItem('utsab_admin_user') === 'arindamparag';
+}
+
+function getAdminAuthToken() {
+  return sessionStorage.getItem('utsab_admin_token') || 'utsab_sec_admin_arindam_arpita_2027';
+}
+
+function openAdminLoginModal() {
+  const m = document.getElementById('admin-login-modal');
+  if (!m) return;
+  const err = document.getElementById('admin-login-error');
+  if (err) err.classList.add('hidden');
+  const u = document.getElementById('admin-login-username');
+  if (u) u.value = '';
+  const p = document.getElementById('admin-login-password');
+  if (p) p.value = '';
+  m.classList.remove('hidden');
+  m.classList.add('flex');
+  setTimeout(() => u?.focus(), 100);
+}
+
+function closeAdminLoginModal() {
+  const m = document.getElementById('admin-login-modal');
+  if (m) {
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+  }
+}
+
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isPass = input.type === 'password';
+  input.type = isPass ? 'text' : 'password';
+  const icon = btn.querySelector('i');
+  if (icon) {
+    icon.className = isPass ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  }
+}
+
+async function handleAdminLogin(e) {
+  if (e) e.preventDefault();
+  const uInput = document.getElementById('admin-login-username')?.value.trim();
+  const pInput = document.getElementById('admin-login-password')?.value.trim();
+  const errBox = document.getElementById('admin-login-error');
+  const errMsg = document.getElementById('admin-login-error-msg');
+
+  if (!uInput || !pInput) {
+    if (errBox) {
+      errBox.classList.remove('hidden');
+      if (errMsg) errMsg.innerText = 'অনুগ্রহ করে ইউজারনেম এবং পাসওয়ার্ড উভয়ই প্রদান করুন।';
+    }
+    return;
+  }
+
+  let apiSuccess = false;
+  if (state.apiAvailable) {
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: uInput, password: pInput })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        sessionStorage.setItem('utsab_admin_token', data.token || 'utsab_sec_admin_arindam_arpita_2027');
+        apiSuccess = true;
+      }
+    } catch (err) {
+      console.warn('Backend login check failed, evaluating credentials directly:', err);
+    }
+  }
+
+  if (apiSuccess || (uInput === ADMIN_CREDENTIALS.username && pInput === ADMIN_CREDENTIALS.password)) {
+    sessionStorage.setItem('utsab_admin_authenticated', 'true');
+    sessionStorage.setItem('utsab_admin_user', uInput);
+    if (!sessionStorage.getItem('utsab_admin_token')) {
+      sessionStorage.setItem('utsab_admin_token', 'utsab_sec_admin_arindam_arpita_2027');
+    }
+    state.isAdmin = true;
+    closeAdminLoginModal();
+    showToast('স্বাগতম অরিন্দম ও অর্পিতা! যাচাই প্যানেলে সফলভাবে লগইন হয়েছে।', 'success');
+    openHostApprovalModal();
+  } else {
+    if (errBox) {
+      errBox.classList.remove('hidden');
+      if (errMsg) errMsg.innerText = 'ভুল ব্যবহারকারী নাম বা পাসওয়ার্ড! শুধুমাত্র অনুমোদিত বর ও কনে (অরিন্দম ও অর্পিতা) প্রবেশ করতে পারবেন।';
+    }
+  }
+}
+
+function handleAdminLogout() {
+  if (state.apiAvailable) {
+    fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
+  }
+  sessionStorage.removeItem('utsab_admin_authenticated');
+  sessionStorage.removeItem('utsab_admin_user');
+  sessionStorage.removeItem('utsab_admin_token');
+  state.isAdmin = false;
+  state.contributions = [];
+  closeHostApprovalModal();
+  updatePendingBadges();
+  showToast('অ্যাডমিন সেশন সফলভাবে লগআউট করা হয়েছে।', 'info');
+}
+
+async function fetchAdminContributions() {
+  if (!isAdminAuthenticated()) return;
+  if (state.apiAvailable) {
+    try {
+      const token = getAdminAuthToken();
+      const res = await fetch('/api/contributions', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      const data = await res.json();
+      if (data && data.success && data.is_admin) {
+        state.contributions = data.contributions || [];
+        renderApprovalCards();
+        updatePendingBadges();
+      }
+    } catch (e) {
+      console.warn('Error fetching admin contributions:', e);
+    }
+  }
+}
+
 function openHostApprovalModal() {
+  if (!isAdminAuthenticated()) {
+    openAdminLoginModal();
+    return;
+  }
   const modal = document.getElementById('host-approval-modal');
   if (!modal) return;
   activeApprovalTab = 'pending';
   switchApprovalTab('pending');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  fetchAdminContributions();
 }
 
 function closeHostApprovalModal() {
@@ -2230,7 +2407,10 @@ async function approveContribution(contribId) {
 
   if (state.apiAvailable) {
     try {
-      await fetch('/api/contributions/' + contribId + '/approve', { method: 'POST' });
+      await fetch('/api/contributions/' + contribId + '/approve', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + getAdminAuthToken() }
+      });
     } catch (e) {
       console.warn('API approve failed, using local update:', e);
     }
@@ -2286,7 +2466,10 @@ async function rejectContribution(contribId) {
 
   if (state.apiAvailable) {
     try {
-      await fetch('/api/contributions/' + contribId + '/reject', { method: 'POST' });
+      await fetch('/api/contributions/' + contribId + '/reject', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + getAdminAuthToken() }
+      });
     } catch (e) {}
   }
 

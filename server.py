@@ -243,7 +243,7 @@ def init_db():
                     'Engineers Institute Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম)',
                     'এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ',
                     'https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram',
-                    '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১ জানুয়ারি ২০২৭ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
+                    '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১শে জানুয়ারি ২০২৭ (21st January 2027) অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
                     '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।',
                     'sindoor-gold',
                     ?,
@@ -376,7 +376,21 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+ADMIN_USERNAME = 'arindamparag'
+ADMIN_PASSWORD = 'arpitahiya'
+ADMIN_TOKEN = 'utsab_sec_admin_arindam_arpita_2027'
+
 class RegistryHandler(BaseHTTPRequestHandler):
+    def is_admin_authenticated(self):
+        auth_header = self.headers.get('Authorization', '')
+        if auth_header.startswith('Bearer '):
+            token = auth_header.split(' ', 1)[1].strip()
+            if token == ADMIN_TOKEN:
+                return True
+        query = parse_qs(urlparse(self.path).query)
+        if query.get('admin_token', [''])[0] == ADMIN_TOKEN:
+            return True
+        return False
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
@@ -556,6 +570,11 @@ class RegistryHandler(BaseHTTPRequestHandler):
             return
 
         elif path == '/api/contributions':
+            if not self.is_admin_authenticated():
+                # Guests/visitors are NOT allowed to see who submitted gifts and their details
+                self.send_json({"success": True, "contributions": [], "is_admin": False})
+                return
+
             conn = get_db()
             c = conn.cursor()
             c.execute('''
@@ -567,7 +586,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
             rows = c.fetchall()
             contribs = [dict(r) for r in rows]
             conn.close()
-            self.send_json({"success": True, "contributions": contribs})
+            self.send_json({"success": True, "contributions": contribs, "is_admin": True})
             return
 
         elif path == '/api/guestbook':
@@ -636,6 +655,28 @@ class RegistryHandler(BaseHTTPRequestHandler):
             data = json.loads(body.decode('utf-8'))
         except Exception:
             data = {}
+
+        # Admin Authentication Endpoints
+        if path == '/api/admin/login':
+            username = data.get('username', '').strip()
+            password = data.get('password', '').strip()
+            if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+                self.send_json({
+                    "success": True,
+                    "token": ADMIN_TOKEN,
+                    "admin": {
+                        "username": ADMIN_USERNAME,
+                        "name": "Arindam Chakraborty (অরিন্দম)"
+                    },
+                    "message": "স্বাগতম অরিন্দম ও অর্পিতা! অ্যাডমিন লগইন সফল হয়েছে।"
+                })
+            else:
+                self.send_error_json("ভুল ব্যবহারকারী নাম বা পাসওয়ার্ড! শুধুমাত্র অনুমোদিত অ্যাডমিন প্রবেশ করতে পারবেন।", 401)
+            return
+
+        elif path == '/api/admin/logout':
+            self.send_json({"success": True, "message": "লগআউট সফল হয়েছে"})
+            return
 
         # 1. Database Configuration Update
         if path == '/api/db/config':
@@ -807,7 +848,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                     'Engineers Institute Chattogram (দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ, চট্টগ্রাম)',
                     'এস. এস. খালেদ রোড, লালখান বাজার, চট্টগ্রাম-৪০০০, বাংলাদেশ',
                     'https://maps.google.com/?q=The+Institution+of+Engineers+Bangladesh+IEB+Chattogram',
-                    '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১ জানুয়ারি ২০২৭ অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
+                    '|| যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম ||\n\nপরমেশ্বর পরমাত্মার অশেষ কৃপা এবং পরম পূজনীয় গুরুজনদের আশীর্বাদ মাথায় রেখে আমাদের শুভ পরিণয় আগামী ২১শে জানুয়ারি ২০২৭ (21st January 2027) অনুষ্ঠিত হতে চলেছে।\n\nচট্টগ্রামের মনোরম পরিবেশে দি ইনস্টিটিউশন অব ইঞ্জিনিয়ার্স বাংলাদেশ (আইইবি) প্রাঙ্গণে সান্ধ্যলগ্নে শুভদৃষ্টি, মালাবদল, সাতপাকে বাঁধা ও সিঁদুরদান সহ মাঙ্গলিক আচার সম্পন্ন হবে। আপনার সপরিবার সানন্দ উপস্থিতি আমাদের নবদম্পতির জীবনের শ্রেষ্ঠ পাথেয়।',
                     '|| ॐ শ্রী শ্রী প্রজাপতয়ে নমঃ || আমাদের শুভ বৌভাত ও প্রীতিভোজে আপনার সানন্দ উপস্থিতি এবং মাঙ্গলিক আশীর্বাদ আমাদের পরম সম্পদ।',
                     'sindoor-gold',
                     ?,
@@ -933,6 +974,9 @@ class RegistryHandler(BaseHTTPRequestHandler):
 
         # 8. Approve or Reject Contribution (Host Approval)
         elif path.startswith('/api/contributions/') and path.endswith('/approve'):
+            if not self.is_admin_authenticated():
+                self.send_error_json("অননুমোদিত অ্যাক্সেস! শুধুমাত্র অ্যাডমিন অনুমোদন করতে পারেন।", 401)
+                return
             parts = path.strip('/').split('/')
             if len(parts) >= 4:
                 contrib_id = parts[2]
@@ -970,6 +1014,9 @@ class RegistryHandler(BaseHTTPRequestHandler):
             return
 
         elif path.startswith('/api/contributions/') and path.endswith('/reject'):
+            if not self.is_admin_authenticated():
+                self.send_error_json("অননুমোদিত অ্যাক্সেস! শুধুমাত্র অ্যাডমিন বাতিল করতে পারেন।", 401)
+                return
             parts = path.strip('/').split('/')
             if len(parts) >= 4:
                 contrib_id = parts[2]
