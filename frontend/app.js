@@ -283,23 +283,6 @@ const defaultStaticState = {
         "created_at": "2026-11-15T01:09:45"
     },
     {
-        "id": "gift-app-1",
-        "title": "Walton 260L Non-Frost Smart Inverter Refrigerator (Group Gift)",
-        "title_bn": "ওয়ালটন ২৬০ লিটার নন-ফ্রস্ট স্মার্ট ইনভার্টার রেফ্রিজারেটর (গ্রুপ গিফট)",
-        "category": "appliances",
-        "price": 32500.0,
-        "target_amount": 32500.0,
-        "current_amount": 0.0,
-        "image_url": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80",
-        "merchant_url": "https://eplaza.waltonbd.com/refrigerators",
-        "merchant_name": "Walton Plaza BD",
-        "vendor_sku": "WLT-REF-260",
-        "description": "অরিন্দম ও অর্পিতার নতুন গৃহের জন্য বিদ্যুৎ সাশ্রয়ী ইনভার্টার ডাবল ডোর ফ্রিজ। যেকোনো আংশিক অর্থ অবদান পাঠানো যাবে।",
-        "is_group_gift": 1,
-        "status": "available",
-        "created_at": "2026-11-15T01:09:45"
-    },
-    {
         "id": "gift-app-2",
         "title": "Sharp 28L Convection & Grill Microwave Oven",
         "title_bn": "শার্প ২৮ লিটার অটো-মেনু কনভেকশন ও গ্রিল মাইক্রোওয়েভ ওভেন",
