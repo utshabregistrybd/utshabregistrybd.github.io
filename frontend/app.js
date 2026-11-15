@@ -1811,11 +1811,6 @@ async function submitGuestbookForm(e) {
 }
 
 // ==========================================
-// PAYMENT & ESCROW FLOW
-// ==========================================
-let currentPaymentGift = null;
-
-// ==========================================
 // PERSONAL ACCOUNT PAYMENT & VERIFICATION FLOW
 // ==========================================
 let currentPaymentGift = null;
