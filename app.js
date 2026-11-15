@@ -184,7 +184,7 @@ const defaultStaticState = {
       "story": true,
       "guestbook": true
     },
-    "commission_rate": 5.0,
+    "commission_rate": 0.0,
     "delivery_contact_phone": "01712-345678",
     "delivery_address": "লালখান বাজার, চট্টগ্রাম, বাংলাদেশ",
     "bkash_number": "01712-345678",
@@ -788,13 +788,13 @@ async function loadData() {
       claimed_gifts: state.gifts.filter(g => g.status === 'claimed').length,
       total_amount_raised: 83000,
       total_salami_raised: 15001,
-      total_platform_commission: 4150
+      total_platform_commission: 0
     };
     state.escrowSummary = {
       total_reserved_funds: 83000,
       available_for_couple_withdrawal: 78850,
       held_for_vendor_delivery: 0,
-      platform_commission_held: 4150
+      platform_commission_held: 0
     };
   }
 
@@ -945,7 +945,7 @@ function renderStatsStrip() {
 
   document.getElementById('stat-total-raised').innerText = formatCurrency(s.total_amount_raised || 0);
   document.getElementById('stat-total-salami').innerText = formatCurrency(s.total_salami_raised || 0);
-  document.getElementById('stat-platform-commission').innerText = formatCurrency(s.total_platform_commission || 0);
+  // No commission tracked
 }
 
 // ==========================================
@@ -956,7 +956,7 @@ function renderEscrowDashboard() {
   document.getElementById('escrow-total-reserved').innerText = formatCurrency(s.total_reserved_funds || 0);
   document.getElementById('escrow-available-withdrawal').innerText = formatCurrency(s.available_for_couple_withdrawal || 0);
   document.getElementById('escrow-vendor-held').innerText = formatCurrency(s.held_for_vendor_delivery || 0);
-  document.getElementById('escrow-commission-held').innerText = formatCurrency(s.platform_commission_held || 0);
+  // No commission held
 
   // Escrow Ledger Table
   const tbody = document.getElementById('admin-escrow-tbody');

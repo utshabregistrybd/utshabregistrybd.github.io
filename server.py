@@ -5,7 +5,7 @@ Features:
 - Cultural Event Registry & Wishlist
 - Popular Bangladeshi Vendor Integrations (Aarong, Daraz, Walton, Transcom, Pickaboo, Monno)
 - 1-Click Product URL Importer from BD E-commerce
-- Automated Vendor Ordering with Platform Commission Engine
+- Wedding Registry & Ashirbad Gift Management
 - Database Storage Options & Backup/Export (SQLite, JSON Dump & Cloud DB Config)
 - Fund Reservation & Escrow Engine (Funds safely held until fulfillment / couple withdrawal)
 - Photo Uploads & Website Section Organizer
@@ -656,7 +656,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                     "total_reserved_funds": total_reserved,
                     "available_for_couple_withdrawal": available_for_host,
                     "held_for_vendor_delivery": held_for_vendors,
-                    "platform_commission_held": commission_held,
+                    "platform_commission_held": 0.0,
                     "total_payouts_completed": total_transferred
                 },
                 "escrow_items": escrow_rows,
@@ -715,7 +715,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                 "summary": {
                     "total_orders": total_orders or 0,
                     "total_gmv": total_gmv or 0.0,
-                    "total_platform_commission": total_commission or 0.0,
+                    "total_platform_commission": 0.0,
                     "total_vendor_payouts": total_payouts or 0.0
                 }
             })
@@ -780,7 +780,7 @@ class RegistryHandler(BaseHTTPRequestHandler):
                     "total_contributions_count": contrib_count or 0,
                     "total_amount_raised": total_raised or 0.0,
                     "total_salami_raised": salami_total or 0.0,
-                    "total_platform_commission": platform_commission or 0.0,
+                    "total_platform_commission": 0.0,
                     "total_reserved_in_escrow": escrow_reserved
                 }
             })
@@ -1396,7 +1396,7 @@ def run_server():
     print(f"  UtsabRegistry BD Server on port {PORT}")
     print(f"  - Database Management & JSON Snapshot Export")
     print(f"  - Fund Reservation & Escrow Engine")
-    print(f"  - BD Vendor Connect & Commission Engine")
+    print(f"  - Auspicious Wedding Registry Engine")
     print(f"  Access: http://localhost:{PORT}")
     print(f"=====================================================")
     try:
